@@ -1,1 +1,4 @@
-# Logfile created on Mon Oct 11 21:21:38 -0700 2010
+# Logfile created on Mon Oct 11 21:21:38 -0700 2010REQUESTING PAGE: GET / with {} and HTTP headers {}
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-11 22:15:10) [GET]
