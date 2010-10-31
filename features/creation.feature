@@ -4,8 +4,14 @@ As a user
 I want to be able to create white boards
 So that I am able to draw and save and publish my drawing
 
-Scenario: Happy Path
-  Given blah
-  When I go to the homepage
+Scenario: Creating a Whiteboard instance
+  Given I am on the homepage
+  When I press "create whiteboard"
   Then I should see "Add viewer"
 
+Scenario: Restoring ownership session
+  Given whiteboard 1 exists 
+  And I am on own whiteboard 1
+  When I follow "owner permanent link"
+  Then I should see "Add Collaborator"
+  

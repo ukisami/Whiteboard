@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  board: 
+  token: 
+  order: 1
+
+two:
+  board: 
+  token: 
+  order: 1

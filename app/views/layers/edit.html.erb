@@ -1,0 +1,24 @@
+<h1>Editing layer</h1>
+
+<% form_for(@layer) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :board %><br />
+    <%= f.text_field :board %>
+  </p>
+  <p>
+    <%= f.label :token %><br />
+    <%= f.text_field :token %>
+  </p>
+  <p>
+    <%= f.label :order %><br />
+    <%= f.text_field :order %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @layer %> |
+<%= link_to 'Back', layers_path %>

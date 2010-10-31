@@ -1,0 +1,24 @@
+<h1>Listing layers</h1>
+
+<table>
+  <tr>
+    <th>Board</th>
+    <th>Token</th>
+    <th>Order</th>
+  </tr>
+
+<% @layers.each do |layer| %>
+  <tr>
+    <td><%=h layer.board %></td>
+    <td><%=h layer.token %></td>
+    <td><%=h layer.order %></td>
+    <td><%= link_to 'Show', layer %></td>
+    <td><%= link_to 'Edit', edit_layer_path(layer) %></td>
+    <td><%= link_to 'Destroy', layer, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New layer', new_layer_path %>
