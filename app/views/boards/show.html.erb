@@ -8,6 +8,14 @@
   <%=h @board.publish %>
 </p>
 
+<div>
 
+<%= link_to 'Add viewer', @board.viewer_link %>
+<%=
+if @board.permission(params[:token]) == :owner
+	'put collaboration widget here'
+end
+%>
+<br />
 <%= link_to 'Edit', edit_board_path(@board) %> |
 <%= link_to 'Back', boards_path %>

@@ -41,10 +41,10 @@ class BoardsController < ApplicationController
   # POST /boards.xml
   def create
     @board = Board.new(params[:board])
-
+	
     respond_to do |format|
       if @board.save
-        format.html { redirect_to(@board, :notice => 'Board was successfully created.') }
+        format.html { redirect_to(@board.owner_link, :notice => 'Your WhiteBoard was successfully created.') }
         format.xml  { render :xml => @board, :status => :created, :location => @board }
       else
         format.html { render :action => "new" }
@@ -80,4 +80,5 @@ class BoardsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
 end
