@@ -32,8 +32,8 @@ Scenario: Effect of adding collaborator
   Given whiteboard 1 exists
   And I am on own whiteboard 1
   When I follow "Add layer"
-  And I fill out "Name" with "wh"
-  And I press "Create Layer"
+  And I fill in "Name" with "wh"
+  And I press "Create"
   Then whiteboard 1 should have 2 layers
 
 

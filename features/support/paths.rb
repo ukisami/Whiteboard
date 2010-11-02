@@ -17,7 +17,7 @@ module NavigationHelpers
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
 	when /own whiteboard (\d+)/
-	  '/boards/'+ $1 + '?token=' + Board.find($1).base_layer.token
+	  '/boards/'+ $1 + '?token=' + Board.find($1).token
 	
 	when /view whiteboard (\d+)/
 	  '/boards/'+ $1

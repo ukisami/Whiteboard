@@ -4828,3 +4828,167 @@ Rendering template within layouts/boards
 Rendering boards/show
   [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 2) [0m
 Completed in 20ms (View: 11, DB: 0) | 200 OK [http://localhost/boards/2?token=086a7b515bca124b17ef94481a447008]
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:13:34) [GET]
+  Parameters: {"id"=>"2"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 2) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 2) [0m
+  [4;36;1mLayer Load (0.1ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 2) LIMIT 1[0m
+Completed in 20ms (View: 11, DB: 0) | 200 OK [http://localhost/boards/2]
+
+
+Processing LayersController#new (for 127.0.0.1 at 2010-11-01 22:13:39) [GET]
+  Parameters: {"board_id"=>"2", "token"=>"086a7b515bca124b17ef94481a447008"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 2) [0m
+Rendering template within layouts/layers
+Rendering layers/new
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 2) [0m
+Completed in 21ms (View: 7, DB: 0) | 200 OK [http://localhost/boards/2/layers/new?token=086a7b515bca124b17ef94481a447008]
+
+
+Processing LayersController#create (for 127.0.0.1 at 2010-11-01 22:13:52) [POST]
+  Parameters: {"board_id"=>"2", "commit"=>"Create", "token"=>"086a7b515bca124b17ef94481a447008", "authenticity_token"=>"PgBzDJPTMXWQzkj8u7VOnY90qmW2nbiKCGK2dDT1WhA=", "layer"=>{"name"=>"sub warren 1"}}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 2) [0m
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 2) [0m
+  [4;36;1mLayer Create (0.2ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(2, 'sub warren 1', '2010-11-02 05:13:52', '0b91df434853e436f990a1f472df4a8a', '2010-11-02 05:13:52', NULL)[0m
+Redirected to http://localhost:3000/boards/2?token=086a7b515bca124b17ef94481a447008
+Completed in 155ms (DB: 1) | 302 Found [http://localhost/layers]
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:13:52) [GET]
+  Parameters: {"token"=>"086a7b515bca124b17ef94481a447008", "id"=>"2"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 2) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.3ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 2) [0m
+Completed in 22ms (View: 13, DB: 0) | 200 OK [http://localhost/boards/2?token=086a7b515bca124b17ef94481a447008]
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:16:13) [GET]
+  Parameters: {"token"=>"0b91df434853e436f990a1f472df4a8a", "id"=>"2"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 2) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.3ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 2) [0m
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = '0b91df434853e436f990a1f472df4a8a') AND ("layers".board_id = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" = '0b91df434853e436f990a1f472df4a8a') AND ("layers".board_id = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = '0b91df434853e436f990a1f472df4a8a') AND ("layers".board_id = 2) LIMIT 1[0m
+Completed in 21ms (View: 13, DB: 1) | 200 OK [http://localhost/boards/2?token=0b91df434853e436f990a1f472df4a8a]
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:16:40) [GET]
+  Parameters: {"id"=>"2"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 2) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;35;1mLayer Load (0.3ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 2) [0m
+  [4;36;1mLayer Load (0.1ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 2) LIMIT 1[0m
+Completed in 21ms (View: 12, DB: 1) | 200 OK [http://localhost/boards/2]
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:17:12) [GET]
+  Parameters: {"token"=>"086a7b515bca124b17ef94481a447", "id"=>"2"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 2) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.3ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 2) [0m
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = '086a7b515bca124b17ef94481a447') AND ("layers".board_id = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" = '086a7b515bca124b17ef94481a447') AND ("layers".board_id = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = '086a7b515bca124b17ef94481a447') AND ("layers".board_id = 2) LIMIT 1[0m
+Completed in 22ms (View: 13, DB: 1) | 200 OK [http://localhost/boards/2?token=086a7b515bca124b17ef94481a447]
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:26:31) [GET]
+  Parameters: {"token"=>"632a9b928dae7f495a02ead46c6394c4", "id"=>"1"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;35;1mLayer Load (0.3ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" = '632a9b928dae7f495a02ead46c6394c4') AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = '632a9b928dae7f495a02ead46c6394c4') AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" = '632a9b928dae7f495a02ead46c6394c4') AND ("layers".board_id = 1) LIMIT 1[0m
+Completed in 40ms (View: 25, DB: 1) | 200 OK [http://localhost/boards/1?token=632a9b928dae7f495a02ead46c6394c4]
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:26:56) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.3ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+  [4;35;1mLayer Load (0.1ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 1) LIMIT 1[0m
+Completed in 21ms (View: 12, DB: 1) | 200 OK [http://localhost/boards/1]
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:27:24) [GET]
+  Parameters: {"token"=>"086a7b515bca124b17ef94481a447008", "id"=>"2"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 2) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;35;1mLayer Load (0.3ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 2) [0m
+Completed in 22ms (View: 13, DB: 0) | 200 OK [http://localhost/boards/2?token=086a7b515bca124b17ef94481a447008]
+
+
+Processing BoardsController#index (for 127.0.0.1 at 2010-11-01 22:31:54) [GET]
+  [4;36;1mBoard Load (0.4ms)[0m   [0;1mSELECT * FROM "boards" [0m
+Rendering template within layouts/boards
+Rendering boards/index
+Completed in 22ms (View: 15, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing BoardsController#new (for 127.0.0.1 at 2010-11-01 22:33:57) [GET]
+Rendering template within layouts/boards
+Rendering boards/new
+Completed in 20ms (View: 13, DB: 0) | 200 OK [http://localhost/boards/new]
+
+
+Processing BoardsController#create (for 127.0.0.1 at 2010-11-01 22:37:47) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"PgBzDJPTMXWQzkj8u7VOnY90qmW2nbiKCGK2dDT1WhA=", "board"=>{"title"=>"warren 4", "publish"=>"0"}}
+  [4;35;1mBoard Create (0.4ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 05:37:47', 'warren 4', '2010-11-02 05:37:47', 'f')[0m
+  [4;36;1mLayer Create (0.2ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(3, 'Base Layer', '2010-11-02 05:37:47', '584a4afb8eaaada6763f63a2c022e921', '2010-11-02 05:37:47', NULL)[0m
+Redirected to http://localhost:3000/boards/3?token=584a4afb8eaaada6763f63a2c022e921
+Completed in 107ms (DB: 1) | 302 Found [http://localhost/boards]
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:37:47) [GET]
+  Parameters: {"token"=>"584a4afb8eaaada6763f63a2c022e921", "id"=>"3"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 3) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.3ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 3) [0m
+Completed in 20ms (View: 11, DB: 0) | 200 OK [http://localhost/boards/3?token=584a4afb8eaaada6763f63a2c022e921]
+
+
+Processing LayersController#new (for 127.0.0.1 at 2010-11-01 22:37:53) [GET]
+  Parameters: {"board_id"=>"3", "token"=>"584a4afb8eaaada6763f63a2c022e921"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 3) [0m
+Rendering template within layouts/layers
+Rendering layers/new
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 3) [0m
+Completed in 33ms (View: 16, DB: 0) | 200 OK [http://localhost/boards/3/layers/new?token=584a4afb8eaaada6763f63a2c022e921]
+
+
+Processing LayersController#create (for 127.0.0.1 at 2010-11-01 22:38:01) [POST]
+  Parameters: {"board_id"=>"3", "commit"=>"Create", "token"=>"584a4afb8eaaada6763f63a2c022e921", "authenticity_token"=>"PgBzDJPTMXWQzkj8u7VOnY90qmW2nbiKCGK2dDT1WhA=", "layer"=>{"name"=>"sub warren 1"}}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 3) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 3) [0m
+  [4;35;1mLayer Create (0.3ms)[0m   [0mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(3, 'sub warren 1', '2010-11-02 05:38:01', 'b20725d6b7ca67a779f7df03ba5fd3ab', '2010-11-02 05:38:01', NULL)[0m
+Redirected to http://localhost:3000/boards/3?token=584a4afb8eaaada6763f63a2c022e921
+Completed in 98ms (DB: 1) | 302 Found [http://localhost/layers]
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:38:01) [GET]
+  Parameters: {"token"=>"584a4afb8eaaada6763f63a2c022e921", "id"=>"3"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 3) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;35;1mLayer Load (0.3ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 3) [0m
+Completed in 20ms (View: 12, DB: 0) | 200 OK [http://localhost/boards/3?token=584a4afb8eaaada6763f63a2c022e921]
