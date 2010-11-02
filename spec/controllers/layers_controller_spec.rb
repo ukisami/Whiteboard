@@ -39,6 +39,10 @@ describe LayersController do
   end
 
   describe "POST create" do
+  
+  	before(:each) do
+      LayersController.stub(:get_board)
+  	end
 
     describe "with valid params" do
       it "assigns a newly created layer as @layer" do
@@ -71,6 +75,10 @@ describe LayersController do
   end
 
   describe "PUT update" do
+  
+  	before(:each) do
+      LayersController.stub(:get_board)
+  	end
 
     describe "with valid params" do
       it "updates the requested layer" do
@@ -115,6 +123,12 @@ describe LayersController do
   end
 
   describe "DELETE destroy" do
+  
+  	before(:each) do
+      LayersController.stub(:get_board)
+      LayersController.stub(:require_token)
+  	end
+  
     it "destroys the requested layer" do
       Layer.should_receive(:find).with("37").and_return(mock_layer)
       mock_layer.should_receive(:destroy)

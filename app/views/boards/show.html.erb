@@ -39,8 +39,10 @@
   <%end%>
 </ul>
 <%= link_to 'Add viewer', @board.viewer_link %>
-<% if @board.permission(params[:token]) == :owner %>
-  <%= link_to 'Add layer', new_board_layer_path(@board.id, :token => @board.token) %>
+<% if params %> 
+	<% if @board.permission(params[:token]) == :owner %>
+  	<%= link_to 'Add layer', new_board_layer_path(@board, :token => @board.token) %>
+  <% end %>
 <%end%>
 </div>
 

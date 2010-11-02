@@ -3,6 +3,8 @@ class Board < ActiveRecord::Base
   has_many :layers
 	before_create :create_layer
 	
+	validates_presence_of :title
+	
 	def create_layer
 		l = Layer.new
 		l.name = "Base Layer"

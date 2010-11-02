@@ -19,15 +19,6 @@ class LayersController < ApplicationController
 
   # GET /layers/1
   # GET /layers/1.xml
-  def show
-    @layer = @board.layers.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @layer }
-    end
-  end
-
   # GET /layers/new
   # GET /layers/new.xml
   def new
