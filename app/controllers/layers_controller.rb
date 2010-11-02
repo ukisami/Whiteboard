@@ -5,11 +5,7 @@ class LayersController < ApplicationController
   before_filter :require_token, :only => [:create, :destroy]
 
   def index
-    if @board != nil
-      @layers = @board.layers.all
-    else
-      @layers = Layer.all
-    end
+    @layers = @board.layers.all
 
     respond_to do |format|
       format.html # index.html.erb

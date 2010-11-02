@@ -22,12 +22,23 @@ describe LayersController do
 
   describe "GET index" do
 
-    it "given board, assigns its layers as @layers" do
-      stub_get_board
-      mock_board.layers.stub(:all).and_return([mock_layer])
-      get :index
-      assigns[:layers].should == [mock_layer]
+    describe "Given valid board" do
+      it "assigns its layers as @layers" do
+        stub_get_board
+        mock_board.layers.stub(:all).and_return([mock_layer])
+        get :index
+        assigns[:layers].should == [mock_layer]
+      end
     end
+
+    describe "Given invalid board" do
+      it "redirects back to root_path" do
+        Board.stub!(:find).and_raise('Erro')
+        get :index
+        response.should redirect_to(root_path)
+      end
+    end
+
   end
 
   describe "GET new" do
@@ -83,6 +94,14 @@ describe LayersController do
       end
     end
 
+
+    describe "without valid token" do
+      it "redirect to root path" do
+        mock_board.stub(:token).and_return('NoWaY')
+        post :create, :layer => {:these => 'params'}
+        response.should redirect_to(root_path)
+      end
+    end
   end
 
   describe "PUT update" do
