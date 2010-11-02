@@ -27,6 +27,9 @@ ActionController::Routing::Routes.draw do |map|
   #     products.resources :comments
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
+  map.resources :boards do |boards|
+    boards.resources :layers
+  end
 
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|
@@ -44,4 +47,6 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing or commenting them out if you're using named routes and resources.
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
+
+  map.root :controller => :boards, :action => :index
 end
