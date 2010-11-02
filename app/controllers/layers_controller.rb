@@ -54,7 +54,7 @@ class LayersController < ApplicationController
   # PUT /layers/1
   # PUT /layers/1.xml
   def update
-    @layer = Layer.find(params[:id])
+    @layer = @board.layers.find(params[:id])
 
     respond_to do |format|
       if @layer.update_attributes(params[:layer])
@@ -70,7 +70,7 @@ class LayersController < ApplicationController
   # DELETE /layers/1
   # DELETE /layers/1.xml
   def destroy
-    @layer = Layer.find(params[:id])
+    @layer = @board.layers.find(params[:id])
     @layer.destroy
 
     respond_to do |format|
