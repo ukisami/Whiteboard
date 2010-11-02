@@ -21,27 +21,36 @@
   <% @board.layers.each do |layer| %>
     <li>
     <% if params[:token] == layer.token%>
-      <strong><%=h layer.name%></strong>
+      <strong>
+      <% if @board.permission(params[:token]) == :owner %>
+     	  <%= link_to layer.name, board_path(@board, :token => layer.token) %>
+     	<%else%>
+     	  <%=h layer.name %>
+   	  <%end%>
+   	  </strong>
     <% else %>
-      <%=h layer.name%>
+      <% if @board.permission(params[:token]) == :owner %>
+     	  <%= link_to layer.name, board_path(@board, :token => layer.token) %>
+     	<%else%>
+     	  <%=h layer.name %>
+   	  <%end%>
     <% end %>
-    <% if @board.permission(params[:token]) == :owner %>
-      <%= board_path(@board, :token => layer.token) %>
-    <%end%>
     </li>
   <%end%>
 </ul>
 <%= link_to 'Add viewer', @board.viewer_link %>
 <% if @board.permission(params[:token]) == :owner %>
-  <%= link_to 'Add Layer', new_board_layer_path(@board, :token => @board.token) %>
+  <%= link_to 'Add layer', new_board_layer_path(@board.id, :token => @board.token) %>
 <%end%>
 </div>
 
-<h1 id="boardtitle"><%=@board.title%></h1>
+<h1 id="boardtitle"> <%= @board.title %> </h1>
 
 <div id="boardcontainer">
 <img id="board" src="about:blank" alt="(draw here)" />
-<p id="share">Add viewer: <a href="#">http://www.example.com/</a> | Add collaborator: <a href="#">http://www.example.com/</a></p>
+
+<!-- <p id="share">Add viewer: <a href="#">http://www.example.com/</a> | Add collaborator: <a href="#">http://www.example.com/</a></p> -->
+
 <ul id="toolbar">
 <li><a href="#">Black</a></li>
 <li><a href="#">Red</a></li>

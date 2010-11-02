@@ -12,6 +12,12 @@ Scenario: Creating a Whiteboard instance
 Scenario: Restoring ownership session
   Given whiteboard 1 exists 
   And I am on own whiteboard 1
-  When I follow "owner permanent link"
-  Then I should see "Add Collaborator"
+  When I follow "Base Layer"
+  Then I should see "Add layer"
 
+Scenario: Restoring layer session
+	Given whiteboard 1 exists
+	And I am on own whiteboard 1
+	When I follow "my layer link"
+	Then I should see "Add viewer"
+	And I should not see "Add layer"

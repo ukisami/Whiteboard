@@ -235,3 +235,859 @@ WARNING: Can't mass-assign these protected attributes: id
   [4;35;1mLayer Create (0.1ms)[0m   [0mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-10-31 04:42:36', '0eab6051602fe74f2282c26b454fbd98', '2010-10-31 04:42:36', NULL)[0m
   [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
   [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET / with {} and HTTP headers {}
+
+
+Processing BoardsController#index (for 127.0.0.1 at 2010-11-01 20:50:37) [GET]
+  [4;36;1mBoard Load (0.4ms)[0m   [0;1mSELECT * FROM "boards" [0m
+Rendering template within layouts/boards
+Rendering boards/index
+Completed in 13ms (View: 7, DB: 0) | 200 OK [http://www.example.com/]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.3ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:50:37', NULL, '2010-11-02 03:50:37', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:50:37', '5bd95201578ae1e1129d025ac4a5a8a1', '2010-11-02 03:50:37', NULL)[0m
+  [4;35;1mBoard Load (0.3ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=5bd95201578ae1e1129d025ac4a5a8a1 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 20:50:37) [GET]
+  Parameters: {"token"=>"5bd95201578ae1e1129d025ac4a5a8a1", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.3ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 20:50:37) [GET]
+  Parameters: {"token"=>"5bd95201578ae1e1129d025ac4a5a8a1", "id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.3ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:50:37', NULL, '2010-11-02 03:50:37', NULL)[0m
+  [4;36;1mLayer Create (6.4ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:50:37', '2f821f5b23d875423179cb4720464981', '2010-11-02 03:50:37', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=2f821f5b23d875423179cb4720464981 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 20:50:37) [GET]
+  Parameters: {"token"=>"2f821f5b23d875423179cb4720464981", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 20:50:37) [GET]
+  Parameters: {"token"=>"2f821f5b23d875423179cb4720464981", "id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:50:37', NULL, '2010-11-02 03:50:37', NULL)[0m
+  [4;36;1mLayer Create (0.2ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:50:37', 'eb13305edb09aa52ee6129e3afc0730f', '2010-11-02 03:50:37', NULL)[0m
+REQUESTING PAGE: GET /boards/1 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 20:50:37) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 20:50:37) [GET]
+  Parameters: {"id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:50:37', NULL, '2010-11-02 03:50:37', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:50:37', '8bfc36df9cb4fa12a115c688dd698e9f', '2010-11-02 03:50:37', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:50:37', 'aa4734e6450bdb079a9cbc2722d8c398', '2010-11-02 03:50:37', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=aa4734e6450bdb079a9cbc2722d8c398 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 20:50:37) [GET]
+  Parameters: {"token"=>"aa4734e6450bdb079a9cbc2722d8c398", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 20:50:37) [GET]
+  Parameters: {"token"=>"aa4734e6450bdb079a9cbc2722d8c398", "id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:50:37', NULL, '2010-11-02 03:50:37', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:50:37', '3fdbfe3d32316bcda760d0105d68b4d9', '2010-11-02 03:50:37', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET / with {} and HTTP headers {}
+
+
+Processing BoardsController#index (for 127.0.0.1 at 2010-11-01 20:56:38) [GET]
+  [4;36;1mBoard Load (0.4ms)[0m   [0;1mSELECT * FROM "boards" [0m
+Rendering template within layouts/boards
+Rendering boards/index
+Completed in 13ms (View: 7, DB: 0) | 200 OK [http://www.example.com/]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.4ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:56:38', NULL, '2010-11-02 03:56:38', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:56:38', '988ebfaee91e602eb4f6bac24b8176fe', '2010-11-02 03:56:38', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=988ebfaee91e602eb4f6bac24b8176fe with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 20:56:38) [GET]
+  Parameters: {"token"=>"988ebfaee91e602eb4f6bac24b8176fe", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 20:56:38) [GET]
+  Parameters: {"token"=>"988ebfaee91e602eb4f6bac24b8176fe", "id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:56:38', NULL, '2010-11-02 03:56:38', NULL)[0m
+  [4;36;1mLayer Create (6.8ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:56:38', '1bfa27e88d3ba6d8f226d5b6ebe7ef6e', '2010-11-02 03:56:38', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=1bfa27e88d3ba6d8f226d5b6ebe7ef6e with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 20:56:38) [GET]
+  Parameters: {"token"=>"1bfa27e88d3ba6d8f226d5b6ebe7ef6e", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 20:56:38) [GET]
+  Parameters: {"token"=>"1bfa27e88d3ba6d8f226d5b6ebe7ef6e", "id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:56:38', NULL, '2010-11-02 03:56:38', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:56:38', '7281bd848a7dcfb8b1c983e878820d5f', '2010-11-02 03:56:38', NULL)[0m
+REQUESTING PAGE: GET /boards/1 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 20:56:38) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 20:56:38) [GET]
+  Parameters: {"id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:56:38', NULL, '2010-11-02 03:56:38', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:56:38', '09e157a40799ef632e9fc2d0188b3ac7', '2010-11-02 03:56:38', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:56:38', 'e8630ea90dcafd9a0fb7d46374184c3c', '2010-11-02 03:56:38', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=e8630ea90dcafd9a0fb7d46374184c3c with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 20:56:38) [GET]
+  Parameters: {"token"=>"e8630ea90dcafd9a0fb7d46374184c3c", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 20:56:38) [GET]
+  Parameters: {"token"=>"e8630ea90dcafd9a0fb7d46374184c3c", "id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:56:38', NULL, '2010-11-02 03:56:38', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:56:38', '0044a870a60d7d06ef210d369a1ac793', '2010-11-02 03:56:38', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET / with {} and HTTP headers {}
+
+
+Processing BoardsController#index (for 127.0.0.1 at 2010-11-01 20:58:12) [GET]
+  [4;36;1mBoard Load (0.4ms)[0m   [0;1mSELECT * FROM "boards" [0m
+Rendering template within layouts/boards
+Rendering boards/index
+Completed in 13ms (View: 7, DB: 0) | 200 OK [http://www.example.com/]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.4ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:58:12', NULL, '2010-11-02 03:58:12', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:58:12', 'a44397ebb301dd99777b7a8e662f38fb', '2010-11-02 03:58:12', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=a44397ebb301dd99777b7a8e662f38fb with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 20:58:12) [GET]
+  Parameters: {"token"=>"a44397ebb301dd99777b7a8e662f38fb", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 20:58:12) [GET]
+  Parameters: {"token"=>"a44397ebb301dd99777b7a8e662f38fb", "id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:58:12', NULL, '2010-11-02 03:58:12', NULL)[0m
+  [4;36;1mLayer Create (6.8ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:58:12', '807e6d10a33cdb9d8bbfbcfa47913327', '2010-11-02 03:58:12', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=807e6d10a33cdb9d8bbfbcfa47913327 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 20:58:12) [GET]
+  Parameters: {"token"=>"807e6d10a33cdb9d8bbfbcfa47913327", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 20:58:12) [GET]
+  Parameters: {"token"=>"807e6d10a33cdb9d8bbfbcfa47913327", "id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:58:12', NULL, '2010-11-02 03:58:12', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:58:12', 'f988eec73a635854bb3b47354f75f350', '2010-11-02 03:58:12', NULL)[0m
+REQUESTING PAGE: GET /boards/1 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 20:58:12) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 20:58:12) [GET]
+  Parameters: {"id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:58:12', NULL, '2010-11-02 03:58:12', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:58:12', '8bfb261559209c16f93ef6c537ee6b17', '2010-11-02 03:58:12', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:58:12', '0cc2f01b59bd651b2c9fcfb0072f0f14', '2010-11-02 03:58:12', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=0cc2f01b59bd651b2c9fcfb0072f0f14 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 20:58:12) [GET]
+  Parameters: {"token"=>"0cc2f01b59bd651b2c9fcfb0072f0f14", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 20:58:12) [GET]
+  Parameters: {"token"=>"0cc2f01b59bd651b2c9fcfb0072f0f14", "id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 03:58:12', NULL, '2010-11-02 03:58:12', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 03:58:12', '15877221f24e176e3ccb327f73776475', '2010-11-02 03:58:12', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET / with {} and HTTP headers {}
+
+
+Processing BoardsController#index (for 127.0.0.1 at 2010-11-01 21:03:41) [GET]
+  [4;36;1mBoard Load (0.4ms)[0m   [0;1mSELECT * FROM "boards" [0m
+Rendering template within layouts/boards
+Rendering boards/index
+Completed in 13ms (View: 7, DB: 0) | 200 OK [http://www.example.com/]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.4ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:03:41', NULL, '2010-11-02 04:03:41', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 04:03:41', 'e0c73faac8d8ef17afc8b6c75d03fd8f', '2010-11-02 04:03:41', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=e0c73faac8d8ef17afc8b6c75d03fd8f with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:03:41) [GET]
+  Parameters: {"token"=>"e0c73faac8d8ef17afc8b6c75d03fd8f", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 21:03:41) [GET]
+  Parameters: {"token"=>"e0c73faac8d8ef17afc8b6c75d03fd8f", "id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:03:41', NULL, '2010-11-02 04:03:41', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 04:03:41', '7fdf237fa0eaa5320d21955123c4450b', '2010-11-02 04:03:41', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=7fdf237fa0eaa5320d21955123c4450b with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:03:41) [GET]
+  Parameters: {"token"=>"7fdf237fa0eaa5320d21955123c4450b", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 21:03:41) [GET]
+  Parameters: {"token"=>"7fdf237fa0eaa5320d21955123c4450b", "id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:03:41', NULL, '2010-11-02 04:03:41', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 04:03:41', '5e5a86a8c79b8006d0329480287716ee', '2010-11-02 04:03:41', NULL)[0m
+REQUESTING PAGE: GET /boards/1 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:03:41) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 21:03:41) [GET]
+  Parameters: {"id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:03:41', NULL, '2010-11-02 04:03:41', NULL)[0m
+  [4;36;1mLayer Create (0.4ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 04:03:41', '2406caa2be4b3d9f7763dbb5903482a4', '2010-11-02 04:03:41', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 04:03:41', '2fca44d32bb3d1f8d4af6669885cc87f', '2010-11-02 04:03:41', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=2fca44d32bb3d1f8d4af6669885cc87f with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:03:41) [GET]
+  Parameters: {"token"=>"2fca44d32bb3d1f8d4af6669885cc87f", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-11-01 21:03:42) [GET]
+  Parameters: {"token"=>"2fca44d32bb3d1f8d4af6669885cc87f", "id"=>"1"}
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:03:42', NULL, '2010-11-02 04:03:42', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "created_at", "token", "updated_at", "order") VALUES(1, '2010-11-02 04:03:42', '48cf11c1c4e1176e7c5431a46a39676e', '2010-11-02 04:03:42', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET / with {} and HTTP headers {}
+
+
+Processing BoardsController#index (for 127.0.0.1 at 2010-11-01 21:07:21) [GET]
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSQLite3::SQLException: no such table: boards: SELECT * FROM "boards" [0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-11-01 21:07:21) [GET]
+REQUESTING PAGE: GET / with {} and HTTP headers {}
+
+
+Processing BoardsController#index (for 127.0.0.1 at 2010-11-01 21:08:34) [GET]
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSQLite3::SQLException: no such table: boards: SELECT * FROM "boards" [0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-11-01 21:08:34) [GET]
+REQUESTING PAGE: GET / with {} and HTTP headers {}
+
+
+Processing BoardsController#index (for 127.0.0.1 at 2010-11-01 21:09:34) [GET]
+  [4;36;1mBoard Load (0.4ms)[0m   [0;1mSELECT * FROM "boards" [0m
+Rendering template within layouts/boards
+Rendering boards/index
+Completed in 13ms (View: 7, DB: 0) | 200 OK [http://www.example.com/]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.4ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:09:34', NULL, '2010-11-02 04:09:34', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:09:34', 'f7f7f15c1b6f82a415a69e23d47beacd', '2010-11-02 04:09:34', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=f7f7f15c1b6f82a415a69e23d47beacd with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:09:34) [GET]
+  Parameters: {"token"=>"f7f7f15c1b6f82a415a69e23d47beacd", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 10ms (View: 8, DB: 1) | 200 OK [http://www.example.com/boards/1?token=f7f7f15c1b6f82a415a69e23d47beacd]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.3ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:09:34', NULL, '2010-11-02 04:09:34', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:09:34', '3c34976becb487bd61982dd0ee6e00c6', '2010-11-02 04:09:34', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.3ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=3c34976becb487bd61982dd0ee6e00c6 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:09:34) [GET]
+  Parameters: {"token"=>"3c34976becb487bd61982dd0ee6e00c6", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 7ms (View: 5, DB: 1) | 200 OK [http://www.example.com/boards/1?token=3c34976becb487bd61982dd0ee6e00c6]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:09:34', NULL, '2010-11-02 04:09:34', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:09:34', 'af096f958a0b4ac3afdf591a3b5a08f9', '2010-11-02 04:09:34', NULL)[0m
+REQUESTING PAGE: GET /boards/1 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:09:34) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.5ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+  [4;35;1mLayer Load (0.1ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 1) LIMIT 1[0m
+Completed in 9ms (View: 7, DB: 1) | 200 OK [http://www.example.com/boards/1]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:09:34', NULL, '2010-11-02 04:09:34', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:09:34', 'b9fa162b70619abcaf5b21c134e577ef', '2010-11-02 04:09:34', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:09:34', '6d3ea3a66ca7e3f256dcf6d7a4a3513a', '2010-11-02 04:09:34', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=6d3ea3a66ca7e3f256dcf6d7a4a3513a with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:09:34) [GET]
+  Parameters: {"token"=>"6d3ea3a66ca7e3f256dcf6d7a4a3513a", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+  [4;35;1mLayer Load (0.3ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = '6d3ea3a66ca7e3f256dcf6d7a4a3513a') AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" = '6d3ea3a66ca7e3f256dcf6d7a4a3513a') AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = '6d3ea3a66ca7e3f256dcf6d7a4a3513a') AND ("layers".board_id = 1) LIMIT 1[0m
+Completed in 10ms (View: 8, DB: 2) | 200 OK [http://www.example.com/boards/1?token=6d3ea3a66ca7e3f256dcf6d7a4a3513a]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;36;1mBoard Create (0.2ms)[0m   [0;1mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:09:34', NULL, '2010-11-02 04:09:34', NULL)[0m
+  [4;35;1mLayer Create (0.1ms)[0m   [0mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:09:34', '52dfff6413d199b2862ff8874370ecc4', '2010-11-02 04:09:34', NULL)[0m
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET / with {} and HTTP headers {}
+
+
+Processing BoardsController#index (for 127.0.0.1 at 2010-11-01 21:14:19) [GET]
+  [4;36;1mBoard Load (0.4ms)[0m   [0;1mSELECT * FROM "boards" [0m
+Rendering template within layouts/boards
+Rendering boards/index
+Completed in 12ms (View: 7, DB: 0) | 200 OK [http://www.example.com/]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.4ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:14:19', NULL, '2010-11-02 04:14:19', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:14:19', '1d8355e09e69960ab15c6493f6c31492', '2010-11-02 04:14:19', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=1d8355e09e69960ab15c6493f6c31492 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:14:19) [GET]
+  Parameters: {"token"=>"1d8355e09e69960ab15c6493f6c31492", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.3ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 10ms (View: 8, DB: 1) | 200 OK [http://www.example.com/boards/1?token=1d8355e09e69960ab15c6493f6c31492]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:14:19', NULL, '2010-11-02 04:14:19', NULL)[0m
+  [4;36;1mLayer Create (0.2ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:14:19', '3b19ec303d7155043d3bee33fdf04fa8', '2010-11-02 04:14:19', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=3b19ec303d7155043d3bee33fdf04fa8 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:14:19) [GET]
+  Parameters: {"token"=>"3b19ec303d7155043d3bee33fdf04fa8", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 7ms (View: 5, DB: 1) | 200 OK [http://www.example.com/boards/1?token=3b19ec303d7155043d3bee33fdf04fa8]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:14:19', NULL, '2010-11-02 04:14:19', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:14:19', '204343d5961c0215f590b54a653509a7', '2010-11-02 04:14:19', NULL)[0m
+REQUESTING PAGE: GET /boards/1 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:14:19) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+  [4;35;1mLayer Load (0.1ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 1) LIMIT 1[0m
+Completed in 9ms (View: 6, DB: 1) | 200 OK [http://www.example.com/boards/1]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:14:19', NULL, '2010-11-02 04:14:19', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:14:19', 'd20a388f958070934dc3395ffe155c33', '2010-11-02 04:14:19', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:14:19', 'e649600c9a9bf895aded9b8aaec03301', '2010-11-02 04:14:19', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=e649600c9a9bf895aded9b8aaec03301 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:14:19) [GET]
+  Parameters: {"token"=>"e649600c9a9bf895aded9b8aaec03301", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.3ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = 'e649600c9a9bf895aded9b8aaec03301') AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" = 'e649600c9a9bf895aded9b8aaec03301') AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = 'e649600c9a9bf895aded9b8aaec03301') AND ("layers".board_id = 1) LIMIT 1[0m
+Completed in 11ms (View: 8, DB: 2) | 200 OK [http://www.example.com/boards/1?token=e649600c9a9bf895aded9b8aaec03301]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;36;1mBoard Create (0.2ms)[0m   [0;1mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:14:19', NULL, '2010-11-02 04:14:19', NULL)[0m
+  [4;35;1mLayer Create (0.1ms)[0m   [0mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:14:19', '9dfd8cdb4029aca6041ce76454cd2f3a', '2010-11-02 04:14:19', NULL)[0m
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;35;1mLayer Load (0.4ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=9dfd8cdb4029aca6041ce76454cd2f3a with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:14:19) [GET]
+  Parameters: {"token"=>"9dfd8cdb4029aca6041ce76454cd2f3a", "id"=>"1"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;35;1mLayer Load (0.4ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 8ms (View: 5, DB: 2) | 200 OK [http://www.example.com/boards/1?token=9dfd8cdb4029aca6041ce76454cd2f3a]
+REQUESTING PAGE: GET /boards/1/layers/new?token=9dfd8cdb4029aca6041ce76454cd2f3a with {} and HTTP headers {"HTTP_REFERER"=>"/boards/1?token=9dfd8cdb4029aca6041ce76454cd2f3a"}
+
+
+Processing LayersController#new (for 127.0.0.1 at 2010-11-01 21:14:19) [GET]
+  Parameters: {"board_id"=>"1", "token"=>"9dfd8cdb4029aca6041ce76454cd2f3a"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/layers
+Rendering layers/new
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Completed in 13ms (View: 7, DB: 0) | 200 OK [http://www.example.com/boards/1/layers/new?token=9dfd8cdb4029aca6041ce76454cd2f3a]
+REQUESTING PAGE: GET / with {} and HTTP headers {}
+
+
+Processing BoardsController#index (for 127.0.0.1 at 2010-11-01 21:52:51) [GET]
+  [4;36;1mBoard Load (0.4ms)[0m   [0;1mSELECT * FROM "boards" [0m
+Rendering template within layouts/boards
+Rendering boards/index
+Completed in 13ms (View: 8, DB: 0) | 200 OK [http://www.example.com/]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.4ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:52:51', NULL, '2010-11-02 04:52:51', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:52:51', 'db944aadda5f0a52af166f7def70aeae', '2010-11-02 04:52:51', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=db944aadda5f0a52af166f7def70aeae with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:52:51) [GET]
+  Parameters: {"token"=>"db944aadda5f0a52af166f7def70aeae", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 10ms (View: 8, DB: 1) | 200 OK [http://www.example.com/boards/1?token=db944aadda5f0a52af166f7def70aeae]
+REQUESTING PAGE: GET /boards/1?token=db944aadda5f0a52af166f7def70aeae with {} and HTTP headers {"HTTP_REFERER"=>"/boards/1?token=db944aadda5f0a52af166f7def70aeae"}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:52:51) [GET]
+  Parameters: {"token"=>"db944aadda5f0a52af166f7def70aeae", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://www.example.com/boards/1?token=db944aadda5f0a52af166f7def70aeae]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:52:51', NULL, '2010-11-02 04:52:51', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:52:51', '6ae3ef62a01a297bbd5d85206b9f3ead', '2010-11-02 04:52:51', NULL)[0m
+  [4;35;1mBoard Load (5.9ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=6ae3ef62a01a297bbd5d85206b9f3ead with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:52:51) [GET]
+  Parameters: {"token"=>"6ae3ef62a01a297bbd5d85206b9f3ead", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 8ms (View: 5, DB: 7) | 200 OK [http://www.example.com/boards/1?token=6ae3ef62a01a297bbd5d85206b9f3ead]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:52:51', NULL, '2010-11-02 04:52:51', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:52:51', 'ad2bd00f9580637d427c94f44d31daab', '2010-11-02 04:52:51', NULL)[0m
+REQUESTING PAGE: GET /boards/1 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:52:51) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+  [4;35;1mLayer Load (0.1ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 1) LIMIT 1[0m
+Completed in 10ms (View: 7, DB: 1) | 200 OK [http://www.example.com/boards/1]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:52:51', NULL, '2010-11-02 04:52:51', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:52:51', '72fc06f19f3bc467b157e5add475bca6', '2010-11-02 04:52:51', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:52:51', '679d31287d4588243f18f7b7daa60921', '2010-11-02 04:52:51', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=679d31287d4588243f18f7b7daa60921 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:52:51) [GET]
+  Parameters: {"token"=>"679d31287d4588243f18f7b7daa60921", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.3ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = '679d31287d4588243f18f7b7daa60921') AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" = '679d31287d4588243f18f7b7daa60921') AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = '679d31287d4588243f18f7b7daa60921') AND ("layers".board_id = 1) LIMIT 1[0m
+Completed in 10ms (View: 8, DB: 2) | 200 OK [http://www.example.com/boards/1?token=679d31287d4588243f18f7b7daa60921]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;36;1mBoard Create (0.2ms)[0m   [0;1mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 04:52:51', NULL, '2010-11-02 04:52:51', NULL)[0m
+  [4;35;1mLayer Create (0.1ms)[0m   [0mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 04:52:51', 'f77c4f85e932a514df7534850d83e72f', '2010-11-02 04:52:51', NULL)[0m
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=f77c4f85e932a514df7534850d83e72f with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 21:52:51) [GET]
+  Parameters: {"token"=>"f77c4f85e932a514df7534850d83e72f", "id"=>"1"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 7ms (View: 5, DB: 1) | 200 OK [http://www.example.com/boards/1?token=f77c4f85e932a514df7534850d83e72f]
+REQUESTING PAGE: GET /boards/1/layers/new?token=f77c4f85e932a514df7534850d83e72f with {} and HTTP headers {"HTTP_REFERER"=>"/boards/1?token=f77c4f85e932a514df7534850d83e72f"}
+
+
+Processing LayersController#new (for 127.0.0.1 at 2010-11-01 21:52:51) [GET]
+  Parameters: {"board_id"=>"1", "token"=>"f77c4f85e932a514df7534850d83e72f"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/layers
+Rendering layers/new
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Completed in 13ms (View: 7, DB: 0) | 200 OK [http://www.example.com/boards/1/layers/new?token=f77c4f85e932a514df7534850d83e72f]
+REQUESTING PAGE: GET / with {} and HTTP headers {}
+
+
+Processing BoardsController#index (for 127.0.0.1 at 2010-11-01 22:02:07) [GET]
+  [4;36;1mBoard Load (0.4ms)[0m   [0;1mSELECT * FROM "boards" [0m
+Rendering template within layouts/boards
+Rendering boards/index
+Completed in 13ms (View: 7, DB: 0) | 200 OK [http://www.example.com/]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.3ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 05:02:07', NULL, '2010-11-02 05:02:07', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'Base Layer', '2010-11-02 05:02:07', 'b5052aeecd81bc37041a862692650bc6', '2010-11-02 05:02:07', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=b5052aeecd81bc37041a862692650bc6 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:02:07) [GET]
+  Parameters: {"token"=>"b5052aeecd81bc37041a862692650bc6", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.3ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 11ms (View: 8, DB: 1) | 200 OK [http://www.example.com/boards/1?token=b5052aeecd81bc37041a862692650bc6]
+REQUESTING PAGE: GET /boards/1?token=b5052aeecd81bc37041a862692650bc6 with {} and HTTP headers {"HTTP_REFERER"=>"/boards/1?token=b5052aeecd81bc37041a862692650bc6"}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:02:07) [GET]
+  Parameters: {"token"=>"b5052aeecd81bc37041a862692650bc6", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://www.example.com/boards/1?token=b5052aeecd81bc37041a862692650bc6]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 05:02:08', NULL, '2010-11-02 05:02:08', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'Base Layer', '2010-11-02 05:02:08', '4d93788d82421930ecca17e129d745f8', '2010-11-02 05:02:08', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=4d93788d82421930ecca17e129d745f8 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:02:08) [GET]
+  Parameters: {"token"=>"4d93788d82421930ecca17e129d745f8", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 8ms (View: 5, DB: 1) | 200 OK [http://www.example.com/boards/1?token=4d93788d82421930ecca17e129d745f8]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 05:02:08', NULL, '2010-11-02 05:02:08', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'Base Layer', '2010-11-02 05:02:08', '304f2d62ce0e5d9d7b5bd668a0171e91', '2010-11-02 05:02:08', NULL)[0m
+REQUESTING PAGE: GET /boards/1 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:02:08) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+  [4;35;1mLayer Load (0.1ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 1) LIMIT 1[0m
+Completed in 9ms (View: 6, DB: 1) | 200 OK [http://www.example.com/boards/1]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 05:02:08', NULL, '2010-11-02 05:02:08', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'Base Layer', '2010-11-02 05:02:08', '3f824c6717a699a740506bd788b97ab9', '2010-11-02 05:02:08', NULL)[0m
+  [4;35;1mBoard Load (0.4ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 05:02:08', '57f5eb1e081fdde8b997fecabe6e280e', '2010-11-02 05:02:08', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=57f5eb1e081fdde8b997fecabe6e280e with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:02:08) [GET]
+  Parameters: {"token"=>"57f5eb1e081fdde8b997fecabe6e280e", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.3ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = '57f5eb1e081fdde8b997fecabe6e280e') AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" = '57f5eb1e081fdde8b997fecabe6e280e') AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = '57f5eb1e081fdde8b997fecabe6e280e') AND ("layers".board_id = 1) LIMIT 1[0m
+Completed in 10ms (View: 8, DB: 2) | 200 OK [http://www.example.com/boards/1?token=57f5eb1e081fdde8b997fecabe6e280e]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;36;1mBoard Create (0.2ms)[0m   [0;1mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 05:02:08', NULL, '2010-11-02 05:02:08', NULL)[0m
+  [4;35;1mLayer Create (0.1ms)[0m   [0mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'Base Layer', '2010-11-02 05:02:08', '5722cb6fdb26d3a5e1778632ce4d5200', '2010-11-02 05:02:08', NULL)[0m
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=5722cb6fdb26d3a5e1778632ce4d5200 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:02:08) [GET]
+  Parameters: {"token"=>"5722cb6fdb26d3a5e1778632ce4d5200", "id"=>"1"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 8ms (View: 6, DB: 1) | 200 OK [http://www.example.com/boards/1?token=5722cb6fdb26d3a5e1778632ce4d5200]
+REQUESTING PAGE: GET /boards/1/layers/new?token=5722cb6fdb26d3a5e1778632ce4d5200 with {} and HTTP headers {"HTTP_REFERER"=>"/boards/1?token=5722cb6fdb26d3a5e1778632ce4d5200"}
+
+
+Processing LayersController#new (for 127.0.0.1 at 2010-11-01 22:02:08) [GET]
+  Parameters: {"board_id"=>"1", "token"=>"5722cb6fdb26d3a5e1778632ce4d5200"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/layers
+Rendering layers/new
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Completed in 13ms (View: 7, DB: 0) | 200 OK [http://www.example.com/boards/1/layers/new?token=5722cb6fdb26d3a5e1778632ce4d5200]
+REQUESTING PAGE: GET / with {} and HTTP headers {}
+
+
+Processing BoardsController#index (for 127.0.0.1 at 2010-11-01 22:04:13) [GET]
+  [4;36;1mBoard Load (0.7ms)[0m   [0;1mSELECT * FROM "boards" [0m
+Rendering template within layouts/boards
+Rendering boards/index
+Completed in 13ms (View: 7, DB: 1) | 200 OK [http://www.example.com/]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.3ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 05:04:13', NULL, '2010-11-02 05:04:13', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'Base Layer', '2010-11-02 05:04:13', '895ddcef6ec59d79435430b9f8ee32e3', '2010-11-02 05:04:13', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=895ddcef6ec59d79435430b9f8ee32e3 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:04:13) [GET]
+  Parameters: {"token"=>"895ddcef6ec59d79435430b9f8ee32e3", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 10ms (View: 8, DB: 1) | 200 OK [http://www.example.com/boards/1?token=895ddcef6ec59d79435430b9f8ee32e3]
+REQUESTING PAGE: GET /boards/1?token=895ddcef6ec59d79435430b9f8ee32e3 with {} and HTTP headers {"HTTP_REFERER"=>"/boards/1?token=895ddcef6ec59d79435430b9f8ee32e3"}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:04:13) [GET]
+  Parameters: {"token"=>"895ddcef6ec59d79435430b9f8ee32e3", "id"=>"1"}
+  [4;35;1mBoard Load (0.5ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 8ms (View: 5, DB: 1) | 200 OK [http://www.example.com/boards/1?token=895ddcef6ec59d79435430b9f8ee32e3]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 05:04:13', NULL, '2010-11-02 05:04:13', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'Base Layer', '2010-11-02 05:04:13', '6cbb656465c505eeda4d35990f8cb965', '2010-11-02 05:04:13', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=6cbb656465c505eeda4d35990f8cb965 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:04:13) [GET]
+  Parameters: {"token"=>"6cbb656465c505eeda4d35990f8cb965", "id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 7ms (View: 5, DB: 1) | 200 OK [http://www.example.com/boards/1?token=6cbb656465c505eeda4d35990f8cb965]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 05:04:13', NULL, '2010-11-02 05:04:13', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'Base Layer', '2010-11-02 05:04:13', 'b89f57c8edbe21a6ab969e2d52669763', '2010-11-02 05:04:13', NULL)[0m
+REQUESTING PAGE: GET /boards/1 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:04:13) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+  [4;35;1mLayer Load (0.1ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" IS NULL) AND ("layers".board_id = 1) LIMIT 1[0m
+Completed in 8ms (View: 6, DB: 1) | 200 OK [http://www.example.com/boards/1]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mBoard Create (0.2ms)[0m   [0mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 05:04:13', NULL, '2010-11-02 05:04:13', NULL)[0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'Base Layer', '2010-11-02 05:04:13', '9493a5e264744dc52d5257ea6c4cd554', '2010-11-02 05:04:13', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Create (0.1ms)[0m   [0;1mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'untitled', '2010-11-02 05:04:13', '561817ef02bed36fa833407f50696070', '2010-11-02 05:04:13', NULL)[0m
+  [4;35;1mBoard Load (0.2ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;36;1mLayer Load (0.2ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=561817ef02bed36fa833407f50696070 with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:04:13) [GET]
+  Parameters: {"token"=>"561817ef02bed36fa833407f50696070", "id"=>"1"}
+  [4;35;1mBoard Load (0.4ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;36;1mLayer Load (0.3ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = '561817ef02bed36fa833407f50696070') AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "layers" WHERE ("layers"."token" = '561817ef02bed36fa833407f50696070') AND ("layers".board_id = 1) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers"."token" = '561817ef02bed36fa833407f50696070') AND ("layers".board_id = 1) LIMIT 1[0m
+Completed in 10ms (View: 8, DB: 2) | 200 OK [http://www.example.com/boards/1?token=561817ef02bed36fa833407f50696070]
+WARNING: Can't mass-assign these protected attributes: id
+  [4;36;1mBoard Create (0.2ms)[0m   [0;1mINSERT INTO "boards" ("created_at", "title", "updated_at", "publish") VALUES('2010-11-02 05:04:13', NULL, '2010-11-02 05:04:13', NULL)[0m
+  [4;35;1mLayer Create (0.1ms)[0m   [0mINSERT INTO "layers" ("board_id", "name", "created_at", "token", "updated_at", "order") VALUES(1, 'Base Layer', '2010-11-02 05:04:13', '48938231dbf896d2fee2ea98544f42da', '2010-11-02 05:04:13', NULL)[0m
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+REQUESTING PAGE: GET /boards/1?token=48938231dbf896d2fee2ea98544f42da with {} and HTTP headers {}
+
+
+Processing BoardsController#show (for 127.0.0.1 at 2010-11-01 22:04:13) [GET]
+  Parameters: {"token"=>"48938231dbf896d2fee2ea98544f42da", "id"=>"1"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/boards
+Rendering boards/show
+  [4;35;1mLayer Load (0.2ms)[0m   [0mSELECT * FROM "layers" WHERE ("layers".board_id = 1) [0m
+Completed in 7ms (View: 5, DB: 1) | 200 OK [http://www.example.com/boards/1?token=48938231dbf896d2fee2ea98544f42da]
+REQUESTING PAGE: GET /boards/1/layers/new?token=48938231dbf896d2fee2ea98544f42da with {} and HTTP headers {"HTTP_REFERER"=>"/boards/1?token=48938231dbf896d2fee2ea98544f42da"}
+
+
+Processing LayersController#new (for 127.0.0.1 at 2010-11-01 22:04:13) [GET]
+  Parameters: {"board_id"=>"1", "token"=>"48938231dbf896d2fee2ea98544f42da"}
+  [4;36;1mBoard Load (0.2ms)[0m   [0;1mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Rendering template within layouts/layers
+Rendering layers/new
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "boards" WHERE ("boards"."id" = 1) [0m
+Completed in 14ms (View: 8, DB: 0) | 200 OK [http://www.example.com/boards/1/layers/new?token=48938231dbf896d2fee2ea98544f42da]

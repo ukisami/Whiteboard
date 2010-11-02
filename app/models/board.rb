@@ -5,6 +5,7 @@ class Board < ActiveRecord::Base
 	
 	def create_layer
 		l = Layer.new
+		l.name = "Base Layer"
 		layers << l
 		return l
 	end 
@@ -23,12 +24,6 @@ class Board < ActiveRecord::Base
 	
 	def viewer_link
 		return polymorphic_path(self)
-	end
-	
-	def collaborator_link
-		l = create_layer
-		l.save
-		return polymorphic_path(self, :token => l.token)
 	end
 	
 	def permission(token_param)
