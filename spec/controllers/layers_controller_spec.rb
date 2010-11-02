@@ -6,25 +6,29 @@ describe LayersController do
     @mock_layer ||= mock_model(Layer, stubs)
   end
 
+  def mock_board(stubs={})
+    @mock_board ||= mock_model(Board, stubs)
+  end
+
+  def stub_get_board
+    Board.stub!(:find).and_return(mock_board)
+    mock_board.stub(:layers).and_return([mock_layer])
+    mock_board.stub(:owner_link).and_return('/')
+  end
+
   describe "GET index" do
-    it "assigns all layers as @layers" do
-      Layer.stub(:find).with(:all).and_return([mock_layer])
+    it "given board, assigns its layers as @layers" do
+      stub_get_board
+      mock_board.layers.stub(:all).and_return([mock_layer])
       get :index
       assigns[:layers].should == [mock_layer]
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested layer as @layer" do
-      Layer.stub(:find).with("37").and_return(mock_layer)
-      get :show, :id => "37"
-      assigns[:layer].should equal(mock_layer)
-    end
-  end
-
   describe "GET new" do
     it "assigns a new layer as @layer" do
-      Layer.stub(:new).and_return(mock_layer)
+      stub_get_board
+      mock_board.layers.stub(:new).and_return(mock_layer)
       get :new
       assigns[:layer].should equal(mock_layer)
     end
@@ -32,7 +36,8 @@ describe LayersController do
 
   describe "GET edit" do
     it "assigns the requested layer as @layer" do
-      Layer.stub(:find).with("37").and_return(mock_layer)
+      stub_get_board
+      mock_board.layers.stub(:find).with("37").and_return(mock_layer)
       get :edit, :id => "37"
       assigns[:layer].should equal(mock_layer)
     end
@@ -42,15 +47,17 @@ describe LayersController do
 
     describe "with valid params" do
       it "assigns a newly created layer as @layer" do
-        Layer.stub(:new).with({'these' => 'params'}).and_return(mock_layer(:save => true))
+        stub_get_board
+        mock_board.layers.stub(:new).with({'these' => 'params'}).and_return(mock_layer(:save => true))
         post :create, :layer => {:these => 'params'}
         assigns[:layer].should equal(mock_layer)
       end
 
-      it "redirects to the created layer" do
-        Layer.stub(:new).and_return(mock_layer(:save => true))
+      it "redirects to the creating board" do
+        stub_get_board
+        mock_board.layers.stub(:new).and_return(mock_layer(:save => true))
         post :create, :layer => {}
-        response.should redirect_to(layer_url(mock_layer))
+        response.should redirect_to(mock_board.owner_link)
       end
     end
 
@@ -116,13 +123,15 @@ describe LayersController do
 
   describe "DELETE destroy" do
     it "destroys the requested layer" do
-      Layer.should_receive(:find).with("37").and_return(mock_layer)
+      stub_get_board
+      mock_board.should_receive(:find).with("37").and_return(mock_layer)
       mock_layer.should_receive(:destroy)
       delete :destroy, :id => "37"
     end
 
     it "redirects to the layers list" do
-      Layer.stub(:find).and_return(mock_layer(:destroy => true))
+      stub_get_board
+      mock_board.stub(:find).and_return(mock_layer(:destroy => true))
       delete :destroy, :id => "1"
       response.should redirect_to(layers_url)
     end

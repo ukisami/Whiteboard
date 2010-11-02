@@ -42,15 +42,16 @@ describe BoardsController do
 
     describe "with valid params" do
       it "assigns a newly created board as @board" do
-        Board.stub(:new).with({'these' => 'params'}).and_return(mock_board(:save => true))
+        Board.stub(:new).with({'these' => 'params'}).and_return(mock_board(:save => true,
+                                                                           :owner_link => '/'))
         post :create, :board => {:these => 'params'}
         assigns[:board].should equal(mock_board)
       end
 
       it "redirects to the created board" do
-        Board.stub(:new).and_return(mock_board(:save => true))
+        Board.stub(:new).and_return(mock_board(:save => true, :owner_link => '/'))
         post :create, :board => {}
-        response.should redirect_to(board_url(mock_board))
+        response.should redirect_to(mock_board.owner_link)
       end
     end
 
