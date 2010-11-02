@@ -1,8 +1,15 @@
 class LayersController < ApplicationController
   # GET /layers
   # GET /layers.xml
+  before_filter :get_board
+  before_filter :require_token, :only => [:create, :destroy]
+
   def index
-    @layers = Layer.all
+    if @board != nil
+      @layers = @board.layers.all
+    else
+      @layers = Layer.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +20,7 @@ class LayersController < ApplicationController
   # GET /layers/1
   # GET /layers/1.xml
   def show
-    @layer = Layer.find(params[:id])
+    @layer = @board.layers.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +31,7 @@ class LayersController < ApplicationController
   # GET /layers/new
   # GET /layers/new.xml
   def new
-    @layer = Layer.new
+    @layer = @board.layers.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,17 +41,17 @@ class LayersController < ApplicationController
 
   # GET /layers/1/edit
   def edit
-    @layer = Layer.find(params[:id])
+    @layer = @board.layers.find(params[:id])
   end
 
   # POST /layers
   # POST /layers.xml
   def create
-    @layer = Layer.new(params[:layer])
+    @layer = @board.layers.new(params[:layer])
 
     respond_to do |format|
       if @layer.save
-        format.html { redirect_to(@layer, :notice => 'Layer was successfully created.') }
+        format.html { redirect_to(@board.owner_link, :notice => 'Layer was successfully created.') }
         format.xml  { render :xml => @layer, :status => :created, :location => @layer }
       else
         format.html { render :action => "new" }
@@ -78,6 +85,20 @@ class LayersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(layers_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  def get_board
+    begin
+      @board = Board.find params[:board_id]
+    rescue
+      redirect_to root_path, :notice => "Board required"
+    end
+  end
+
+  def require_token
+    if params[:token] != @board.token
+      redirect_to root_path, :notice => "Owner token required"
     end
   end
 end

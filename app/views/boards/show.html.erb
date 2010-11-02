@@ -1,21 +1,57 @@
-<p>
-  <b>Title:</b>
-  <%=h @board.title %>
-</p>
+<%=stylesheet_link_tag 'board'%>
+<div id="wrap">
 
-<p>
-  <b>Publish:</b>
-  <%=h @board.publish %>
-</p>
+<div id="chatcontainer">
+<h2>Chat</h2>
+<div id="chat">
+<p>Warren: I finished the template.</p>
+</div>
+<form id="chatctrl" method="post" action="#">
+<p><label for="name">Name</label>
+<input id="name" name="name" value="Guest" /></p>
+<p><label for="message">Message</label>
+<input id="message" name="message" /></p>
+<p><input type="submit" value="Send" /></p>
+</form>
+</div>
+
+<div id="layers">
+<h2>Layers</h2>
+<ul>
+  <% @board.layers.each do |layer| %>
+    <li>
+    <% if params[:token] == layer.token%>
+      <strong><%=h layer.name%></strong>
+    <% else %>
+      <%=h layer.name%>
+    <% end %>
+    <% if @board.permission(params[:token]) == :owner %>
+      <%= board_path(@board, :token => layer.token) %>
+    <%end%>
+    </li>
+  <%end%>
+</ul>
+<%= link_to 'Add viewer', @board.viewer_link %>
+<% if @board.permission(params[:token]) == :owner %>
+  <%= link_to 'Add Layer', new_board_layer_path(@board, :token => @board.token) %>
+<%end%>
+</div>
+
+<h1 id="boardtitle"><%=@board.title%></h1>
+
+<div id="boardcontainer">
+<img id="board" src="about:blank" alt="(draw here)" />
+<p id="share">Add viewer: <a href="#">http://www.example.com/</a> | Add collaborator: <a href="#">http://www.example.com/</a></p>
+<ul id="toolbar">
+<li><a href="#">Black</a></li>
+<li><a href="#">Red</a></li>
+<li><a href="#">Erase</a></li>
+<li><a href="#">Thin</a></li>
+<li><a href="#">Thick</a></li>
+</ul>
+</div>
+
+</div>
 
 <div>
 
-<%= link_to 'Add viewer', @board.viewer_link %>
-<%=
-if @board.permission(params[:token]) == :owner
-	'put collaboration widget here'
-end
-%>
-<br />
-<%= link_to 'Edit', edit_board_path(@board) %> |
-<%= link_to 'Back', boards_path %>

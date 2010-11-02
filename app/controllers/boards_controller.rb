@@ -41,7 +41,7 @@ class BoardsController < ApplicationController
   # POST /boards.xml
   def create
     @board = Board.new(params[:board])
-	
+
     respond_to do |format|
       if @board.save
         format.html { redirect_to(@board.owner_link, :notice => 'Your WhiteBoard was successfully created.') }
