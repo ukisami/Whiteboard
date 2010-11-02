@@ -32,6 +32,11 @@ begin
       t.profile = 'rerun'
     end
 
+    Cucumber::Rake::Task.new(:features) do |t|
+      t.cucumber_opts = "--format pretty"
+      t.rcov = true
+    end
+
     desc 'Run all features'
     task :all => [:ok, :wip]
   end
@@ -40,9 +45,10 @@ begin
 
   task :default => :cucumber
 
-  task :features => :cucumber do
-    STDERR.puts "*** The 'features' task is deprecated. See rake -T cucumber ***"
-  end
+  task :features => 'db:test:prepare'
+  #task :features => :cucumber do
+  #  STDERR.puts "*** The 'features' task is deprecated. See rake -T cucumber ***"
+  #end
 rescue LoadError
   desc 'cucumber rake task not available (cucumber not installed)'
   task :cucumber do
