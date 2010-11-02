@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Board do
   before(:each) do
     @valid_attributes = {
-      
+      :title => 'untitled'
     }
   end
 

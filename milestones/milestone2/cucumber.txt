@@ -1,15 +1,11 @@
 Using the default profile...
-U--UUU.U-....UUU................U--
+...UUU.........UUU...................
 
-9 scenarios (5 undefined, 4 passed)
-35 steps (5 skipped, 9 undefined, 21 passed)
-0m0.314s
+9 scenarios (2 undefined, 7 passed)
+37 steps (6 undefined, 31 passed)
+0m0.479s
 
 You can implement step definitions for undefined steps with these snippets:
-
-Given /^there is a whiteboard with id (\d+)$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
 
 Given /^I am the owner of the whiteboard$/ do
   pending # express the regexp above with the code you wish you had
@@ -23,10 +19,6 @@ Then /^I should see that layer$/ do
   pending # express the regexp above with the code you wish you had
 end
 
-When /^I follow  "([^"]*)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
 Given /^I am collaborating on a whiteboard$/ do
   pending # express the regexp above with the code you wish you had
 end
@@ -36,10 +28,6 @@ When /^I draw a line$/ do
 end
 
 Then /^the whiteboard should be updated$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
-When /^I fill out "([^"]*)" with "([^"]*)"$/ do |arg1, arg2|
   pending # express the regexp above with the code you wish you had
 end
 
