@@ -1,6 +1,21 @@
 (in /home/jianpchen/repo/Whiteboard)
 ..............................................................
 
-Finished in 0.674609 seconds
+Finished in 0.687887 seconds
 
 62 examples, 0 failures
++----------------------------------------------------+-------+-------+--------+
+|                  File                              | Lines |  LOC  |  COV   |
++----------------------------------------------------+-------+-------+--------+
+|app/controllers/application_controller.rb           |    10 |     4 | 100.0% |
+|app/controllers/boards_controller.rb                |    84 |    58 | 100.0% |
+|app/controllers/layers_controller.rb                |    91 |    65 | 100.0% |
+|app/helpers/application_helper.rb                   |     3 |     2 | 100.0% |
+|app/helpers/boards_helper.rb                        |     2 |     2 | 100.0% |
+|app/helpers/layers_helper.rb                        |     2 |     2 | 100.0% |
+|app/models/board.rb                                 |    45 |    36 | 100.0% |
+|app/models/layer.rb                                 |    11 |     7 | 100.0% |
++----------------------------------------------------+-------+-------+--------+
+|Total                                               |   248 |   176 | 100.0% |
++----------------------------------------------------+-------+-------+--------+
+100.0%   8 file(s)   248 Lines   176 LOC
