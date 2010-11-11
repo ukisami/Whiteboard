@@ -1,2 +1,8 @@
 *~
 *.swp
+log/*
+
+config/initializers/site_keys.rb
+db/development.sqlite3
+db/production.sqlite3
+db/scheme.rb
