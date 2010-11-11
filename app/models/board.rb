@@ -1,6 +1,7 @@
 class Board < ActiveRecord::Base
 	include ActionController::UrlWriter
   has_many :layers
+	has_many :publications
 	before_create :create_layer
 	
 	validates_presence_of :title

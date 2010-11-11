@@ -11,3 +11,5 @@ describe "/boards/show.html.erb" do
     render
   end
 end
+
+

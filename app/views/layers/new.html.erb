@@ -3,7 +3,7 @@
 <% form_for(@layer) do |f| %>
   <%= f.error_messages %>
 
-  <%= hidden_field_tag :board_id, @layer.board.id%>
+  <%= hidden_field_tag :board_id, @layer.board_id%>
   <%= hidden_field_tag :token, params[:token] %>
   <p>
     <%= f.label :name %><br />

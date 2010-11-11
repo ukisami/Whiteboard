@@ -4,9 +4,8 @@ describe "/layers/new.html.erb" do
   include LayersHelper
 
   before(:each) do
-    assigns[:layer] = stub_model(Layer,
-      :new_record? => true
-    )
+    assigns[:layer] = @layer = Layer.new
+    #@layer.stub(:id).and_return(8)
   end
 
   it "renders new layer form" do

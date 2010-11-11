@@ -1,0 +1,6 @@
+(in /home/jianpchen/repo/Whiteboard)
+..............................................................
+
+Finished in 0.487692 seconds
+
+62 examples, 0 failures
