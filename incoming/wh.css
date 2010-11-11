@@ -1,0 +1,30 @@
+@import url("http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css");
+@import url("http://fonts.googleapis.com/css?family=Lobster&subset=latin");
+@import url("http://fonts.googleapis.com/css?family=Cuprum&subset=latin");
+
+html{height:100%;background-color:#f0f0f0;background-image:-moz-linear-gradient(top,#ffffff,#e0e0e0);background-attachment:fixed;overflow-x:hidden;font-size:14px;font-family:"Cuprum",sans-serif;}
+#title{text-shadow:#ffffff 1px 2px 0, rgba(0,0,0,0.5) 2px 2px 8px;font-weight:normal;font-size:56px;font-family:"Lobster",serif;}
+.side{display:block;position:absolute;top:0;bottom:0;-moz-box-shadow:rgba(0,0,0,0.5) 2px 2px 8px;margin:auto;padding:30px;width:140px;height:440px;background-color:#ffffff;text-decoration:none;color:#000000;}
+.side img{display:block;position:absolute;top:0;bottom:0;margin:auto;}
+.side span{display:block;position:absolute;top:50%;visibility:hidden;margin-top:-8px;}
+.side:hover span{visibility:visible;}
+#gallery{left:0;-moz-border-radius-topright:50px;-moz-border-radius-bottomright:50px;}
+#gallery img{right:30px;}
+#gallery span{left:100%;margin-left:10px;}
+#create{right:0;-moz-border-radius-topleft:50px;-moz-border-radius-bottomleft:50px;}
+#create img{left:30px;}
+#create span{right:100%;margin-right:10px;}
+
+#central{-moz-box-shadow:rgba(0,0,0,0.25) 0 0 32px;margin:0 auto 40px;-moz-border-radius-bottomleft:20px;-moz-border-radius-bottomright:20px;padding:0 20px 20px;width:640px;}
+#title a{text-decoration:inherit;color:inherit;}
+#title a:hover{color:#c00040;}
+h2{margin:10px 0;font-size:28px;}
+.errorExplanation{margin:10px 0;-moz-border-radius:5px;padding:5px 10px;background-color:#c00040;font-weight:bold;color:#ffffff;}
+.inputRow{border-top:1px dotted #c0c0c0;padding:10px 0;}
+.inputRow label{display:inline-block;margin-right:10px;width:100px;text-align:right;}
+.bigText{padding:5px;width:240px;}
+.fieldWithErrors label{margin-right:5px;-moz-border-radius:5px;padding:5px;width:95px;background-color:#c00040;color:#ffffff;}
+.fieldWithErrors span{display:inline-block;margin-left:10px;color:#c00040;}
+.noLabel{padding-left:110px;}
+
+#index #title{position:absolute;top:0;left:0;bottom:0;right:0;margin:auto;width:261px;height:72px;}
