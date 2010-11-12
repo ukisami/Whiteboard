@@ -1,5 +1,7 @@
 var WIDTH = 640;
 var HEIGHT = 480;
+var THUMB_WIDTH = 160;
+var THUMB_HEIGHT = 120;
 var SAVE_INTERVAL = 500;
 var POLL_INTERVAL = 500;
 var container, canvas, context, toolbar;
@@ -49,6 +51,8 @@ function registerHandlers() {
 		container.addEventListener('mousedown', mouseDown, false);
 		document.body.addEventListener('mouseup', mouseUp, false);
 	}
+	var publishButton = document.getElementById('publish');
+	if (publishButton) publishButton.addEventListener('click', publish, false);
 	document.getElementById('chatform').addEventListener('submit', sendChat, false);
 	chatBody.disabled = false;
 }
@@ -175,4 +179,30 @@ function sendChat(e) {
 	xhr.setRequestHeader('Content-Length', body.length);
 	xhr.send(body);
 	chatBody.value = '';
+}
+
+function publish(e) {
+	e.preventDefault();
+	var body =
+		'token=' + token +
+		'&revision=' + revision +
+		'&composite=' + escape(compose(WIDTH, HEIGHT)) +
+		'&thumbnail=' + escape(compose(THUMB_WIDTH, THUMB_HEIGHT));
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', '/boards/' + boardid + '/publish');
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhr.setRequestHeader('Content-Length', body.length);
+	xhr.send(body);
+}
+
+function compose(width, height) {
+	var composite = document.createElement('canvas');
+	composite.width = width;
+	composite.height = height;
+	var compositeContext = composite.getContext('2d');
+	var layers = container.children;
+	for (var i = 0; i < layers.length; i++) {
+		compositeContext.drawImage(layers[i], 0, 0, width, height);
+	}
+	return composite.toDataURL();
 }
