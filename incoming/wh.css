@@ -27,4 +27,20 @@ h2{margin:10px 0;font-size:28px;}
 .fieldWithErrors span{display:inline-block;margin-left:10px;color:#c00040;}
 .noLabel{padding-left:110px;}
 
+h3{margin:17px 0 12px;font-size:20px;}
+#layers{float:left;margin-left:-180px;width:150px;padding-right:10px;}
+#layers ul{margin-right:-10px;border-top:1px solid #c0c0c0;}
+#layers li{border-bottom:1px dotted #c0c0c0;padding-right:10px;overflow:hidden;line-height:36px;white-space:no-wrap;}
+#layers .owned li a{display:none;font-size:11px;}
+#layers .owned li:hover{padding-top:4px;padding-bottom:4px;line-height:normal;}
+#layers .owned li:hover a{display:block;text-decoration:inherit;color:#c00040;}
+#newlayer{display:block;padding:10px 10px 10px 0;text-decoration:inherit;color:inherit;}
+#newlayer:hover{color:#c00040;}
+#newlayer img{vertical-align:bottom;}
+#chatcontainer{float:right;margin-right:-230px;padding-left:10px;width:200px;}
+#chat{margin-left:-10px;border-top:1px solid #c0c0c0;padding:10px 0 10px 10px;height:470px;overflow-y:scroll;}
+#chatbody{padding:5px;width:188px;}
+#container{position:relative;width:640px;height:480px;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIUlEQVQ4jWN48ODBf3yYEGAYNWBYGEBIASELRg0YFgYAAMynza4i+fEpAAAAAElFTkSuQmCC");}
+#container img,#container canvas{position:absolute;top:0;left:0;}
+
 #index #title{position:absolute;top:0;left:0;bottom:0;right:0;margin:auto;width:261px;height:72px;}
