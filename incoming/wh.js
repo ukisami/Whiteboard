@@ -2,22 +2,26 @@ var WIDTH = 640;
 var HEIGHT = 480;
 var SAVE_INTERVAL = 500;
 var POLL_INTERVAL = 500;
-var container, canvas, context;
+var container, canvas, context, toolbar;
 var chat, chatBody;
 var x, y;
 var saveTimer = false;
 
 function init() {
-	//return; // %%% disabled for layout phase
-	container = document.getElementById('container');
-	chat = document.getElementById('chat');
-	chatBody = document.getElementById('chatbody');
+	findElements();
 	if (token) {
 		injectCanvas();
 		registerHandlers();
-		chatBody.disabled = false;
 		toolBlack();
 	}
+	schedulePoll();
+}
+
+function findElements() {
+	container = document.getElementById('container');
+	chat = document.getElementById('chat');
+	chatBody = document.getElementById('chatbody');
+	toolbar = document.getElementById('toolbar');
 }
 
 function injectCanvas() {
@@ -31,16 +35,27 @@ function injectCanvas() {
 	context.lineJoin = 'round';
 	container.insertBefore(canvas, img);
 	container.removeChild(img);
-	return canvas;
 }
 
 function registerHandlers() {
-	// TODO: register tool button handlers
-	container.addEventListener('mousedown', mouseDown, false);
-	document.body.addEventListener('mouseup', mouseUp, false);
-	alert(0);
-	document.getElementById('chatform').addEventListener('submit', chat, false);
-	alert(1);
+	if (token) {
+		document.getElementById('toolblack').addEventListener('click', toolBlack, false);
+		document.getElementById('toolred').addEventListener('click', toolRed, false);
+		document.getElementById('tooleraser').addEventListener('click', toolEraser, false);
+		var tools = toolbar.getElementsByTagName('a');
+		for (var i = 0; i < tools.length; i++) {
+			tools[i].addEventListener('click', switchTool, false);
+		}
+		container.addEventListener('mousedown', mouseDown, false);
+		document.body.addEventListener('mouseup', mouseUp, false);
+	}
+	document.getElementById('chatform').addEventListener('submit', sendChat, false);
+	chatBody.disabled = false;
+}
+
+function switchTool(e) {
+	toolbar.getElementsByClassName('active')[0].className = '';
+	e.currentTarget.className = 'active';
 }
 
 function toolEraser() {
@@ -77,12 +92,12 @@ function mouseDown(e) {
 	e = canvasCoords(e);
 	x = e.x;
 	y = e.y;
-	container.addEventListener('mousemove', mouseMove, false);
+	document.body.addEventListener('mousemove', mouseMove, false);
 }
 
 function mouseUp(e) {
 	e.preventDefault();
-	container.removeEventListener('mousemove', mouseMove, false);
+	document.body.removeEventListener('mousemove', mouseMove, false);
 	save();
 }
 
@@ -108,9 +123,9 @@ function save() {
 	if (!saveTimer) return;
 	var body =
 		'token=' + token +
-		'&data=' + escape(canvas.toDataUrl());
+		'&data=' + escape(canvas.toDataURL());
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/boards/' + boardid + '/layers/' + layerid + '/update'); // %%% fill in actual endpoint
+	xhr.open('POST', '/boards/' + boardid + '/layers/' + layerid + '/update');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Content-Length', body.length);
 	xhr.send(body);
@@ -148,14 +163,14 @@ function poll() {
 	xhr.send(null);
 }
 
-function chat(e) {
+function sendChat(e) {
 	e.preventDefault();
 	var body =
 		(token ? 'token=' + token : '') +
 		'&body=' + escape(chatBody.value) +
 		'&boardid=' + boardid;
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/boards/' + boardid + '/chats'); // %%% fill in actual endpoint
+	xhr.open('POST', '/boards/' + boardid + '/chats/create');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Content-Length', body.length);
 	xhr.send(body);
