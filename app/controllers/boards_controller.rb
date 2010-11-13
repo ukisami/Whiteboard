@@ -1,4 +1,5 @@
 class BoardsController < ApplicationController
+	
   # GET /boards
   # GET /boards.xml
   def index
@@ -79,6 +80,19 @@ class BoardsController < ApplicationController
       format.html { redirect_to(boards_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def publish
+  	require 'base64'
+  	@board = Board.find(params[:id])
+  	if @board.permission(params[:token]) == :owner
+  		composite = params[:composite]
+  		thumbnail = params[:thumbnail]
+  		revision = params[:revision]
+  		@board.galleries.create(:revision=>revision, :thumbnail=>thumbnail, :composite=>composite)
+  	else
+  		redirect_to root_path, :notice => "Owner token required"
+  	end
   end
   
 end

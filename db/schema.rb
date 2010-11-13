@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101108002557) do
+ActiveRecord::Schema.define(:version => 20101113223631) do
 
   create_table "boards", :force => true do |t|
     t.string   "title"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20101108002557) do
     t.string   "content"
     t.integer  "publication_id"
     t.integer  "comment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "galleries", :force => true do |t|
+    t.text     "composite",  :limit => 16777216
+    t.text     "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

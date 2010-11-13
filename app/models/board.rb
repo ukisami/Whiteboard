@@ -1,6 +1,8 @@
 class Board < ActiveRecord::Base
 	include ActionController::UrlWriter
+	
   has_many :layers
+  has_many :galleries
 	has_many :publications
 	before_create :create_layer
 	
@@ -42,5 +44,6 @@ class Board < ActiveRecord::Base
 	def layer_from_token(token_param)
 		return layers.find_by_token(token_param)
 	end
+	
 	
 end

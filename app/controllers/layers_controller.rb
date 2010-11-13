@@ -84,7 +84,7 @@ class LayersController < ApplicationController
   end
 
   def require_token
-    if params[:token] != @board.token
+    if @board.permission(params[:token]) != :owner
       redirect_to root_path, :notice => "Owner token required"
     end
   end
