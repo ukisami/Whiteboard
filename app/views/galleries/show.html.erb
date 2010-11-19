@@ -1,0 +1,23 @@
+<p>
+  <b>Boardid:</b>
+  <%=h @gallery.boardid %>
+</p>
+
+<p>
+  <b>Revision:</b>
+  <%=h @gallery.revision %>
+</p>
+
+<p>
+  <b>Composite:</b>
+  <%=h @gallery.composite %>
+</p>
+
+<p>
+  <b>Thumbnail:</b>
+  <%=h @gallery.thumbnail %>
+</p>
+
+
+<%= link_to 'Edit', edit_gallery_path(@gallery) %> |
+<%= link_to 'Back', galleries_path %>
