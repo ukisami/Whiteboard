@@ -1,0 +1,4 @@
+1. Collaborators can draw on the whiteboard.
+2. Collaborators can see what is being drawn on the whiteboard.
+3. Owner can publish a whiteboard to the gallery.
+4. Collaborators can chat.
