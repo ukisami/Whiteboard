@@ -65,13 +65,13 @@ function switchTool(e) {
 function toolEraser() {
 	context.globalCompositeOperation = 'destination-out';
 	context.lineWidth = 16;
-	container.style.cursor = 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABFUlEQVQ4ja2UQU7DMBBFrZZdxC2KROAKtBIVPQxV4AxvPKvIS1TgDD5ChES5QTcpPUKyRT0AG1dy0zSgtCN5M/Y8/7E135iWAB6Ad2ADbMPahNy0rWYvVPUK+AJKIFPV1DmXOOcSVU1F5CnsLYFRKwSYABWQAYNjl3nvh+FMBUyakBFQi8jsT9khRGQG1HvKgA8RefwvJKqbA0Xc0qqrnQ7QAFhZa8cGeO2jpqFqYYBv4LovSFVTYG2ArXMu6QvK8/wS+Dkr6GytnfrYGfBirLXjU78fuNslCmDeU00RJ/qOSHUwvPHQeu+HHSougpL6YGgbypZAGSzjZmcj1tpb4DnYyOdRG2kAp8AbsI6MrQw/fN9W8wvvc96yMvzesAAAAABJRU5ErkJggg==") 9 9,crosshair';
+	container.style.cursor = 'url("brush16.png") 9 9,crosshair';
 }
 
 function toolPen() {
 	context.globalCompositeOperation = 'source-over';
 	context.lineWidth = 2;
-	container.style.cursor = 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAbElEQVQ4je3TOw7CQAxF0SwrkJLPlkh57Ab2CKIILCRVGjTMINGkyJVe5efryl3XACOurV6T9Yk26uCMN144VssRcVlSED3RY49HdRe3JSVRZu4yc8C9MP+6+3nxhAlTRByq5Y3/Wd/3/yqaAQYtUQ98N+QQAAAAAElFTkSuQmCC") 9 9,crosshair';
+	container.style.cursor = 'url("brush2.png") 9 9,crosshair';
 }
 
 function toolBlack() {
