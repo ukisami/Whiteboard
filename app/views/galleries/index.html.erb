@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>Boardid</th>
+    <th>Board_id</th>
     <th>Revision</th>
     <th>Composite</th>
     <th>Thumbnail</th>
@@ -10,7 +10,7 @@
 
 <% @galleries.each do |gallery| %>
   <tr>
-    <td><%=h gallery.boardid %></td>
+    <td><%=h gallery.board_id %></td>
     <td><%=h gallery.revision %></td>
     <td><%=h gallery.composite %></td>
     <td><%=h gallery.thumbnail %></td>
@@ -23,4 +23,4 @@
 
 <br />
 
-<%= link_to 'New gallery', new_gallery_path %>
+<%#= link_to 'New gallery', new_board_gallery_path(@board) %>

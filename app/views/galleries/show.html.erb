@@ -1,6 +1,6 @@
 <p>
   <b>Boardid:</b>
-  <%=h @gallery.boardid %>
+  <%=h @gallery.board_id %>
 </p>
 
 <p>
@@ -17,6 +17,10 @@
   <b>Thumbnail:</b>
   <%=h @gallery.thumbnail %>
 </p>
+
+<div>
+	<%= render :partial => 'comments/comments_list', :locals => {:gallery => @gallery} %>
+</div>
 
 
 <%= link_to 'Edit', edit_gallery_path(@gallery) %> |

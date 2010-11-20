@@ -10,8 +10,12 @@
 
 <p>
   <b>Board:</b>
-  <%=h @publication.board %>
+  <%#=h @publication.board %>
 </p>
+
+<div>
+	<%= render :partial => 'comments/comments_list', :locals => {:publication => @publication} %>
+</div>
 
 
 <%= link_to 'Edit', edit_publication_path(@publication) %> |
