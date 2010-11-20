@@ -13,7 +13,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :publications
 
-  map.resources :layers
+  #map.resources :layers
+
+  #map.resources :chats
 
   map.resources :boards
 
@@ -35,14 +37,15 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
-  map.resources :boards do |boards|
+  map.resources :boards , :member => {:publish => :get, :poll => :get} do |boards|
     boards.resources :layers
+    boards.resources :chats
   end
 
   # Sample resource route within a namespace:

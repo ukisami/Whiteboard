@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-	
+
   # GET /boards
   # GET /boards.xml
   def index
@@ -81,18 +81,33 @@ class BoardsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   def publish
-  	require 'base64'
-  	@board = Board.find(params[:id])
-  	if @board.permission(params[:token]) == :owner
-  		composite = params[:composite]
-  		thumbnail = params[:thumbnail]
-  		revision = params[:revision]
-  		@board.galleries.create(:revision=>revision, :thumbnail=>thumbnail, :composite=>composite)
-  	else
-  		redirect_to root_path, :notice => "Owner token required"
-  	end
+    require 'base64'
+    @board = Board.find(params[:id])
+    if @board.permission(params[:token]) == :owner
+      composite = params[:composite]
+      thumbnail = params[:thumbnail]
+      revision = params[:revision]
+      @board.galleries.create(:revision=>revision, :thumbnail=>thumbnail, :composite=>composite)
+    else
+      redirect_to root_path, :notice => "Owner token required"
+    end
   end
-  
+
+  def poll
+    if params[:revision] && (revision = params[:revision].to_i) != 0
+      @board = Board.find(params[:id])
+      updates = @board.table_of_updates_since_revision(revision)
+      respond_to do |format|
+        format.html {render :text => updates.to_json.to_s}
+        format.json {render :json => updates.to_json}
+      end
+    else
+      respond_to do |format|
+        format.html {render :text => "Invalid Revision"}
+      end
+    end
+  end
+
 end
