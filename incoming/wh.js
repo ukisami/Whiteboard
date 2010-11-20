@@ -171,8 +171,7 @@ function sendChat(e) {
 	e.preventDefault();
 	var body =
 		(token ? 'token=' + token : '') +
-		'&body=' + escape(chatBody.value) +
-		'&boardid=' + boardid;
+		'&body=' + escape(chatBody.value);
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/boards/' + boardid + '/chats/create');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

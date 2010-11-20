@@ -3,6 +3,8 @@
 <canvas id="eraser" width="18" height="18"></canvas>
 <canvas id="pen" width="18" height="18"></canvas>
 <canvas id="plus" width="16" height="16"></canvas>
+<canvas id="larrow" width="32" height="64"></canvas>
+<canvas id="rarrow" width="32" height="64"></canvas>
 <script>
 var v = document.getElementById('checkerboard');
 var c = v.getContext('2d');
@@ -56,5 +58,25 @@ c.moveTo(5, 8);
 c.lineTo(11, 8);
 c.closePath();
 c.stroke();
+
+v = document.getElementById('larrow');
+c = v.getContext('2d');
+c.fillStyle = '#c0c0c0';
+c.beginPath();
+c.moveTo(0, 32);
+c.lineTo(32, 0);
+c.lineTo(32, 64);
+c.closePath();
+c.fill();
+
+v = document.getElementById('rarrow');
+c = v.getContext('2d');
+c.fillStyle = '#c0c0c0';
+c.beginPath();
+c.moveTo(32, 32);
+c.lineTo(0, 0);
+c.lineTo(0, 64);
+c.closePath();
+c.fill();
 </script>
 </body>
