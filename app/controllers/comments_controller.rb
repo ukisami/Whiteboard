@@ -80,4 +80,37 @@ class CommentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+	def add_comment
+    gallery_id = params[:gallery_id]
+    #@user = current_user
+    @comment = Comment.new(params[:comment])
+		@comment.gallery = Gallery.find(gallery_id)
+    #@comment.author = @user
+    if !params[:comment_id].empty?
+      @comment.reply_to = Comment.find(params[:comment_id]) 
+    end
+    add_comment_id_string = 'add_comment_' + gallery_id
+    if @comment.save
+        render :update do |page|
+        page.insert_html :before, add_comment_id_string, :partial => 'comments/comment', :locals => { :comment => @comment }
+        #page.replace_html add_comment_id_string, :partial => 'comments/create_comment', :locals => { :commentable => @comment.commentable, :commentable_number => type_id }
+        page.replace_html 'comment_errors', :text => @comment.errors.full_messages
+        end
+     else 
+        #render :partial => 'comments/create_comment'
+        render :update do |page|
+           page.replace_html 'comment_errors', :text => @comment.errors.full_messages
+        end
+    end        
+  end
+
+	def show_more
+    gallery = Gallery.find(params[:gallery_id])
+    gallery_id = params[:gallery_id]
+    render :update do |page|
+       page.replace_html 'comments_for_'+gallery_id, :partial => gallery.comments
+    end
+  end
+
 end

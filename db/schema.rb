@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101113223631) do
+ActiveRecord::Schema.define(:version => 20101119233931) do
 
   create_table "boards", :force => true do |t|
     t.string   "title"
@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(:version => 20101113223631) do
 
   create_table "comments", :force => true do |t|
     t.string   "content"
-    t.integer  "publication_id"
     t.integer  "comment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "gallery_id"
   end
 
   create_table "galleries", :force => true do |t|
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20101113223631) do
     t.text     "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "board_id"
+    t.integer  "revision"
   end
 
   create_table "layers", :force => true do |t|
