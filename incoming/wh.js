@@ -7,6 +7,8 @@ var POLL_INTERVAL = 500;
 var container, canvas, context, toolbar;
 var chat, chatBody;
 var x, y;
+var activeWidth = null;
+var activeColor = null;
 var saveTimer = false;
 
 function init() {
@@ -14,9 +16,16 @@ function init() {
 	if (token) {
 		injectCanvas();
 		registerHandlers();
-		toolBlack();
+		clickTool(document.getElementById('defaultwidth'));
+		clickTool(document.getElementById('defaultcolor'));
 	}
 	schedulePoll();
+}
+
+function clickTool(t) {
+	var e = document.createEvent('MouseEvents');
+	e.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+	t.dispatchEvent(e);
 }
 
 function findElements() {
@@ -41,13 +50,15 @@ function injectCanvas() {
 
 function registerHandlers() {
 	if (token) {
-		document.getElementById('toolblack').addEventListener('click', toolBlack, false);
-		document.getElementById('toolred').addEventListener('click', toolRed, false);
-		document.getElementById('tooleraser').addEventListener('click', toolEraser, false);
-		var tools = toolbar.getElementsByTagName('a');
-		for (var i = 0; i < tools.length; i++) {
-			tools[i].addEventListener('click', switchTool, false);
+		var widths = toolbar.getElementsByClassName('width');
+		for (var i = 0; i < widths.length; i++) {
+			widths[i].addEventListener('click', toolWidth, false);
 		}
+		var colors = toolbar.getElementsByClassName('color');
+		for (var i = 0; i < colors.length; i++) {
+			colors[i].addEventListener('click', toolColor, false);
+		}
+		document.getElementById('eraser').addEventListener('click', toolEraser, false);
 		container.addEventListener('mousedown', mouseDown, false);
 		document.body.addEventListener('mouseup', mouseUp, false);
 	}
@@ -57,31 +68,28 @@ function registerHandlers() {
 	chatBody.disabled = false;
 }
 
-function switchTool(e) {
-	toolbar.getElementsByClassName('active')[0].className = '';
-	e.currentTarget.className = 'active';
+function toolWidth(e) {
+	var active = e.currentTarget;
+	var w = parseInt(active.firstChild.style.width, 10);
+	context.lineWidth = w;
+	var o = w > 4 ? w / 2 + 1 : 9;
+	container.style.cursor = 'url("brush' + w + '.png") ' + o + ' ' + o + ',crosshair';
+	activeWidth && (activeWidth.className = 'width');
+	(activeWidth = active).className = 'active width';
 }
 
-function toolEraser() {
-	context.globalCompositeOperation = 'destination-out';
-	context.lineWidth = 16;
-	container.style.cursor = 'url("brush16.png") 9 9,crosshair';
-}
-
-function toolPen() {
+function toolColor(e) {
+	var active = e.currentTarget;
 	context.globalCompositeOperation = 'source-over';
-	context.lineWidth = 2;
-	container.style.cursor = 'url("brush2.png") 9 9,crosshair';
+	context.strokeStyle = active.style.backgroundColor;
+	activeColor && (activeColor.className = 'color');
+	(activeColor = active).className = 'active color';
 }
 
-function toolBlack() {
-	toolPen();
-	context.strokeStyle = '#000000';
-}
-
-function toolRed() {
-	toolPen();
-	context.strokeStyle = '#ff0000';
+function toolEraser(e) {
+	context.globalCompositeOperation = 'destination-out';
+	activeColor && (activeColor.className = '');
+	(activeColor = e.currentTarget).className = 'active';
 }
 
 function canvasCoords(e) {
