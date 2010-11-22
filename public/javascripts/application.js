@@ -13,9 +13,10 @@ var saveTimer = false;
 
 function init() {
 	findElements();
+	registerChat();
 	if (token) {
 		injectCanvas();
-		registerHandlers();
+		registerTools();
 		clickTool(document.getElementById('defaultwidth'));
 		clickTool(document.getElementById('defaultcolor'));
 	}
@@ -48,22 +49,24 @@ function injectCanvas() {
 	container.removeChild(img);
 }
 
-function registerHandlers() {
-	if (token) {
-		var widths = toolbar.getElementsByClassName('width');
-		for (var i = 0; i < widths.length; i++) {
-			widths[i].addEventListener('click', toolWidth, false);
-		}
-		var colors = toolbar.getElementsByClassName('color');
-		for (var i = 0; i < colors.length; i++) {
-			colors[i].addEventListener('click', toolColor, false);
-		}
-		document.getElementById('eraser').addEventListener('click', toolEraser, false);
-		container.addEventListener('mousedown', mouseDown, false);
-		document.body.addEventListener('mouseup', mouseUp, false);
+function registerTools() {
+	var widths = toolbar.getElementsByClassName('width');
+	for (var i = 0; i < widths.length; i++) {
+		widths[i].addEventListener('click', toolWidth, false);
 	}
+	var colors = toolbar.getElementsByClassName('color');
+	for (var i = 0; i < colors.length; i++) {
+		colors[i].addEventListener('click', toolColor, false);
+	}
+	document.getElementById('eraser').addEventListener('click', toolEraser, false);
+	container.addEventListener('mousedown', mouseDown, false);
+	document.body.addEventListener('mouseup', mouseUp, false);
+
 	var publishButton = document.getElementById('publish');
 	if (publishButton) publishButton.addEventListener('click', publish, false);
+}
+
+function registerChat() {
 	document.getElementById('chatform').addEventListener('submit', sendChat, false);
 	chatBody.disabled = false;
 }
@@ -73,7 +76,7 @@ function toolWidth(e) {
 	var w = parseInt(active.firstChild.style.width, 10);
 	context.lineWidth = w;
 	var o = w > 4 ? w / 2 + 1 : 9;
-	container.style.cursor = 'url("brush' + w + '.png") ' + o + ' ' + o + ',crosshair';
+	container.style.cursor = 'url("/images/brush' + w + '.png") ' + o + ' ' + o + ',crosshair';
 	activeWidth && (activeWidth.className = 'width');
 	(activeWidth = active).className = 'active width';
 }

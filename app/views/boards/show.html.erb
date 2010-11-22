@@ -1,61 +1,65 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html><head>
-<title><%=@board.title%> - Whiteboard</title>
+<title><%=h @board.title %> - Whiteboard</title>
 <link rel="stylesheet" type="text/css" href="/stylesheets/wh.css" />
 <script type="text/javascript" src="/javascripts/application.js"></script>
 <script type="text/javascript">
   var boardid = '<%= @board.id %>';
-  var token = '<%= params[:token] %>';
+  var token = '<%= params[:token] %>'; /* TODO: escape this properly */
   var layerid = '<%= @current_layer.id if @current_layer %>';
-  var revision = 80;
+  var revision = <%= Time.now.to_i %>;
 </script>
 </head><body><div id="central">
-<h1 id="title"><a href=".">Whiteboard</a></h1>
+<h1 id="title"><a href="/">Whiteboard</a></h1>
 
 <div id="layers" class="edge">
 <h3>Layers</h3>
-<ul>
-  <% @board.layers.each do |layer| %>
-    <% if params[:token] and (params[:token] == layer.token || @is_owner) %>
-      <li class="owned">
-      <%= layer.name %>
-      <a href="?token=<%= layer.token %>">http://...</a>
-      </li>
-    <% else %>
+<% if @board.permission(params[:token]) == :owner %>
+  <ul class="owned">
+    <% @board.layers.each do |layer| %>
       <li>
-      <%= layer.name %>
+        <%=h layer.name %>
+        <a href="?token=<%= layer.token %>"><%=h board_path(@board, :token => layer.token) %></a>
       </li>
     <% end %>
-  <% end %>
-</ul>
-<% if @is_owner %>
+  </ul>
   <%= link_to '<img src="/images/plus.png" alt="+" /> New layer...</a>', new_board_layer_path(@board, :token => params[:token]), :id => :newlayer %>
+<% else %>
+  <ul>
+    <% @board.layers.each do |layer| %>
+      <li><%=h layer.name %></li>
+    <% end %>
+  </ul>
 <% end %>
 </div>
 
 <div id="chatcontainer" class="edge">
 <h3>Chat</h3>
 <div id="chat">
-<p><span>wh0: </span>sample message</p>
-<p><span>viewer: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<% @board.chats.each do |chat| %>
+  <p>
+    <span><%=h chat.author %>: </span>
+    <%=h chat.body %>
+  </p>
+<% end %>
 </div>
 <form id="chatform" action="#">
 <p><input id="chatbody" disabled></p>
 </form>
 </div>
 
-<h2><%= @board.title %> <a id="public" href="/boards/88">http://...</a></h2>
+<h2><%= @board.title %> <a id="public" href="<%=h board_path(@board) %>"><%=h board_path(@board) %></a></h2>
 <div id="container">
-  <% @board.layers.each do |layer| %>
-    <img id="layer<%=layer.id%>" src="<%=layer.data%>" />
+  <% @board.layers.reverse.each do |layer| %>
+    <img id="layer<%= layer.id %>" src="<%=h layer.data %>" />
   <% end %>
 </div>
 
-<% if @is_owner %>
+<% if @board.permission(params[:token]) == :owner %>
   <a id="publish" href="#">Publish</a>
 <% end %>
 
-<% if @current_layer %>
+<% if @board.permission(params[:token]) != :viewer %>
   <ul id="toolbar">
     <li><a id="defaultwidth" class="width" href="#"><span style="width:2px;"></span></a></li>
     <li><a class="width" href="#"><span style="width:4px;"></span></a></li>
