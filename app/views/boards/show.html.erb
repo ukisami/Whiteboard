@@ -1,68 +1,76 @@
-<%=stylesheet_link_tag 'board'%>
-<div id="wrap">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head>
+<title><%=@board.title%> - Whiteboard</title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/wh.css" />
+<script type="text/javascript" src="/javascripts/application.js"></script>
+<script type="text/javascript">
+  var boardid = '<%= @board.id %>';
+  var token = '<%= params[:token] %>';
+  var layerid = '<%= @current_layer.id if @current_layer %>';
+  var revision = 80;
+</script>
+</head><body><div id="central">
+<h1 id="title"><a href=".">Whiteboard</a></h1>
 
-<div id="chatcontainer">
-<h2>Chat</h2>
-<div id="chat">
-<p>Warren: I finished the template.</p>
+<div id="layers" class="edge">
+<h3>Layers</h3>
+<ul>
+  <% @board.layers.each do |layer| %>
+    <% if params[:token] and (params[:token] == layer.token || @is_owner) %>
+      <li class="owned">
+      <%= layer.name %>
+      <a href="?token=<%= layer.token %>">http://...</a>
+      </li>
+    <% else %>
+      <li>
+      <%= layer.name %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+<% if @is_owner %>
+  <%= link_to '<img src="/images/plus.png" alt="+" /> New layer...</a>', new_board_layer_path(@board, :token => params[:token]), :id => :newlayer %>
+<% end %>
 </div>
-<form id="chatctrl" method="post" action="#">
-<p><label for="name">Name</label>
-<input id="name" name="name" value="Guest" /></p>
-<p><label for="message">Message</label>
-<input id="message" name="message" /></p>
-<p><input type="submit" value="Send" /></p>
+
+<div id="chatcontainer" class="edge">
+<h3>Chat</h3>
+<div id="chat">
+<p><span>wh0: </span>sample message</p>
+<p><span>viewer: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<form id="chatform" action="#">
+<p><input id="chatbody" disabled></p>
 </form>
 </div>
 
-<div id="layers">
-<h2>Layers</h2>
-<ul>
+<h2><%= @board.title %> <a id="public" href="/boards/88">http://...</a></h2>
+<div id="container">
   <% @board.layers.each do |layer| %>
-    <li>
-    <% if params[:token] == layer.token%>
-      <strong>
-      <% if @board.permission(params[:token]) == :owner %>
-     	  <%= link_to layer.name, board_path(@board, :token => layer.token) %>
-     	<%else%>
-     	  <%=h layer.name %>
-   	  <%end%>
-   	  </strong>
-    <% else %>
-      <% if @board.permission(params[:token]) == :owner %>
-     	  <%= link_to layer.name, board_path(@board, :token => layer.token) %>
-     	<%else%>
-     	  <%=h layer.name %>
-   	  <%end%>
-    <% end %>
-    </li>
-  <%end%>
-</ul>
-<%= link_to 'Add viewer', @board.viewer_link %>
-<% if params %> 
-	<% if @board.permission(params[:token]) == :owner %>
-  	<%= link_to 'Add layer', new_board_layer_path(@board, :token => @board.token) %>
+    <img id="layer<%=layer.id%>" src="<%=layer.data%>" />
   <% end %>
-<%end%>
 </div>
 
-<h1 id="boardtitle"> <%= @board.title %> </h1>
+<% if @is_owner %>
+  <a id="publish" href="#">Publish</a>
+<% end %>
 
-<div id="boardcontainer">
-<img id="board" src="about:blank" alt="(draw here)" />
+<% if @current_layer %>
+  <ul id="toolbar">
+    <li><a id="defaultwidth" class="width" href="#"><span style="width:2px;"></span></a></li>
+    <li><a class="width" href="#"><span style="width:4px;"></span></a></li>
+    <li><a class="width" href="#"><span style="width:8px;"></span></a></li>
+    <li><a class="width" href="#"><span style="width:16px;"></span></a></li>
+    <li><a id="eraser" href="#"></a></li>
+    <li><a id="defaultcolor" class="color" href="#" style="background-color:black;"></a></li>
+    <li><a class="color" href="#" style="background-color:red;"></a></li>
+    <li><a class="color" href="#" style="background-color:yellow;"></a></li>
+    <li><a class="color" href="#" style="background-color:lime;"></a></li>
+    <li><a class="color" href="#" style="background-color:cyan;"></a></li>
+    <li><a class="color" href="#" style="background-color:blue;"></a></li>
+    <li><a class="color" href="#" style="background-color:magenta;"></a></li>
+  </ul>
+<% end %>
 
-<!-- <p id="share">Add viewer: <a href="#">http://www.example.com/</a> | Add collaborator: <a href="#">http://www.example.com/</a></p> -->
-
-<ul id="toolbar">
-<li><a href="#">Black</a></li>
-<li><a href="#">Red</a></li>
-<li><a href="#">Erase</a></li>
-<li><a href="#">Thin</a></li>
-<li><a href="#">Thick</a></li>
-</ul>
-</div>
-
-</div>
-
-<div>
-
+<script type="text/javascript">init();</script>
+</div></body></html>

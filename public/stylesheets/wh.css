@@ -47,7 +47,7 @@ h3{margin:17px 0 12px;font-size:20px;}
 #chat p{margin:5px 0;}
 #chat span{color:#c00040;}
 #chatbody{padding:5px;width:188px;}
-#container{position:relative;width:640px;height:480px;background-image:url("transparent.png");}
+#container{position:relative;width:640px;height:480px;background-image:url("/images/transparent.png");}
 #container img,#container canvas{position:absolute;top:0;left:0;}
 #publish{display:block;float:right;margin-top:10px;padding:5px 8px;background-color:#ffffff;text-decoration:inherit;color:#c00040;}
 #toolbar{margin-top:10px;height:30px;}

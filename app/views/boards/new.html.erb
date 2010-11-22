@@ -1,19 +1,14 @@
-<h1>New board</h1>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head>
+<title>Create a Whiteboard</title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/wh.css" />
+</head><body><div id="central">
+<h1 id="title"><a href=".">Whiteboard</a></h1>
+<h2>New board</h2>
+<% form_for @board do |f| %>
+  <%= f.custom_text_field :title, "Title" %>
+  <p class="inputRow noLabel"><input id="board_submit" name="commit" type="submit" value="Create" /></p>
+<%end%>
 
-<% form_for(@board) do |f| %>
-  <%= f.error_messages %>
+</div></body></html>
 
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :publish %><br />
-    <%= f.check_box :publish %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
-
-<%= link_to 'Back', boards_path %>

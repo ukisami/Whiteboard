@@ -15,6 +15,8 @@ class BoardsController < ApplicationController
   # GET /boards/1.xml
   def show
     @board = Board.find(params[:id])
+    @is_owner = @board.permission(params[:token]) == :owner
+    @current_layer = @board.layer_from_token(params[:token])
 
     respond_to do |format|
       format.html # show.html.erb

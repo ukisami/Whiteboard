@@ -7,8 +7,6 @@ var POLL_INTERVAL = 500;
 var container, canvas, context, toolbar;
 var chat, chatBody;
 var x, y;
-var activeWidth = null;
-var activeColor = null;
 var saveTimer = false;
 
 function init() {
@@ -16,16 +14,9 @@ function init() {
 	if (token) {
 		injectCanvas();
 		registerHandlers();
-		clickTool(document.getElementById('defaultwidth'));
-		clickTool(document.getElementById('defaultcolor'));
+		toolBlack();
 	}
 	schedulePoll();
-}
-
-function clickTool(t) {
-	var e = document.createEvent('MouseEvents');
-	e.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-	t.dispatchEvent(e);
 }
 
 function findElements() {
@@ -50,15 +41,13 @@ function injectCanvas() {
 
 function registerHandlers() {
 	if (token) {
-		var widths = toolbar.getElementsByClassName('width');
-		for (var i = 0; i < widths.length; i++) {
-			widths[i].addEventListener('click', toolWidth, false);
+		document.getElementById('toolblack').addEventListener('click', toolBlack, false);
+		document.getElementById('toolred').addEventListener('click', toolRed, false);
+		document.getElementById('tooleraser').addEventListener('click', toolEraser, false);
+		var tools = toolbar.getElementsByTagName('a');
+		for (var i = 0; i < tools.length; i++) {
+			tools[i].addEventListener('click', switchTool, false);
 		}
-		var colors = toolbar.getElementsByClassName('color');
-		for (var i = 0; i < colors.length; i++) {
-			colors[i].addEventListener('click', toolColor, false);
-		}
-		document.getElementById('eraser').addEventListener('click', toolEraser, false);
 		container.addEventListener('mousedown', mouseDown, false);
 		document.body.addEventListener('mouseup', mouseUp, false);
 	}
@@ -68,28 +57,31 @@ function registerHandlers() {
 	chatBody.disabled = false;
 }
 
-function toolWidth(e) {
-	var active = e.currentTarget;
-	var w = parseInt(active.firstChild.style.width, 10);
-	context.lineWidth = w;
-	var o = w > 4 ? w / 2 + 1 : 9;
-	container.style.cursor = 'url("brush' + w + '.png") ' + o + ' ' + o + ',crosshair';
-	activeWidth && (activeWidth.className = 'width');
-	(activeWidth = active).className = 'active width';
+function switchTool(e) {
+	toolbar.getElementsByClassName('active')[0].className = '';
+	e.currentTarget.className = 'active';
 }
 
-function toolColor(e) {
-	var active = e.currentTarget;
-	context.globalCompositeOperation = 'source-over';
-	context.strokeStyle = active.style.backgroundColor;
-	activeColor && (activeColor.className = 'color');
-	(activeColor = active).className = 'active color';
-}
-
-function toolEraser(e) {
+function toolEraser() {
 	context.globalCompositeOperation = 'destination-out';
-	activeColor && (activeColor.className = '');
-	(activeColor = e.currentTarget).className = 'active';
+	context.lineWidth = 16;
+	container.style.cursor = 'url("/brush16.png") 9 9,crosshair';
+}
+
+function toolPen() {
+	context.globalCompositeOperation = 'source-over';
+	context.lineWidth = 2;
+	container.style.cursor = 'url("/brush2.png") 9 9,crosshair';
+}
+
+function toolBlack() {
+	toolPen();
+	context.strokeStyle = '#000000';
+}
+
+function toolRed() {
+	toolPen();
+	context.strokeStyle = '#ff0000';
 }
 
 function canvasCoords(e) {
@@ -135,9 +127,9 @@ function save() {
 	if (!saveTimer) return;
 	var body =
 		'token=' + token +
-		'&data=' + encodeURIComponent(canvas.toDataURL());
+		'&data=' + escape(canvas.toDataURL());
 	var xhr = new XMLHttpRequest();
-	xhr.open('PUT', '/boards/' + boardid + '/layers/' + layerid);
+	xhr.open('POST', '/boards/' + boardid + '/layers/' + layerid + '/update');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Content-Length', body.length);
 	xhr.send(body);
@@ -153,7 +145,7 @@ function poll() {
 	xhr.open('GET', '/boards/' + boardid + '/poll?revision=' + revision);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState < 4) return;
-		var response = eval('(' + xhr.responseText + ')');
+		var response = eval(xhr.responseText);
 		if (response.revision <= revision) return;
 		revision = response.revision;
 		for (var layer in response.layers) {
@@ -179,9 +171,9 @@ function sendChat(e) {
 	e.preventDefault();
 	var body =
 		(token ? 'token=' + token : '') +
-		'&body=' + encodeURIComponent(chatBody.value);
+		'&body=' + escape(chatBody.value);
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/boards/' + boardid + '/chats');
+	xhr.open('POST', '/boards/' + boardid + '/chats/create');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Content-Length', body.length);
 	xhr.send(body);
@@ -193,8 +185,8 @@ function publish(e) {
 	var body =
 		'token=' + token +
 		'&revision=' + revision +
-		'&composite=' + encodeURIComponent(compose(WIDTH, HEIGHT)) +
-		'&thumbnail=' + encodeURIComponent(compose(THUMB_WIDTH, THUMB_HEIGHT));
+		'&composite=' + escape(compose(WIDTH, HEIGHT)) +
+		'&thumbnail=' + escape(compose(THUMB_WIDTH, THUMB_HEIGHT));
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/boards/' + boardid + '/publish');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

@@ -1,16 +1,17 @@
 class ChatsController < ApplicationController
+  protect_from_forgery :except => [:create]
 
-  # POST /boards
-  # POST /boards.xml
   def create
-    @chat = Chat.new(params[:chat])
+    @board = Board.find params[:board_id]
+    layer = @board.layer_from_token(params[:token])
+    @chat = nil
+    if layer
+      @chat = @board.chats.new :author => layer.name, :body => params[:body]
+    end
+
     respond_to do |format|
-      if @chat.save
-        format.html { render :text => "Success" }
-        format.xml  { render :xml => @chat, :status => :created}
-      else
-        format.html { render :text => "Failed" }
-        format.xml  { render :xml => @chat.errors, :status => :unprocessable_entity }
+      if @chat and @chat.save
+        format.xml  { head :ok }
       end
     end
   end

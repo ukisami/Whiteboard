@@ -1,0 +1,15 @@
+<div id="comments_for_<%= gallery.id %>">
+    <% if gallery.comments.count < 4 %>
+    <%= render :partial => gallery.comments %>
+    <% else %>
+    <%= render :partial => gallery.comments.first %>
+    <div class="" href="#">
+		<p class="comment"><%= link_to_remote "Show all comments", :url => { :controller => "comments", :action => "show_more", :gallery_id => gallery.id} %></p>
+    </div>
+    <%= render :partial => gallery.comments.last %>
+    <% end %>
+</div>
+
+<div >
+    <%= render :partial => 'comments/create_comment', :locals => {:gallery => gallery} %>
+</div>

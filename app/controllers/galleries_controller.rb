@@ -24,6 +24,7 @@ class GalleriesController < ApplicationController
   # GET /galleries/new
   # GET /galleries/new.xml
   def new
+    @board = Board.find(params[:board_id])
     @gallery = Gallery.new
 
     respond_to do |format|
@@ -40,7 +41,8 @@ class GalleriesController < ApplicationController
   # POST /galleries
   # POST /galleries.xml
   def create
-    @gallery = Gallery.new(params[:gallery])
+	@board = Board.find(params[:board_id])
+    @gallery = @board.galleries.create(params[:gallery])
 
     respond_to do |format|
       if @gallery.save

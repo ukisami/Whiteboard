@@ -7,6 +7,8 @@ var POLL_INTERVAL = 500;
 var container, canvas, context, toolbar;
 var chat, chatBody;
 var x, y;
+var activeWidth = null;
+var activeColor = null;
 var saveTimer = false;
 
 function init() {
@@ -14,9 +16,16 @@ function init() {
 	if (token) {
 		injectCanvas();
 		registerHandlers();
-		toolBlack();
+		clickTool(document.getElementById('defaultwidth'));
+		clickTool(document.getElementById('defaultcolor'));
 	}
 	schedulePoll();
+}
+
+function clickTool(t) {
+	var e = document.createEvent('MouseEvents');
+	e.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+	t.dispatchEvent(e);
 }
 
 function findElements() {
@@ -41,13 +50,15 @@ function injectCanvas() {
 
 function registerHandlers() {
 	if (token) {
-		document.getElementById('toolblack').addEventListener('click', toolBlack, false);
-		document.getElementById('toolred').addEventListener('click', toolRed, false);
-		document.getElementById('tooleraser').addEventListener('click', toolEraser, false);
-		var tools = toolbar.getElementsByTagName('a');
-		for (var i = 0; i < tools.length; i++) {
-			tools[i].addEventListener('click', switchTool, false);
+		var widths = toolbar.getElementsByClassName('width');
+		for (var i = 0; i < widths.length; i++) {
+			widths[i].addEventListener('click', toolWidth, false);
 		}
+		var colors = toolbar.getElementsByClassName('color');
+		for (var i = 0; i < colors.length; i++) {
+			colors[i].addEventListener('click', toolColor, false);
+		}
+		document.getElementById('eraser').addEventListener('click', toolEraser, false);
 		container.addEventListener('mousedown', mouseDown, false);
 		document.body.addEventListener('mouseup', mouseUp, false);
 	}
@@ -57,31 +68,28 @@ function registerHandlers() {
 	chatBody.disabled = false;
 }
 
-function switchTool(e) {
-	toolbar.getElementsByClassName('active')[0].className = '';
-	e.currentTarget.className = 'active';
+function toolWidth(e) {
+	var active = e.currentTarget;
+	var w = parseInt(active.firstChild.style.width, 10);
+	context.lineWidth = w;
+	var o = w > 4 ? w / 2 + 1 : 9;
+	container.style.cursor = 'url("brush' + w + '.png") ' + o + ' ' + o + ',crosshair';
+	activeWidth && (activeWidth.className = 'width');
+	(activeWidth = active).className = 'active width';
 }
 
-function toolEraser() {
-	context.globalCompositeOperation = 'destination-out';
-	context.lineWidth = 16;
-	container.style.cursor = 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABFUlEQVQ4ja2UQU7DMBBFrZZdxC2KROAKtBIVPQxV4AxvPKvIS1TgDD5ChES5QTcpPUKyRT0AG1dy0zSgtCN5M/Y8/7E135iWAB6Ad2ADbMPahNy0rWYvVPUK+AJKIFPV1DmXOOcSVU1F5CnsLYFRKwSYABWQAYNjl3nvh+FMBUyakBFQi8jsT9khRGQG1HvKgA8RefwvJKqbA0Xc0qqrnQ7QAFhZa8cGeO2jpqFqYYBv4LovSFVTYG2ArXMu6QvK8/wS+Dkr6GytnfrYGfBirLXjU78fuNslCmDeU00RJ/qOSHUwvPHQeu+HHSougpL6YGgbypZAGSzjZmcj1tpb4DnYyOdRG2kAp8AbsI6MrQw/fN9W8wvvc96yMvzesAAAAABJRU5ErkJggg==") 9 9,crosshair';
-}
-
-function toolPen() {
+function toolColor(e) {
+	var active = e.currentTarget;
 	context.globalCompositeOperation = 'source-over';
-	context.lineWidth = 2;
-	container.style.cursor = 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAbElEQVQ4je3TOw7CQAxF0SwrkJLPlkh57Ab2CKIILCRVGjTMINGkyJVe5efryl3XACOurV6T9Yk26uCMN144VssRcVlSED3RY49HdRe3JSVRZu4yc8C9MP+6+3nxhAlTRByq5Y3/Wd/3/yqaAQYtUQ98N+QQAAAAAElFTkSuQmCC") 9 9,crosshair';
+	context.strokeStyle = active.style.backgroundColor;
+	activeColor && (activeColor.className = 'color');
+	(activeColor = active).className = 'active color';
 }
 
-function toolBlack() {
-	toolPen();
-	context.strokeStyle = '#000000';
-}
-
-function toolRed() {
-	toolPen();
-	context.strokeStyle = '#ff0000';
+function toolEraser(e) {
+	context.globalCompositeOperation = 'destination-out';
+	activeColor && (activeColor.className = '');
+	(activeColor = e.currentTarget).className = 'active';
 }
 
 function canvasCoords(e) {
@@ -127,9 +135,9 @@ function save() {
 	if (!saveTimer) return;
 	var body =
 		'token=' + token +
-		'&data=' + escape(canvas.toDataURL());
+		'&data=' + encodeURIComponent(canvas.toDataURL());
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/boards/' + boardid + '/layers/' + layerid + '/update');
+	xhr.open('PUT', '/boards/' + boardid + '/layers/' + layerid);
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Content-Length', body.length);
 	xhr.send(body);
@@ -145,7 +153,7 @@ function poll() {
 	xhr.open('GET', '/boards/' + boardid + '/poll?revision=' + revision);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState < 4) return;
-		var response = eval(xhr.responseText);
+		var response = eval('(' + xhr.responseText + ')');
 		if (response.revision <= revision) return;
 		revision = response.revision;
 		for (var layer in response.layers) {
@@ -171,7 +179,7 @@ function sendChat(e) {
 	e.preventDefault();
 	var body =
 		(token ? 'token=' + token : '') +
-		'&body=' + escape(chatBody.value);
+		'&body=' + encodeURIComponent(chatBody.value);
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/boards/' + boardid + '/chats/create');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -185,8 +193,8 @@ function publish(e) {
 	var body =
 		'token=' + token +
 		'&revision=' + revision +
-		'&composite=' + escape(compose(WIDTH, HEIGHT)) +
-		'&thumbnail=' + escape(compose(THUMB_WIDTH, THUMB_HEIGHT));
+		'&composite=' + encodeURIComponent(compose(WIDTH, HEIGHT)) +
+		'&thumbnail=' + encodeURIComponent(compose(THUMB_WIDTH, THUMB_HEIGHT));
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/boards/' + boardid + '/publish');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

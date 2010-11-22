@@ -13,9 +13,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :publications
 
-  #map.resources :layers
+  map.resources :layers
 
-  #map.resources :chats
+  map.resources :chats
 
   map.resources :boards
 
@@ -46,6 +46,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :boards , :member => {:publish => :get, :poll => :get} do |boards|
     boards.resources :layers
     boards.resources :chats
+    boards.resources :galleries
   end
 
   # Sample resource route within a namespace:
@@ -56,6 +57,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
+	map.add_comment '/comments/add_comment', :controller => 'comments', :action => 'add_comment'
 
   # See how all your routes lay out with "rake routes"
 
