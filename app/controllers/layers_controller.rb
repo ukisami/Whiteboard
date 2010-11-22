@@ -3,15 +3,7 @@ class LayersController < ApplicationController
   # GET /layers.xml
   before_filter :get_board
   before_filter :require_token, :only => [:create, :destroy]
-
-  def index
-    @layers = @board.layers.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @layers }
-    end
-  end
+  protect_from_forgery :except => [:update]
 
   # GET /layers/1
   # GET /layers/1.xml
@@ -51,14 +43,15 @@ class LayersController < ApplicationController
   # PUT /layers/1.xml
   def update
     @layer = @board.layers.find(params[:id])
-
+    if @layer.token == params[:token]
+      @layer.data = params[:data] || @layer.data
+    end
+    debugger
     respond_to do |format|
-      if @layer.update_attributes(params[:layer])
+      if @layer.save
+        debugger
         format.html { redirect_to(@layer, :notice => 'Layer was successfully updated.') }
         format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @layer.errors, :status => :unprocessable_entity }
       end
     end
   end
