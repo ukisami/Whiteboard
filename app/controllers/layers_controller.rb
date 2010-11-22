@@ -46,10 +46,8 @@ class LayersController < ApplicationController
     if @layer.token == params[:token]
       @layer.data = params[:data] || @layer.data
     end
-    debugger
     respond_to do |format|
       if @layer.save
-        debugger
         format.html { redirect_to(@layer, :notice => 'Layer was successfully updated.') }
         format.xml  { head :ok }
       end
