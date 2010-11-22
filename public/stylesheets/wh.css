@@ -27,7 +27,7 @@ h2{margin:10px 0;font-size:28px;}
 .inputRow{border-top:1px dotted #c0c0c0;padding:10px 0;}
 .inputRow label{display:inline-block;margin-right:10px;width:120px;text-align:right;}
 .bigText{padding:5px;width:240px;vertical-align:baseline;}
-.fieldWithErrors label{margin-right:5px;padding:5px;width:95px;background-color:#c00040;color:#ffffff;}
+.fieldWithErrors label{margin-right:5px;padding:5px;width:115px;background-color:#c00040;color:#ffffff;}
 .fieldWithErrors span{display:inline-block;margin-left:10px;color:#c00040;}
 .noLabel{padding-left:130px;}
 
