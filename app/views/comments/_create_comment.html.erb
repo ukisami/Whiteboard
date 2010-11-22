@@ -1,22 +1,17 @@
-<%# if logged_in? %>
-<div id="comment_errors">
-</div>
-<div class="">
-    <div class="clear">
-    </div>
-    <!-- <textarea class="" onblur="if(this.value==''){this.value='Reply Here'}" onclick="this.value='';" value="Reply Here">
-Reply Here.
-    </textarea> -->
-</div>
 <% remote_form_for :comment, :url => add_comment_path do |c| %>
 <div id="add_comment_<%= gallery.id %>" class="">
-    <%= c.text_area :content, :id => "comment_content_"+gallery.id.to_s, :size => "25", :class => '' %>
+	<p class="inputRow"><label for="comment_body">Comment</label>
+		<%= c.text_area :content, :id => "comment_content_"+gallery.id.to_s, :class => "bigText", :size => "25", :class => '' %>
+		<span id="comment_errors"></span>
+	</p>
     <%= hidden_field_tag 'gallery_id', gallery.id.to_s %>
     <%= hidden_field_tag 'comment_id', nil, :id => "hidden_reply_comment_"+gallery.id.to_s %>
-	<%= submit_tag('submit', :class => '') %>
+	<p class="inputRow noLabel"><%= submit_tag('Submit', :class => '', :id => 'id="board_submit') %></p>
     <div class="clear">
     </div>
 	<%= c.error_messages %>
     <% end %>
 </div>
-<%# end %>
+
+
+
