@@ -137,7 +137,7 @@ function save() {
 		'token=' + token +
 		'&data=' + escape(canvas.toDataURL());
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/boards/' + boardid + '/layers/' + layerid + '/update');
+	xhr.open('PUT', '/boards/' + boardid + '/layers/' + layerid);
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Content-Length', body.length);
 	xhr.send(body);
