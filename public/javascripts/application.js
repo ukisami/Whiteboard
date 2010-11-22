@@ -2,8 +2,8 @@ var WIDTH = 640;
 var HEIGHT = 480;
 var THUMB_WIDTH = 160;
 var THUMB_HEIGHT = 120;
-var SAVE_INTERVAL = 500;
-var POLL_INTERVAL = 500;
+var SAVE_INTERVAL = 1000;
+var POLL_INTERVAL = 2000;
 var container, canvas, context, toolbar;
 var chat, chatBody;
 var x, y;
@@ -199,7 +199,7 @@ function publish(e) {
 		'&composite=' + encodeURIComponent(compose(WIDTH, HEIGHT)) +
 		'&thumbnail=' + encodeURIComponent(compose(THUMB_WIDTH, THUMB_HEIGHT));
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/boards/' + boardid + '/publish');
+	xhr.open('POST', '/boards/' + boardid + '/galleries');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Content-Length', body.length);
 	xhr.send(body);

@@ -48,7 +48,7 @@ class LayersController < ApplicationController
     end
     respond_to do |format|
       if @layer.save
-        format.html { redirect_to(@layer, :notice => 'Layer was successfully updated.') }
+        format.html { head :ok }
         format.xml  { head :ok }
       end
     end
