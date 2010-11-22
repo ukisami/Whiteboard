@@ -153,7 +153,7 @@ function poll() {
 	xhr.open('GET', '/boards/' + boardid + '/poll?revision=' + revision);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState < 4) return;
-		var response = eval(xhr.responseText);
+		var response = eval('(' + xhr.responseText + ')');
 		if (response.revision <= revision) return;
 		revision = response.revision;
 		for (var layer in response.layers) {
