@@ -2,7 +2,8 @@ class GalleriesController < ApplicationController
   # GET /galleries
   # GET /galleries.xml
   def index
-    @galleries = Gallery.all
+    @offset = params[:offset].to_i || 0
+    @galleries = Gallery.all :offset => params[:offset], :limit => 6
 
     respond_to do |format|
       format.html # index.html.erb
