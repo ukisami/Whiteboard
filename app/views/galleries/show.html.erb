@@ -1,3 +1,8 @@
+<div id = "central">
+<h1 id="title"><a href="/">Whiteboard</a></h1>
+<h2>jian7 <%= link_to 'Back', galleries_path, :id=>"public" %></h2>
+<p id="galleryImage"><img src="about:blank" alt="(image here)" /></p>
+
 <p>
   <b>Boardid:</b>
   <%=h @gallery.board_id %>
@@ -22,6 +27,4 @@
 	<%= render :partial => 'comments/comments_list', :locals => {:gallery => @gallery} %>
 </div>
 
-
-<%= link_to 'Edit', edit_gallery_path(@gallery) %> |
-<%= link_to 'Back', galleries_path %>
+</div>

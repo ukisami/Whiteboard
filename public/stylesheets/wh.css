@@ -36,9 +36,9 @@ h3{margin:17px 0 12px;font-size:20px;}
 #layers{float:left;margin-left:-180px;width:150px;padding-right:10px;}
 #layers ul{margin-right:-10px;border-top:1px solid #c0c0c0;}
 #layers li{border-bottom:1px dotted #c0c0c0;padding-right:10px;overflow:hidden;text-overflow:ellipsis;line-height:36px;white-space:nowrap;}
-#layers li.owned a{display:none;font-size:11px;}
-#layers li.owned:hover{padding-top:4px;padding-bottom:4px;line-height:normal;}
-#layers li.owned:hover a{display:block;text-decoration:inherit;color:#c00040;}
+#layers .owned li a{display:none;font-size:11px;}
+#layers .owned li:hover{padding-top:4px;padding-bottom:4px;line-height:normal;}
+#layers .owned li:hover a{display:block;text-decoration:inherit;color:#c00040;}
 #newlayer{display:block;padding:10px 10px 10px 0;text-decoration:inherit;color:inherit;}
 #newlayer:hover{color:#c00040;}
 #newlayer img{vertical-align:bottom;}

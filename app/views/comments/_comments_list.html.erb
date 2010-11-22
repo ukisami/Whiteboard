@@ -4,7 +4,7 @@
     <% else %>
     <%= render :partial => gallery.comments.first %>
     <div class="" href="#">
-        <span><%= link_to_remote "show all comments", :url => { :controller => "comments", :action => "show_more", :gallery_id => gallery.id} %></span>
+		<p class="comment"><%= link_to_remote "Show all comments", :url => { :controller => "comments", :action => "show_more", :gallery_id => gallery.id} %></p>
     </div>
     <%= render :partial => gallery.comments.last %>
     <% end %>

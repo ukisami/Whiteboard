@@ -1,6 +1,19 @@
-<h1>Listing galleries</h1>
+<h1 id="title"><a href="/">Whiteboard</a></h1>
+<a id="bigLeft" class="side" href="-1"><%= image_tag "prev.png" %><span class="caption">&laquo;&nbsp;Previous&nbsp;page</span></a>
+<a id="bigRight" class="side" href="+1"><%= image_tag "next.png" %><span class="caption">Next&nbsp;page&nbsp;&raquo;</span></a>
+<h2>Gallery</h2>
+<ul id="sixpack">
+<%# @galleries.each do |gallery| %>
+<li><a href="/galleries/99"><img src="about:blank" /><span>jian1</span></a></li>
+<%# end %>
+<li><a href="/galleries/99"><img src="about:blank" /><span>jian2</span></a></li>
+<li><a href="/galleries/99"><img src="about:blank" /><span>jian3</span></a></li>
+<li><a href="/galleries/99"><img src="about:blank" /><span>jian4</span></a></li>
+<li><a href="/galleries/99"><img src="about:blank" /><span>jian5</span></a></li>
+<li><a href="/galleries/99"><img src="about:blank" /><span>jian6</span></a></li>
+</ul>
 
-<table>
+<!-- <table>
   <tr>
     <th>Board_id</th>
     <th>Revision</th>
@@ -23,4 +36,4 @@
 
 <br />
 
-<%#= link_to 'New gallery', new_board_gallery_path(@board) %>
+<%#= link_to 'New gallery', new_board_gallery_path(@board) %> -->
