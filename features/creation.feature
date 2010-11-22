@@ -4,7 +4,7 @@ As a user
 I want to be able to create white boards
 So that I am able to draw and save and publish my drawing
 
-Scenario: Creating a Whiteboard instance
+Scenario: Creating a whiteBoard instance
   Given I am on the homepage
   When I follow "New board"
   And I fill in "Title" with "wb1"
