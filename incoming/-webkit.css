@@ -1,0 +1,10 @@
+.side{-webkit-box-shadow:2px 2px 8px rgba(0,0,0,0.5);}
+#bigLeft{-webkit-border-top-right-radius:50px;-webkit-border-bottom-right-radius:50px;}
+#bigRight{-webkit-border-top-left-radius:50px;-webkit-border-bottom-left-radius:50px;}
+#central{-webkit-box-shadow:0 0 32px rgba(0,0,0,0.25);-webkit-border-bottom-right-radius:50px;}
+.errorExplanation{-webkit-border-radius:5px;}
+.fieldWithErrors label{-webkit-border-radius:5px;}
+#publish{-webkit-box-shadow:inset 1px 1px 0 rgba(0,0,0,0.25);-webkit-border-radius:5px;}
+#toolbar a{-webkit-border-radius:5px;}
+#toolbar a.width span{-webkit-transform:rotate(20deg);}
+#sixpack li{-webkit-box-shadow:2px 2px 8px rgba(0,0,0,0.25);}
