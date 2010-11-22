@@ -4,7 +4,7 @@ var THUMB_WIDTH = 160;
 var THUMB_HEIGHT = 120;
 var SAVE_INTERVAL = 1000;
 var POLL_INTERVAL = 2000;
-var container, canvas, context, toolbar;
+var container, canvas, context, toolbar, publishButton;
 var chat, chatBody;
 var x, y;
 var activeWidth = null;
@@ -62,7 +62,7 @@ function registerTools() {
 	container.addEventListener('mousedown', mouseDown, false);
 	document.body.addEventListener('mouseup', mouseUp, false);
 
-	var publishButton = document.getElementById('publish');
+	publishButton = document.getElementById('publish');
 	if (publishButton) publishButton.addEventListener('click', publish, false);
 }
 
@@ -193,6 +193,9 @@ function sendChat(e) {
 
 function publish(e) {
 	e.preventDefault();
+	publishButton.className = 'work';
+	publishButton.innerHTML = '&middot; &middot; &middot;';
+	publishButton.removeEventListener('click', publish, false);
 	var body =
 		'token=' + token +
 		'&revision=' + revision +
@@ -200,6 +203,15 @@ function publish(e) {
 		'&thumbnail=' + encodeURIComponent(compose(THUMB_WIDTH, THUMB_HEIGHT));
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/boards/' + boardid + '/galleries');
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState < 4) return;
+		publishButton.innerHTML = 'Done';
+		setTimeout(function() {
+			publishButton.className = '';
+			publishButton.innerHTML = 'Publish';
+			publishButton.addEventListener('click', publish, false);
+		}, 1000);
+	};
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Content-Length', body.length);
 	xhr.send(body);

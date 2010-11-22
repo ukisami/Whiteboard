@@ -4,7 +4,7 @@
 #central{-moz-box-shadow:0 0 32px rgba(0,0,0,0.25);-moz-border-radius-bottomright:20px;}
 .errorExplanation{-moz-border-radius:5px;}
 .fieldWithErrors label{-moz-border-radius:5px;}
-#publish{-moz-box-shadow:inset 1px 1px 0 rgba(0,0,0,0.25);-moz-border-radius:5px;}
+#publish{-moz-border-radius:5px;}
 #toolbar a{-moz-border-radius:5px;}
 #toolbar a.width span{-moz-transform:rotate(20deg);}
 #sixpack li{-moz-box-shadow:2px 2px 8px rgba(0,0,0,0.25);}
