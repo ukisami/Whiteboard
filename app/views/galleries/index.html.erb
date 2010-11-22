@@ -6,13 +6,13 @@
 <h1 id="title"><a href=".">Whiteboard</a></h1>
 <% if @offset > 0 %>
   <a id="bigLeft" class="side" href="?offset=<%= (@offset - 6).to_i %>">
-    <img src="prev.png" />
+    <img src="/images/prev.png" />
     <span class="caption">&laquo;&nbsp;Previous&nbsp;page</span>
   </a>
 <% end %>
 <% if Gallery.count > @offset + 6 %>
   <a id="bigRight" class="side" href="?offset=<%= (@offset + 6).to_i %>">
-    <img src="next.png" />
+    <img src="/images/next.png" />
     <span class="caption">Next&nbsp;page&nbsp;&raquo;</span>
   </a>
 <% end %>
