@@ -31,7 +31,7 @@ describe LayersController do
     end
 
     describe "with invalid board" do
-      it "assigns a new layer as @layer" do
+      it "redirect to root path" do
         Board.stub(:find).and_raise "Exception"
         get :new
         response.should redirect_to root_path

@@ -14,7 +14,12 @@ describe CommentsController do
     Gallery.stub!(:find).and_return(mock_gallery)
     mock_gallery.stub(:comments).and_return([])
     mock_gallery.stub(:id).and_return('33')
+		mock_gallery
   end
+
+	def get_gallery
+		@gallery = Board.create(:title => "aa").galleries.create
+	end
 
   describe "GET index" do
     it "assigns all comments as @comments" do
@@ -140,30 +145,62 @@ describe CommentsController do
 
 	describe "add_comment" do
 
-		before(:each) do
-			stub_get_gallery
-		end
-
-		describe "with valid params" do
-    	it "creates a new comment" do
-				mock_gallery.comments.stub(:new).with({'these' => 'params'}).and_return(mock_comment(:save => true))
-        post :add_comment, :comment => {:these => 'params'}
-        assigns[:comment].should equal(mock_comment)
+		describe "with valid gallery" do
+			before(:each) do
+				stub_get_gallery
+			end
+    	it "creates a new comment if saved correctly" do
+				mc = mock_comment(:save => true, :created_at => Time.now, :content => 'a')
+				stub_get_gallery.comments.stub(:new).and_return(mc)
+        xhr :post, "add_comment"
+        assigns[:comment].should equal(mc)
     	end
 
+			it "sets an error" do 
+				mc = mock_comment(:save => false)
+				stub_get_gallery.comments.stub(:new).and_return(mc)
+				el = mock("errors")
+				el.stub(:on).and_return("gogogo")
+				mc.stub(:errors).and_return(el)
+				page = mock("page")
+				controller.should_receive(:render).with(:update).and_yield(page)
+				page.stub(:replace_html)
+				page.stub(:<<)
+				xhr :post, "add_comment"
+			end
+
     	it "redirects to the created comment" do
-        mock_gallery.comments.stub(:new).with({'these' => 'params'}).and_return(mock_comment(:save => true))
-        post :add_comment, :comment => {}
-        response.should redirect_to(comment_url(mock_comment))
+        mock_gallery.comments.stub(:new).and_return(mock_comment(:save => true))
+				page = mock("page")
+				controller.should_receive(:render).with(:update).and_yield(page)
+				page.should_receive(:insert_html).with(:before, "add_comment_33", :partial => 'comments/comment', :locals => { :comment => mock_comment })
+				el = mock("textarea")
+				el.should_receive(:clear)
+				page.stub(:[]).and_return(el) 
+				page.should_receive(:replace_html).with("comment_errors", :text => "")
+				page.stub(:<<)
+        xhr :post, 'add_comment'
+      end
+			
+		end
+		
+		describe "with invalid gallery" do
+      it "redirect to root path" do
+        Gallery.stub(:find).and_raise "Exception"
+        post :add_comment
+        response.should redirect_to root_path
       end
 		end
   end
 
 	describe "show_more comments" do
 		it "updates the page correctly" do
-			stub_get_gallery
-			xhr :show_more
-			response.should update
+			stub_get_gallery			
+			page = mock("page")
+    	controller.should_receive(:render).with(:update).and_yield(page)
+    	page.should_receive(:replace_html).with("comments_for_33", :partial => stub_get_gallery.comments)
+				#response.should have_rjs(:chained_replace_html, 'comments_for_33', 'some text')
+			xhr :post, 'show_more'
 		end
 	end
 

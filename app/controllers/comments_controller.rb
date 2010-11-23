@@ -85,8 +85,7 @@ class CommentsController < ApplicationController
   end
 
 	def add_comment
-    @comment = Comment.new(params[:comment])
-		@comment.gallery = @gallery
+    @comment = @gallery.comments.new(params[:comment])
     add_comment_id_string = 'add_comment_' + @gallery.id.to_s
 		comment_content_string = 'comment_content_' + @gallery.id.to_s
     if @comment.save
