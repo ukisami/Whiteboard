@@ -25,27 +25,10 @@ class GalleriesController < ApplicationController
     end
   end
 
-  # GET /galleries/new
-  # GET /galleries/new.xml
-  def new
-    @board = Board.find(params[:board_id])
-    @gallery = Gallery.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @gallery }
-    end
-  end
-
-  # GET /galleries/1/edit
-  def edit
-    @gallery = Gallery.find(params[:id])
-  end
-
   # POST /galleries
   # POST /galleries.xml
   def create
-	@board = Board.find(params[:board_id])
+		@board = Board.find(params[:board_id])
     if @board.permission(params[:token]) != :owner
       redirect_to root_path, :notice => 'Only board owner may publish.'
       return
@@ -61,38 +44,10 @@ class GalleriesController < ApplicationController
         format.html { head :ok }
         format.xml  { render :xml => @gallery, :status => :created, :location => @gallery }
       else
-        format.html { render :action => "new" }
+        format.html { redirect_to '/' }
         format.xml  { render :xml => @gallery.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # PUT /galleries/1
-  # PUT /galleries/1.xml
-  def update
-    @gallery = Gallery.find(params[:id])
-
-    respond_to do |format|
-      if @gallery.update_attributes(params[:gallery])
-        format.html { redirect_to(@gallery, :notice => 'Gallery was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @gallery.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /galleries/1
-  # DELETE /galleries/1.xml
-  def destroy
-    @gallery = Gallery.find(params[:id])
-    @gallery.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(galleries_url) }
-      format.xml  { head :ok }
-    end
-  end
-  
 end
