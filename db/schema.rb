@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20101120000512) do
     t.integer  "order"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",                           :default => "untitled"
-    t.text     "data",       :limit => 16777216
+    t.string   "name",       :default => "untitled"
+    t.text     "data"
   end
 
   create_table "publications", :force => true do |t|
