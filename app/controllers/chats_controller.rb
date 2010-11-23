@@ -16,7 +16,7 @@ class ChatsController < ApplicationController
         format.xml  { head :ok }
         format.html { redirect_to board_path(@board, :token => params[:token]) }
       else
-        redirect_to board_path(@board, :token => params[:token])
+        format.html {redirect_to board_path(@board, :token => params[:token])}
       end
     end
   end
