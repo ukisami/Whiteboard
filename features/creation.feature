@@ -5,9 +5,8 @@ I want to be able to create white boards
 So that I am able to draw and save and publish my drawing
 
 Scenario: Creating a whiteBoard instance
-  Given I am on the homepage
-  When I follow "New board"
-  And I fill in "Title" with "wb1"
+  Given I am on the new board page
+  When I fill in "Title" with "wb1"
   And I press "Create"
   Then I should see "New layer"
 

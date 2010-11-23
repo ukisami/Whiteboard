@@ -35,7 +35,7 @@ Scenario: anyone can see anyone's chat on the same board
 	And I press "Chat"
 	And I am on view whiteboard 1
 	Then I should see "hello"
-	And I should see "Base Layer"
+	And I should see "Base Layer: hello"
 
 
 
