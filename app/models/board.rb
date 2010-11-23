@@ -43,11 +43,11 @@ class Board < ActiveRecord::Base
   end
 
   def layers_updated_after_revision(revision)
-    self.layers.all :conditions => ['updated_at > ?', Time.at(revision).utc]
+    self.layers.all :conditions => ['updated_at > ?', Time.at(revision+1).utc]
   end
 
   def chats_created_after_revision(revision)
-    self.chats.all :conditions => ['created_at > ?', Time.at(revision).utc]
+    self.chats.all :conditions => ['created_at > ?', Time.at(revision+1).utc]
   end
 
   def latest_layers_table(layers)
