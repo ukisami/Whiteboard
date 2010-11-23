@@ -1,16 +1,5 @@
 class BoardsController < ApplicationController
 
-  # GET /boards
-  # GET /boards.xml
-  def index
-    @boards = Board.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @boards }
-    end
-  end
-
   # GET /boards/1
   # GET /boards/1.xml
   def show
@@ -32,11 +21,6 @@ class BoardsController < ApplicationController
       format.html # new.html.erb
       format.xml  { render :xml => @board }
     end
-  end
-
-  # GET /boards/1/edit
-  def edit
-    @board = Board.find(params[:id])
   end
 
   # POST /boards

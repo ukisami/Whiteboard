@@ -2,7 +2,7 @@ class LayersController < ApplicationController
   # GET /layers
   # GET /layers.xml
   before_filter :get_board
-  before_filter :require_token, :only => [:create, :destroy]
+  before_filter :require_token, :only => [:create, :update, :destroy]
   protect_from_forgery :except => [:update]
 
   # GET /layers/1
@@ -16,11 +16,6 @@ class LayersController < ApplicationController
       format.html # new.html.erb
       format.xml  { render :xml => @layer }
     end
-  end
-
-  # GET /layers/1/edit
-  def edit
-    @layer = @board.layers.find(params[:id])
   end
 
   # POST /layers

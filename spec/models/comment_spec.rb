@@ -4,7 +4,7 @@ describe Comment do
   before(:each) do
     @valid_attributes = {
       :content => "value for content",
-      :publication_id => 1,
+      :gallery_id => 1,
       :comment_id => 1
     }
   end

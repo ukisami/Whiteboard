@@ -17,8 +17,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :chats
 
-  map.resources :boards
-
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -43,7 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   #     products.resources :comments
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
-  map.resources :boards , :member => {:publish => :get, :poll => :get} do |boards|
+  map.resources :boards , :member => {:publish => :post, :poll => :get} do |boards|
     boards.resources :layers
     boards.resources :chats
     boards.resources :galleries
