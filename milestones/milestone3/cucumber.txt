@@ -1,0 +1,143 @@
+Using the default profile...
+Feature: Publishing/Gallery Descriptions
+  As a owner
+  I want to be able to publish my drawing board
+  So that everyone can see my work
+
+  Scenario: Viewing the gallery of a whiteBoard # features/gallery.feature:7
+    Given whiteboard 1 exists                   # features/step_definitions/whiteboard_steps.rb:9
+    And gallery 1 exists                        # features/step_definitions/whiteboard_steps.rb:17
+    When I go to view gallery page              # features/step_definitions/web_steps.rb:19
+    Then I should see "whiteboard 1"            # features/step_definitions/web_steps.rb:143
+
+  Scenario: No Gallery for a unpublished whiteBoard # features/gallery.feature:13
+    Given whiteboard 1 exists                       # features/step_definitions/whiteboard_steps.rb:9
+    When I go to view gallery page                  # features/step_definitions/web_steps.rb:19
+    Then I should not see "whiteboard 1"            # features/step_definitions/web_steps.rb:182
+
+  Scenario: participants can post comments on gallery (anonymously) # features/gallery.feature:18
+    Given gallery 1 exists                                          # features/step_definitions/whiteboard_steps.rb:17
+    When I go to view gallery 1                                     # features/step_definitions/web_steps.rb:19
+    And I fill in "comment_content_1" with "hello"                  # features/step_definitions/web_steps.rb:35
+    And I press "Submit"                                            # features/step_definitions/web_steps.rb:23
+    Then I should see "hello"                                       # features/step_definitions/web_steps.rb:143
+
+  Scenario: cannot supply empty comment        # features/gallery.feature:25
+    Given gallery 1 exists                     # features/step_definitions/whiteboard_steps.rb:17
+    When I go to view gallery 1                # features/step_definitions/web_steps.rb:19
+    And I fill in "comment_content_1" with " " # features/step_definitions/web_steps.rb:35
+    And I press "Submit"                       # features/step_definitions/web_steps.rb:23
+    Then I should see "can't be blank"         # features/step_definitions/web_steps.rb:143
+
+Feature: Sharing Descriptions
+  As creator of a white board
+  I want to be able to share my white board
+  So other users can watch me draw
+
+  Scenario: Viewers can see the intended whiteboard # features/sharing.feature:7
+    Given whiteboard 1 exists                       # features/step_definitions/whiteboard_steps.rb:9
+    When I go to view whiteboard 1                  # features/step_definitions/web_steps.rb:19
+    Then I should see "whiteboard 1"                # features/step_definitions/web_steps.rb:143
+
+Feature: Creation Descriptions
+  As a user
+  I want to be able to create white boards
+  So that I am able to draw and save and publish my drawing
+
+  Scenario: Creating a whiteBoard instance # features/creation.feature:7
+    Given I am on the new board page       # features/step_definitions/web_steps.rb:15
+    When I fill in "Title" with "wb1"      # features/step_definitions/web_steps.rb:35
+    And I press "Create"                   # features/step_definitions/web_steps.rb:23
+    Then I should see "New layer"          # features/step_definitions/web_steps.rb:143
+
+  Scenario: Restoring ownership session # features/creation.feature:13
+    Given whiteboard 1 exists           # features/step_definitions/whiteboard_steps.rb:9
+    And I am on own whiteboard 1        # features/step_definitions/web_steps.rb:15
+    When I am on restore whiteboard 1   # features/step_definitions/web_steps.rb:15
+    Then I should see "New layer"       # features/step_definitions/web_steps.rb:143
+    And I should see "Publish"          # features/step_definitions/web_steps.rb:143
+
+Feature: Chatting Descriptions
+  As a user of a whiteBoard
+  I want to be able to chat with the owner and other collaborators
+  So they know what I am thinking about the current drawing
+
+  Scenario: owner can chat                 # features/chat.feature:7
+    Given whiteboard 1 exists              # features/step_definitions/whiteboard_steps.rb:9
+    And I am on own whiteboard 1           # features/step_definitions/web_steps.rb:15
+    When I fill in "chatbody" with "hello" # features/step_definitions/web_steps.rb:35
+    And I press "Chat"                     # features/step_definitions/web_steps.rb:23
+    Then I should see "hello"              # features/step_definitions/web_steps.rb:143
+    And I should see "Base Layer"          # features/step_definitions/web_steps.rb:143
+
+  Scenario: collaborator can chat                      # features/chat.feature:15
+    Given whiteboard 1 exists                          # features/step_definitions/whiteboard_steps.rb:9
+    And there is another collaborator for whiteboard 1 # features/step_definitions/whiteboard_steps.rb:22
+    When I go to collaborate on whiteboard 1           # features/step_definitions/web_steps.rb:19
+    And I fill in "chatbody" with "hello"              # features/step_definitions/web_steps.rb:35
+    And I press "Chat"                                 # features/step_definitions/web_steps.rb:23
+    Then I should see "hello"                          # features/step_definitions/web_steps.rb:143
+
+  Scenario: viewer can chat                # features/chat.feature:23
+    Given whiteboard 1 exists              # features/step_definitions/whiteboard_steps.rb:9
+    And I am on view whiteboard 1          # features/step_definitions/web_steps.rb:15
+    When I fill in "chatbody" with "hello" # features/step_definitions/web_steps.rb:35
+    And I press "Chat"                     # features/step_definitions/web_steps.rb:23
+    Then I should see "hello"              # features/step_definitions/web_steps.rb:143
+    And I should see "viewer"              # features/step_definitions/web_steps.rb:143
+
+  Scenario: anyone can see anyone's chat on the same board # features/chat.feature:31
+    Given whiteboard 1 exists                              # features/step_definitions/whiteboard_steps.rb:9
+    And I am on own whiteboard 1                           # features/step_definitions/web_steps.rb:15
+    When I fill in "chatbody" with "hello"                 # features/step_definitions/web_steps.rb:35
+    And I press "Chat"                                     # features/step_definitions/web_steps.rb:23
+    And I am on view whiteboard 1                          # features/step_definitions/web_steps.rb:15
+    Then I should see "hello"                              # features/step_definitions/web_steps.rb:143
+    And I should see "Base Layer: hello"                   # features/step_definitions/web_steps.rb:143
+
+Feature: Collaborate Descriptions
+  As viewer of a white board
+  I want to be able to draw
+  So I can collaborate with the owner
+
+  Scenario: Controls as owner        # features/collaborate.feature:7
+    Given whiteboard 1 exists        # features/step_definitions/whiteboard_steps.rb:9
+    When I go to own whiteboard 1    # features/step_definitions/web_steps.rb:19
+    Then I should see "New layer..." # features/step_definitions/web_steps.rb:143
+    And I should see "Publish"       # features/step_definitions/web_steps.rb:143
+    And toolbar exists               # features/step_definitions/whiteboard_steps.rb:28
+
+  Scenario: Controls as viewer           # features/collaborate.feature:14
+    Given whiteboard 1 exists            # features/step_definitions/whiteboard_steps.rb:9
+    When I go to view whiteboard 1       # features/step_definitions/web_steps.rb:19
+    Then I should not see "New layer..." # features/step_definitions/web_steps.rb:182
+    And I should not see "Publish"       # features/step_definitions/web_steps.rb:182
+    And toolbar does not exist           # features/step_definitions/whiteboard_steps.rb:32
+
+  Scenario: Controls as collaborator                   # features/collaborate.feature:21
+    Given whiteboard 1 exists                          # features/step_definitions/whiteboard_steps.rb:9
+    And there is another collaborator for whiteboard 1 # features/step_definitions/whiteboard_steps.rb:22
+    When I go to collaborate on whiteboard 1           # features/step_definitions/web_steps.rb:19
+    Then I should not see "New layer"                  # features/step_definitions/web_steps.rb:182
+    And I should not see "Publish"                     # features/step_definitions/web_steps.rb:182
+    And toolbar exists                                 # features/step_definitions/whiteboard_steps.rb:28
+
+  Scenario: Effect of adding collaborator  # features/collaborate.feature:29
+    Given whiteboard 1 exists              # features/step_definitions/whiteboard_steps.rb:9
+    And I am on own whiteboard 1           # features/step_definitions/web_steps.rb:15
+    When I follow "New layer"              # features/step_definitions/web_steps.rb:27
+    And I fill in "Name" with "wh"         # features/step_definitions/web_steps.rb:35
+    And I press "Create"                   # features/step_definitions/web_steps.rb:23
+    Then whiteboard 1 should have 2 layers # features/step_definitions/whiteboard_steps.rb:13
+
+  Scenario: Redirect to owner page after adding collaborator # features/collaborate.feature:37
+    Given whiteboard 1 exists                                # features/step_definitions/whiteboard_steps.rb:9
+    And I am on own whiteboard 1                             # features/step_definitions/web_steps.rb:15
+    When I follow "New layer"                                # features/step_definitions/web_steps.rb:27
+    And I fill in "Name" with "wh"                           # features/step_definitions/web_steps.rb:35
+    And I press "Create"                                     # features/step_definitions/web_steps.rb:23
+    Then I should see "New layer"                            # features/step_definitions/web_steps.rb:143
+
+16 scenarios (16 passed)
+82 steps (82 passed)
+0m1.502s

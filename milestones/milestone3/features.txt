@@ -1,4 +1,6 @@
-1. Collaborators can draw on the whiteboard.
-2. Collaborators can see what is being drawn on the whiteboard.
-3. Owner can publish a whiteboard to the gallery.
-4. Collaborators can chat.
+1. Collaborators can draw on the whiteboard. (collaboration.feature)
+2. Collaborators can see what is being drawn on the whiteboard. (javascript; no cucumber feature file)
+3. Owner can publish a whiteboard to the gallery. (gallery.feature)
+4. Collaborators can chat. (chat.feature)
+5. Users can comment on gallery entries. (gallery.feature)
+6. creation.feature
