@@ -68,7 +68,6 @@ function registerTools() {
 
 function registerChat() {
 	document.getElementById('chatform').addEventListener('submit', sendChat, false);
-	chatBody.disabled = false;
 }
 
 function toolWidth(e) {
@@ -156,35 +155,43 @@ function poll() {
 	xhr.open('GET', '/boards/' + boardid + '/poll?revision=' + revision);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState < 4) return;
-		var response = eval('(' + xhr.responseText + ')');
-		if (response.revision <= revision) return;
-		revision = response.revision;
-		for (var layer in response.layers) {
-			if (layer == layerid) continue;
-			document.getElementById('layer' + layer).src = response.layers[layer];
-		}
-		for (var i in response.chats) {
-			var line = response.chats[i];
-			var p = document.createElement('p');
-			var span = document.createElement('span');
-			span.appendChild(document.createTextNode(line.author));
-			span.appendChild(document.createTextNode(': '));
-			p.appendChild(span);
-			p.appendChild(document.createTextNode(line.body));
-			chat.appendChild(p);
-			chat.scrollTop = 0x7fffffff; // bottom?
-		}
+		handlePoll(xhr.responseText);
 	};
 	xhr.send(null);
+}
+
+function handlePoll(json) {
+	var response = eval('(' + json + ')');
+	if (response.revision <= revision) return;
+	revision = response.revision;
+	for (var layer in response.layers) {
+		if (layer == layerid) continue;
+		document.getElementById('layer' + layer).src = response.layers[layer];
+	}
+	for (var i in response.chats) {
+		var line = response.chats[i];
+		var p = document.createElement('p');
+		var span = document.createElement('span');
+		span.appendChild(document.createTextNode(line.author));
+		span.appendChild(document.createTextNode(': '));
+		p.appendChild(span);
+		p.appendChild(document.createTextNode(line.body));
+		chat.appendChild(p);
+		chat.scrollTop = 0x7fffffff; // bottom?
+	}
 }
 
 function sendChat(e) {
 	e.preventDefault();
 	var body =
-		(token ? 'token=' + token : '') +
-		'&body=' + encodeURIComponent(chatBody.value);
+		(token ? 'token=' + token + '&' : '') +
+		'body=' + encodeURIComponent(chatBody.value);
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/boards/' + boardid + '/chats');
+	xhr.open('POST', '/boards/' + boardid + '/chats.xml');
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState < 4) return;
+		poll();
+	};
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Content-Length', body.length);
 	xhr.send(body);

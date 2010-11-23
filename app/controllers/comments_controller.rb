@@ -83,24 +83,26 @@ class CommentsController < ApplicationController
 
 	def add_comment
     gallery_id = params[:gallery_id]
-    #@user = current_user
     @comment = Comment.new(params[:comment])
 		@comment.gallery = Gallery.find(gallery_id)
-    #@comment.author = @user
     if !params[:comment_id].empty?
       @comment.reply_to = Comment.find(params[:comment_id]) 
     end
     add_comment_id_string = 'add_comment_' + gallery_id
+		comment_content_string = 'comment_content_' + gallery_id
     if @comment.save
         render :update do |page|
         page.insert_html :before, add_comment_id_string, :partial => 'comments/comment', :locals => { :comment => @comment }
         #page.replace_html add_comment_id_string, :partial => 'comments/create_comment', :locals => { :commentable => @comment.commentable, :commentable_number => type_id }
-        page.replace_html 'comment_errors', :text => @comment.errors.full_messages
+				page[comment_content_string].clear
+        page.replace_html 'comment_errors', :text => ''
+        page << "document.getElementById('#{add_comment_id_string}').getElementsByTagName('p')[0].className = 'inputRow'"
         end
      else 
         #render :partial => 'comments/create_comment'
         render :update do |page|
-           page.replace_html 'comment_errors', :text => @comment.errors.full_messages
+           page.replace_html 'comment_errors', :text => @comment.errors.on(:content)
+        	 page << "document.getElementById('#{add_comment_id_string}').getElementsByTagName('p')[0].className = 'inputRow fieldWithErrors'"
         end
     end        
   end
