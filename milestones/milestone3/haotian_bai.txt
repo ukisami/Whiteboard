@@ -1,0 +1,5 @@
+Project URL: http://deep-sunset-45.heroku.com/
+
+One cool feature of this project: Voting system: Any user can vote on any debate that has voting options.  Depending on different questions in the vote system and the number of times each option is voted, the winning percentage is calculated and winning side is decided. There doesn't seem to be any deadline for voting so people might not know whether a vote is still creditable. Also, a user could vote on the same debate many times, so a person could spam the vote easily.
+
+Comments on the code: By looking at a few view files, especially views/debates/show, I realized that they have a lot of long html files.  They are hard to read, not only because they're long, but also because they contain a lot of logic within.  These long html files should be divided up into partials to become more readable.  Also, coders should try to move more front-end logic toward back-end.
