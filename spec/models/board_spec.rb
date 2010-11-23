@@ -130,7 +130,7 @@ describe Board do
 
     it "should return a table of updates containing @layers and @chats when asked about its table of updates since @revision" do
       @updates = @board.table_of_updates_since_revision(@revision)
-      @updates[:revision].should equal(@chats[0].created_at.to_i)
+      @updates[:revision].should == @chats[0].created_at.to_i
       @updates[:layers][@layers[0].id].should equal @layers[0].data
       @updates[:layers][@layers[1].id].should equal @layers[1].data
       @updates[:chats][0][:author].should equal @chats[0].author
