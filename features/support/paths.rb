@@ -21,9 +21,18 @@ module NavigationHelpers
 	
 	when /view whiteboard (\d+)/
 	  '/boards/'+ $1
+	  
+	when /view gallery (\d+)/
+	  '/galleries/'+ $1
+	  
+	when /view gallery page/
+		'/galleries'
 	
 	when /collaborate on whiteboard (\d+)/
 	  '/boards/'+ $1 + '?token=' + Board.find($1).layers[1].token
+	
+	when /restore whiteboard (\d+)/
+		'/boards/'+ $1 + '?token=' + Board.find($1).token
 	  	
     else
       begin
