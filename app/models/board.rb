@@ -17,7 +17,7 @@ class Board < ActiveRecord::Base
   end 
 
   def base_layer
-    layers[0]
+    layers.first :order => "id ASC"
   end 
 
   def token
