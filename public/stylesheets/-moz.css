@@ -1,0 +1,10 @@
+.side{-moz-box-shadow:2px 2px 8px rgba(0,0,0,0.5);}
+#bigLeft{-moz-border-radius-topright:50px;-moz-border-radius-bottomright:50px;}
+#bigRight{-moz-border-radius-topleft:50px;-moz-border-radius-bottomleft:50px;}
+#central{-moz-box-shadow:0 0 32px rgba(0,0,0,0.25);-moz-border-radius-bottomright:20px;}
+.errorExplanation{-moz-border-radius:5px;}
+.fieldWithErrors label{-moz-border-radius:5px;}
+#publish{-moz-border-radius:5px;}
+#toolbar a{-moz-border-radius:5px;}
+#toolbar a.width span{-moz-transform:rotate(20deg);}
+#sixpack li{-moz-box-shadow:2px 2px 8px rgba(0,0,0,0.25);}

@@ -1,7 +1,7 @@
 <% remote_form_for :comment, :url => add_comment_path do |c| %>
 <div id="add_comment_<%= gallery.id %>" class="">
-	<p class="inputRow"><label for="comment_body">Comment</label>
-		<%= c.text_area :content, :id => "comment_content_"+gallery.id.to_s, :class => "bigText", :size => "25" %>
+	<p class="inputRow"><label for="comment_body">Comment</label
+		><%= c.text_area :content, :id => "comment_content_"+gallery.id.to_s, :class => "bigText", :size => "25" %>
 		<span id="comment_errors"></span>
 	</p>
     <%= hidden_field_tag 'gallery_id', gallery.id.to_s %>

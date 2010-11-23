@@ -1,30 +1,11 @@
-<div id = "central">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head>
+<title>jian7 - Whiteboard</title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/wh.css" />
+<%= javascript_include_tag :defaults %>
+</head><body><div id = "central">
 <h1 id="title"><a href="/">Whiteboard</a></h1>
-<h2>jian7 <%= link_to 'Back', galleries_path, :id=>"public" %></h2>
-<p id="galleryImage"><img src="about:blank" alt="(image here)" /></p>
-
-<p>
-  <b>Boardid:</b>
-  <%=h @gallery.board_id %>
-</p>
-
-<p>
-  <b>Revision:</b>
-  <%=h @gallery.revision %>
-</p>
-
-<p>
-  <b>Composite:</b>
-  <%=h @gallery.composite %>
-</p>
-
-<p>
-  <b>Thumbnail:</b>
-  <%=h @gallery.thumbnail %>
-</p>
-
-<div>
-	<%= render :partial => 'comments/comments_list', :locals => {:gallery => @gallery} %>
-</div>
-
-</div>
+<h2><%=h @gallery.board.title %> (rev <%= @gallery.revision %>) <%= link_to 'Back', galleries_path, :id=>"public" %></h2>
+<p id="galleryImage"><img src="<%=h @gallery.composite %>" alt="<%=h @gallery.board.title %>" /></p>
+<%= render :partial => 'comments/comments_list', :locals => {:gallery => @gallery} %>
+</div></body></html>

@@ -135,7 +135,7 @@ function save() {
 	if (!saveTimer) return;
 	var body =
 		'token=' + token +
-		'&data=' + escape(canvas.toDataURL());
+		'&data=' + encodeURIComponent(canvas.toDataURL());
 	var xhr = new XMLHttpRequest();
 	xhr.open('PUT', '/boards/' + boardid + '/layers/' + layerid);
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -179,7 +179,7 @@ function sendChat(e) {
 	e.preventDefault();
 	var body =
 		(token ? 'token=' + token : '') +
-		'&body=' + escape(chatBody.value);
+		'&body=' + encodeURIComponent(chatBody.value);
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/boards/' + boardid + '/chats/create');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -193,8 +193,8 @@ function publish(e) {
 	var body =
 		'token=' + token +
 		'&revision=' + revision +
-		'&composite=' + escape(compose(WIDTH, HEIGHT)) +
-		'&thumbnail=' + escape(compose(THUMB_WIDTH, THUMB_HEIGHT));
+		'&composite=' + encodeURIComponent(compose(WIDTH, HEIGHT)) +
+		'&thumbnail=' + encodeURIComponent(compose(THUMB_WIDTH, THUMB_HEIGHT));
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/boards/' + boardid + '/publish');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

@@ -35,5 +35,13 @@ Scenario: Effect of adding collaborator
   And I fill in "Name" with "wh"
   And I press "Create"
   Then whiteboard 1 should have 2 layers
+  
+Scenario: Redirect to owner page after adding collaborator
+	Given whiteboard 1 exists
+	And I am on own whiteboard 1
+	When I follow "Add layer"
+	And I fill in "Name" with "wh"
+	And I press "Create"
+	Then I should see "Add layer"
 
 

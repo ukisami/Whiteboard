@@ -13,9 +13,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :publications
 
-  #map.resources :layers
+  map.resources :layers
 
-  #map.resources :chats
+  map.resources :chats
 
   map.resources :boards
 
@@ -46,7 +46,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :boards , :member => {:publish => :get, :poll => :get} do |boards|
     boards.resources :layers
     boards.resources :chats
-		boards.resources :galleries
+    boards.resources :galleries
   end
 
   # Sample resource route within a namespace:

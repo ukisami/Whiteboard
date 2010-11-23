@@ -1,8 +1,12 @@
 class GalleriesController < ApplicationController
+
+  protect_from_forgery :except => [:create]
+
   # GET /galleries
   # GET /galleries.xml
   def index
-    @galleries = Gallery.all
+    @offset = params[:offset].to_i || 0
+    @galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'id DESC'
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,11 +46,19 @@ class GalleriesController < ApplicationController
   # POST /galleries.xml
   def create
 	@board = Board.find(params[:board_id])
-    @gallery = @board.galleries.create(params[:gallery])
+    if @board.permission(params[:token]) != :owner
+      redirect_to root_path, :notice => 'Only board owner may publish.'
+      return
+    end
+    @gallery = @board.galleries.create(
+      :composite => params[:composite],
+      :thumbnail => params[:thumbnail],
+      :revision => params[:revision]
+    )
 
     respond_to do |format|
       if @gallery.save
-        format.html { redirect_to(@gallery, :notice => 'Gallery was successfully created.') }
+        format.html { head :ok }
         format.xml  { render :xml => @gallery, :status => :created, :location => @gallery }
       else
         format.html { render :action => "new" }
@@ -82,4 +94,5 @@ class GalleriesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
 end

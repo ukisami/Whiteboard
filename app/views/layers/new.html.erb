@@ -1,17 +1,17 @@
-<h1>New layer</h1>
-
-<% form_for(@layer) do |f| %>
-  <%= f.error_messages %>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head>
+<title>Create a Layer</title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/wh.css" />
+</head><body><div id="central">
+<h1 id="title"><a href=".">Whiteboard</a></h1>
+<h2>New Layer</h2>
+<% form_for @layer do |f| %>
   <%= hidden_field_tag :board_id, @layer.board_id%>
   <%= hidden_field_tag :token, params[:token] %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
+  <%= f.custom_text_field :name, "Name" %>
+  <p class="inputRow noLabel"><input id="board_submit" name="commit" type="submit" value="Create" /></p>
+<%end%>
 
-<%= link_to 'Back', layers_path %>
+</div></body></html>
+
+

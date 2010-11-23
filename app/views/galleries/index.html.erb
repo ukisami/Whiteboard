@@ -1,34 +1,30 @@
-<h1 id="title"><a href="/">Whiteboard</a></h1>
-<a id="bigLeft" class="side" href="-1"><%= image_tag "prev.png" %><span class="caption">&laquo;&nbsp;Previous&nbsp;page</span></a>
-<a id="bigRight" class="side" href="+1"><%= image_tag "next.png" %><span class="caption">Next&nbsp;page&nbsp;&raquo;</span></a>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head>
+<title>Whiteboard Gallery</title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/wh.css" />
+</head><body id="gallery">
+<h1 id="title"><a href=".">Whiteboard</a></h1>
+<% if @offset > 0 %>
+  <a id="bigLeft" class="side" href="?offset=<%= (@offset - 6).to_i %>">
+    <img src="/images/prev.png" />
+    <span class="caption">&laquo;&nbsp;Previous&nbsp;page</span>
+  </a>
+<% end %>
+<% if Gallery.count > @offset + 6 %>
+  <a id="bigRight" class="side" href="?offset=<%= (@offset + 6).to_i %>">
+    <img src="/images/next.png" />
+    <span class="caption">Next&nbsp;page&nbsp;&raquo;</span>
+  </a>
+<% end %>
 <h2>Gallery</h2>
 <ul id="sixpack">
 <% @galleries.each do |gallery| %>
-<li><a href="/galleries/99"><img src="about:blank" /><span><%=h gallery.board.title %></span></a></li>
+  <li>
+    <a href="<%=h gallery_path(gallery) %>">
+      <img src="<%=h gallery.thumbnail %>" />
+      <span><%=h gallery.board.title %></span>
+    </a>
+  </li>
 <% end %>
 </ul>
-
-<!-- <table>
-  <tr>
-    <th>Board_id</th>
-    <th>Revision</th>
-    <th>Composite</th>
-    <th>Thumbnail</th>
-  </tr>
-
-<% @galleries.each do |gallery| %>
-  <tr>
-    <td><%=h gallery.board_id %></td>
-    <td><%=h gallery.revision %></td>
-    <td><%=h gallery.composite %></td>
-    <td><%=h gallery.thumbnail %></td>
-    <td><%= link_to 'Show', gallery %></td>
-    <td><%= link_to 'Edit', edit_gallery_path(gallery) %></td>
-    <td><%= link_to 'Destroy', gallery, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%#= link_to 'New gallery', new_board_gallery_path(@board) %> -->
+</body></html>
