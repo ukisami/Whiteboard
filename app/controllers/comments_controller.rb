@@ -91,10 +91,12 @@ class CommentsController < ApplicationController
       @comment.reply_to = Comment.find(params[:comment_id]) 
     end
     add_comment_id_string = 'add_comment_' + gallery_id
+	comment_content_string = 'comment_content_' + gallery_id
     if @comment.save
         render :update do |page|
         page.insert_html :before, add_comment_id_string, :partial => 'comments/comment', :locals => { :comment => @comment }
         #page.replace_html add_comment_id_string, :partial => 'comments/create_comment', :locals => { :commentable => @comment.commentable, :commentable_number => type_id }
+		page[comment_content_string].clear
         page.replace_html 'comment_errors', :text => @comment.errors.full_messages
         end
      else 

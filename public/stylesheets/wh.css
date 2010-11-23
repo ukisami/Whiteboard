@@ -21,11 +21,11 @@ html{height:100%;background-color:#f0f0f0;background-image:-moz-linear-gradient(
 h2{margin:10px 0;font-size:28px;}
 .errorExplanation{margin:10px 0;-moz-border-radius:5px;padding:5px 10px;background-color:#c00040;font-weight:bold;color:#ffffff;}
 .inputRow{border-top:1px dotted #c0c0c0;padding:10px 0;}
-.inputRow label{display:inline-block;margin-right:10px;width:100px;text-align:right;}
+.inputRow label{display:inline-block;margin-right:10px;width:120px;text-align:right;}
 .bigText{padding:5px;width:240px;vertical-align:baseline;}
 .fieldWithErrors label{margin-right:5px;-moz-border-radius:5px;padding:5px;width:95px;background-color:#c00040;color:#ffffff;}
 .fieldWithErrors span{display:inline-block;margin-left:10px;color:#c00040;}
-.noLabel{padding-left:110px;}
+.noLabel{padding-left:130px;}
 
 #public{font-size:14px;text-decoration:inherit;color:#c00040;}
 h3{margin:17px 0 12px;font-size:20px;}
@@ -70,7 +70,7 @@ h3{margin:17px 0 12px;font-size:20px;}
 
 #galleryImage{margin:10px 0;width:640px;height:480px;}
 .comment{border-top:1px dotted #c0c0c0;padding:10px 0 10px 110px;}
-.comment .timestamp{display:block;float:left;margin-left:-110px;width:100px;text-align:right;color:#808080;}
+.comment .timestamp{display:block;float:left;margin-left:-110px;width:120px;text-align:right;color:#808080;}
 .comment a{color:#c00040;text-decoration:inherit;}
 .comment a:hover{text-decoration:underline;}
 #comment_errors{color:#C00040;}

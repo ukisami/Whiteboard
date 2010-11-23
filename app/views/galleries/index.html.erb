@@ -3,14 +3,9 @@
 <a id="bigRight" class="side" href="+1"><%= image_tag "next.png" %><span class="caption">Next&nbsp;page&nbsp;&raquo;</span></a>
 <h2>Gallery</h2>
 <ul id="sixpack">
-<%# @galleries.each do |gallery| %>
-<li><a href="/galleries/99"><img src="about:blank" /><span>jian1</span></a></li>
-<%# end %>
-<li><a href="/galleries/99"><img src="about:blank" /><span>jian2</span></a></li>
-<li><a href="/galleries/99"><img src="about:blank" /><span>jian3</span></a></li>
-<li><a href="/galleries/99"><img src="about:blank" /><span>jian4</span></a></li>
-<li><a href="/galleries/99"><img src="about:blank" /><span>jian5</span></a></li>
-<li><a href="/galleries/99"><img src="about:blank" /><span>jian6</span></a></li>
+<% @galleries.each do |gallery| %>
+<li><a href="/galleries/99"><img src="about:blank" /><span><%=h gallery.board.title %></span></a></li>
+<% end %>
 </ul>
 
 <!-- <table>
