@@ -36,7 +36,7 @@ describe ChatsController do
         post :create, :board_id => "1"
         assigns[:board].should == mock_board
       end
-      end
+      
     end
   end
 
