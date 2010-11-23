@@ -1,0 +1,9 @@
+I am checking out the "RideShare Organizer". This looks like a pretty useful app. 
+I notice that they made vehicle a separate model, that's interesting because I 
+can't think of any important reason to make vehicle a separate entity (besides
+the fact that different vehicle has different capacity as they indicated in their
+app). One cool feature about this app is their Google Map API. On the sign-up page, 
+it automatically generate possible addresses as I type. I am not sure how they 
+implement this feature because I don't see any Google Map API code in the new.html.erb
+in the registration views. I checked the form partial of the "create_new_trip" page, but 
+I still only saw "f.label :address". 
