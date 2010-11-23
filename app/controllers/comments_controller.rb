@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+
+	before_filter :get_gallery, :only => [:add_comment, :show_more]
+
   # GET /comments
   # GET /comments.xml
   def index
@@ -82,36 +85,36 @@ class CommentsController < ApplicationController
   end
 
 	def add_comment
-    gallery_id = params[:gallery_id]
     @comment = Comment.new(params[:comment])
-		@comment.gallery = Gallery.find(gallery_id)
-    if !params[:comment_id].empty?
-      @comment.reply_to = Comment.find(params[:comment_id]) 
-    end
-    add_comment_id_string = 'add_comment_' + gallery_id
-		comment_content_string = 'comment_content_' + gallery_id
+		@comment.gallery = @gallery
+    add_comment_id_string = 'add_comment_' + @gallery.id.to_s
+		comment_content_string = 'comment_content_' + @gallery.id.to_s
     if @comment.save
         render :update do |page|
-        page.insert_html :before, add_comment_id_string, :partial => 'comments/comment', :locals => { :comment => @comment }
-        #page.replace_html add_comment_id_string, :partial => 'comments/create_comment', :locals => { :commentable => @comment.commentable, :commentable_number => type_id }
-				page[comment_content_string].clear
-        page.replace_html 'comment_errors', :text => ''
-        page << "document.getElementById('#{add_comment_id_string}').getElementsByTagName('p')[0].className = 'inputRow'"
+        	page.insert_html :before, add_comment_id_string, :partial => 'comments/comment', :locals => { :comment => @comment }
+					page[comment_content_string].clear
+        	page.replace_html 'comment_errors', :text => ''
+        	page << "document.getElementById('#{add_comment_id_string}').getElementsByTagName('p')[0].className = 'inputRow'"
         end
      else 
-        #render :partial => 'comments/create_comment'
         render :update do |page|
-           page.replace_html 'comment_errors', :text => @comment.errors.on(:content)
-        	 page << "document.getElementById('#{add_comment_id_string}').getElementsByTagName('p')[0].className = 'inputRow fieldWithErrors'"
+          page.replace_html 'comment_errors', :text => @comment.errors.on(:content)
+          page << "document.getElementById('#{add_comment_id_string}').getElementsByTagName('p')[0].className = 'inputRow fieldWithErrors'"
         end
     end        
   end
 
 	def show_more
-    gallery = Gallery.find(params[:gallery_id])
-    gallery_id = params[:gallery_id]
     render :update do |page|
-       page.replace_html 'comments_for_'+gallery_id, :partial => gallery.comments
+       page.replace_html 'comments_for_'+@gallery.id.to_s, :partial => @gallery.comments
+    end
+  end
+
+	def get_gallery
+    begin
+      @gallery = Gallery.find params[:gallery_id]
+    rescue
+      redirect_to root_path, :notice => "Gallery required"
     end
   end
 

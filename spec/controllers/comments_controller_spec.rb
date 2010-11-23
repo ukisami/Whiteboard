@@ -6,6 +6,16 @@ describe CommentsController do
     @mock_comment ||= mock_model(Comment, stubs)
   end
 
+	def mock_gallery(stubs={})
+    @mock_gallery ||= mock_model(Gallery, stubs)
+  end
+
+	def stub_get_gallery
+    Gallery.stub!(:find).and_return(mock_gallery)
+    mock_gallery.stub(:comments).and_return([])
+    mock_gallery.stub(:id).and_return('33')
+  end
+
   describe "GET index" do
     it "assigns all comments as @comments" do
       Comment.stub(:find).with(:all).and_return([mock_comment])
@@ -127,5 +137,34 @@ describe CommentsController do
       response.should redirect_to(comments_url)
     end
   end
+
+	describe "add_comment" do
+
+		before(:each) do
+			stub_get_gallery
+		end
+
+		describe "with valid params" do
+    	it "creates a new comment" do
+				mock_gallery.comments.stub(:new).with({'these' => 'params'}).and_return(mock_comment(:save => true))
+        post :add_comment, :comment => {:these => 'params'}
+        assigns[:comment].should equal(mock_comment)
+    	end
+
+    	it "redirects to the created comment" do
+        mock_gallery.comments.stub(:new).with({'these' => 'params'}).and_return(mock_comment(:save => true))
+        post :add_comment, :comment => {}
+        response.should redirect_to(comment_url(mock_comment))
+      end
+		end
+  end
+
+	describe "show_more comments" do
+		it "updates the page correctly" do
+			stub_get_gallery
+			xhr :show_more
+			response.should update
+		end
+	end
 
 end
