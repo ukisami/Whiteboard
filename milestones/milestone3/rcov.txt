@@ -1,0 +1,34 @@
+(in /home/jianpchen/repo/Whiteboard)
+** Invoke spec:rcov (first_time)
+** Invoke spec:clobber_rcov (first_time)
+** Execute spec:clobber_rcov
+** Execute spec:rcov
+............................................................................................................................
+
+Finished in 1.755746 seconds
+
+124 examples, 0 failures
++----------------------------------------------------+-------+-------+--------+
+|                  File                              | Lines |  LOC  |  COV   |
++----------------------------------------------------+-------+-------+--------+
+|app/controllers/application_controller.rb           |    10 |     4 | 100.0% |
+|app/controllers/boards_controller.rb                |    98 |    75 | 100.0% |
+|app/controllers/chats_controller.rb                 |    23 |    21 | 100.0% |
+|app/controllers/comments_controller.rb              |   120 |    89 | 100.0% |
+|app/controllers/galleries_controller.rb             |    53 |    39 | 100.0% |
+|app/controllers/layers_controller.rb                |    77 |    56 | 100.0% |
+|app/helpers/application_helper.rb                   |     3 |     2 | 100.0% |
+|app/helpers/boards_helper.rb                        |     2 |     2 | 100.0% |
+|app/helpers/comments_helper.rb                      |     2 |     2 | 100.0% |
+|app/helpers/form_helper.rb                          |    21 |    21 | 100.0% |
+|app/helpers/galleries_helper.rb                     |     2 |     2 | 100.0% |
+|app/helpers/layers_helper.rb                        |     2 |     2 | 100.0% |
+|app/models/board.rb                                 |    77 |    61 | 100.0% |
+|app/models/chat.rb                                  |     3 |     3 | 100.0% |
+|app/models/comment.rb                               |     6 |     5 | 100.0% |
+|app/models/gallery.rb                               |     9 |     7 | 100.0% |
+|app/models/layer.rb                                 |    15 |    11 | 100.0% |
++----------------------------------------------------+-------+-------+--------+
+|Total                                               |   523 |   402 | 100.0% |
++----------------------------------------------------+-------+-------+--------+
+100.0%   17 file(s)   523 Lines   402 LOC

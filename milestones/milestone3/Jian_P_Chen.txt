@@ -1,0 +1,7 @@
+I took a look at the search feature of "beatmap", because my group's app might 
+eventually need a search functionality too. They use YM4R/GM, which is a plugin
+for rails. They follow the API of that plugin and use it in their views (mostly 
+search.html.erb). I think the core of their search functionality lies in the model 
+GmapDelegate and the search action in maps_controller. I don't really understand 
+what's going on between those two things. They use Yelp API too, I think. It's a
+cool feature, but now it doesn't look like the stuff I want to implement in my app.  

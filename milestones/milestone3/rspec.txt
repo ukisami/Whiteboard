@@ -1,0 +1,215 @@
+(in /home/jianpchen/repo/Whiteboard)
+/comments/show.html.erb
+  renders attributes in <p>
+/comments/new.html.erb
+  renders new comment form
+/comments/edit.html.erb
+  renders the edit comment form
+/comments/index.html.erb
+  renders a list of comments
+/boards/show.html.erb
+  renders attributes in <p>
+/boards/new.html.erb
+  renders new board form
+  renders new board form with errors
+/galleries/show.html.erb
+  renders attributes in <p>
+/galleries/index.html.erb
+  renders a list of galleries
+/layers/new.html.erb
+  renders new layer form
+/layers/edit.html.erb
+  renders the edit layer form
+/layers/index.html.erb
+  renders a list of layers
+CommentsController
+  routing
+    recognizes and generates #index
+    recognizes and generates #new
+    recognizes and generates #show
+    recognizes and generates #edit
+    recognizes and generates #create
+    recognizes and generates #update
+    recognizes and generates #destroy
+LayersController
+  routing
+    recognizes and generates #index
+    recognizes and generates #new
+    recognizes and generates #show
+    recognizes and generates #edit
+    recognizes and generates #create
+    recognizes and generates #update
+    recognizes and generates #destroy
+GalleriesController
+  routing
+    recognizes and generates #index
+    recognizes and generates #new
+    recognizes and generates #show
+    recognizes and generates #edit
+    recognizes and generates #create
+    recognizes and generates #update
+    recognizes and generates #destroy
+BoardsController
+  routing
+    recognizes and generates #index
+    recognizes and generates #new
+    recognizes and generates #show
+    recognizes and generates #edit
+    recognizes and generates #create
+    recognizes and generates #update
+    recognizes and generates #destroy
+GalleriesController
+  GET index
+    assigns all galleries as @galleries
+  GET show
+    assigns the requested gallery as @gallery
+  POST create
+    with valid params
+      assigns a newly created gallery as @gallery
+    with invalid params
+      assigns a newly created but unsaved gallery as @gallery
+    without the owner token
+      redirects to the home page
+ChatsController
+  POST create
+    with success save
+      assigns @board
+      assigns @layer
+    with failed save
+      redirects to board path
+LayersController
+  GET new
+    with valid board
+      assigns a new layer as @layer
+    with invalid board
+      redirect to root path
+  POST create
+    with valid params
+      assigns a newly created layer as @layer
+      redirects to the creating board
+    with invalid params
+      assigns a newly created but unsaved layer as @layer
+      re-renders the 'new' template
+    without valid token
+      redirect to root path
+  PUT update
+    with valid token
+      should find the corresponding layer
+      shoud assign the requested layer as @layer
+      should assign @layer.data to params[:data] if present
+      should not change @layer.data if params[:data] is not present
+    without valid token
+      redirect to root path
+  DELETE destroy
+    destroys the requested layer
+    redirects to the layers list
+CommentsController
+  GET index
+    assigns all comments as @comments
+  GET show
+    assigns the requested comment as @comment
+  GET new
+    assigns a new comment as @comment
+  GET edit
+    assigns the requested comment as @comment
+  POST create
+    with valid params
+      assigns a newly created comment as @comment
+      redirects to the created comment
+    with invalid params
+      assigns a newly created but unsaved comment as @comment
+      re-renders the 'new' template
+  PUT update
+    with valid params
+      updates the requested comment
+      assigns the requested comment as @comment
+      redirects to the comment
+    with invalid params
+      updates the requested comment
+      assigns the comment as @comment
+      re-renders the 'edit' template
+  DELETE destroy
+    destroys the requested comment
+    redirects to the comments list
+  add_comment
+    with valid gallery
+      creates a new comment if saved correctly
+      sets an error
+      redirects to the created comment
+    with invalid gallery
+      redirect to root path
+  show_more comments
+    updates the page correctly
+BoardsController
+  GET show
+    assigns the requested board as @board
+    assigns the layer associated with given token as @current_layer
+  GET new
+    assigns a new board as @board
+  POST create
+    with valid params
+      assigns a newly created board as @board
+      redirects to the created board
+    with invalid params
+      assigns a newly created but unsaved board as @board
+      re-renders the 'new' template
+  PUT update
+    with valid params
+      updates the requested board
+      assigns the requested board as @board
+      redirects to the board
+    with invalid params
+      updates the requested board
+      assigns the board as @board
+      re-renders the 'edit' template
+  DELETE destroy
+    destroys the requested board
+    redirects to the boards list
+  POST publish
+    with owner token
+      should create a new gallery
+    without owner token
+      redirects to root path
+  GET poll
+    with valid revision
+      should assign @board
+    with invalid revision
+      Respond with Invalid Revision
+Board
+  should create a new instance given valid attributes
+  should returns the first layer when asked for base_layer
+  should return base_layer's token when asked for token
+  should return polymorphic path when given token
+  should return owner when given token is equal to board's token
+  should return polymorphic path when asked about viewer_link
+  with updated layers
+    should return @layer1 and @layer2 when asked for layers updated after @revision1
+    should return @layer2 only when asked for layers updated after @revision2
+    should return empty array when asked for layers updated after @revision3
+  with updated chats
+    should return @chat1 and @chat2 when asked for chats updated after @revision1
+    should return @chat2 only when asked for chats updated after @revision2
+    should return empty array when asked for chats created after @revision3
+  given latest layers and chats
+    should return a table of updates containing @layers and @chats when asked about its table of updates since @revision
+Gallery
+  should create a new instance given valid attributes
+  should proxy :title to its board
+Chat
+  should create a new instance given valid attributes
+Comment
+  should create a new instance given valid attributes
+Layer
+  should create a new instance given valid attributes
+CommentsHelper
+  is included in the helper object
+BoardsHelper
+  is included in the helper object
+GalleriesHelper
+  is included in the helper object
+LayersHelper
+  is included in the helper object
+
+Finished in 1.16903 seconds
+
+124 examples, 0 failures
