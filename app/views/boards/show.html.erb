@@ -43,8 +43,10 @@
   </p>
 <% end %>
 </div>
-<form id="chatform" action="#">
-<p><input id="chatbody" disabled></p>
+<form id="chatform" method="post" action="<%=h board_path(@board) %>/chats">
+<input type="hidden" name="token" value="<%=h params[:token] %>">
+<p><input id="chatbody" name="body" /></p>
+<input type="submit" style="display:none;" value="Chat" />
 </form>
 </div>
 

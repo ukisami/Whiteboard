@@ -68,7 +68,6 @@ function registerTools() {
 
 function registerChat() {
 	document.getElementById('chatform').addEventListener('submit', sendChat, false);
-	chatBody.disabled = false;
 }
 
 function toolWidth(e) {
@@ -185,10 +184,10 @@ function handlePoll(json) {
 function sendChat(e) {
 	e.preventDefault();
 	var body =
-		(token ? 'token=' + token : '') +
-		'&body=' + encodeURIComponent(chatBody.value);
+		(token ? 'token=' + token + '&' : '') +
+		'body=' + encodeURIComponent(chatBody.value);
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/boards/' + boardid + '/chats');
+	xhr.open('POST', '/boards/' + boardid + '/chats.xml');
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState < 4) return;
 		poll();
