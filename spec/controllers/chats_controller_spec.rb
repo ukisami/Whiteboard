@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe ChatsController do
 
-
   def mock_board(stubs={})
     @mock_board ||= mock_model(Board, stubs)
   end
@@ -47,5 +46,6 @@ describe ChatsController do
       end
     end
   end
+
 end
 
