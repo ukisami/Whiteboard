@@ -1,0 +1,7 @@
+features that differentiate
+1. no registration
+2. collaboration
+3. layer management
+4. raster drawing
+5. publishing
+6. chat
