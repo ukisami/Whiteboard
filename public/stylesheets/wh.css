@@ -31,14 +31,14 @@ h2{margin:10px 0;font-size:28px;}
 .fieldWithErrors span{display:inline-block;margin-left:10px;color:#c00040;}
 .noLabel{padding-left:130px;}
 
-#public{font-size:14px;text-decoration:inherit;color:#c00040;}
+#public,#rearrangeLayers{font-size:14px;text-decoration:inherit;color:#c00040;}
 h3{margin:17px 0 12px;font-size:20px;}
 #layers{float:left;margin-left:-180px;width:150px;padding-right:10px;}
 #layers ul{margin-right:-10px;border-top:1px solid #c0c0c0;}
 #layers li{border-bottom:1px dotted #c0c0c0;padding-right:10px;overflow:hidden;text-overflow:ellipsis;line-height:36px;white-space:nowrap;}
-#layers .owned li a{display:none;font-size:11px;}
-#layers .owned li:hover{padding-top:4px;padding-bottom:4px;line-height:normal;}
-#layers .owned li:hover a{display:block;text-decoration:inherit;color:#c00040;}
+#layers .owned li .visible{display:block;float:left;margin-top:11px;margin-right:5px;}
+#layers .owned li .opacity{display:block;float:right;margin-top:8px;padding:1px 2px;width:21px;text-align:right;}
+#layers .owned li a{text-decoration:inherit;color:#c00040;}
 #newlayer{display:block;padding:10px 10px 10px 0;text-decoration:inherit;color:inherit;}
 #newlayer:hover{color:#c00040;}
 #newlayer img{vertical-align:bottom;}
