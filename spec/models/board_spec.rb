@@ -21,7 +21,7 @@ describe Board do
 
   it "should returns the first layer when asked for base_layer" do 
     board = Board.new
-    board.stub(:layers).and_return([mock_layer, mock_layer2])
+    board.layers.stub(:first).and_return(mock_layer)
     board.base_layer.should equal mock_layer
   end
 
@@ -121,6 +121,8 @@ describe Board do
       @layers << @board.layers.create(:name => "2")
       @layers[0].data = "0"
       @layers[1].data = "1"
+      @layers[0].data_update = true
+      @layers[1].data_update = true
       @layers[0].save
       @layers[1].save
       @chats = [@board.chats.create(:author => "1")]
@@ -131,8 +133,8 @@ describe Board do
     it "should return a table of updates containing @layers and @chats when asked about its table of updates since @revision" do
       @updates = @board.table_of_updates_since_revision(@revision)
       @updates[:revision].should == @chats[0].created_at.to_i
-      @updates[:layers][@layers[0].id].should equal @layers[0].data
-      @updates[:layers][@layers[1].id].should equal @layers[1].data
+      @updates[:layers][@layers[0].id][:data].should equal @layers[0].data
+      @updates[:layers][@layers[1].id][:data].should equal @layers[1].data
       @updates[:chats][0][:author].should equal @chats[0].author
     end
   end

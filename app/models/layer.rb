@@ -17,11 +17,11 @@ class Layer < ActiveRecord::Base
   end
 
   def update_layerid(params)
-    self.data= params[:layerid].to_i
+    self.layerid= params[:layerid].to_i
   end
 
   def update_opacity(params)
-    self.data= params[:opacity].to_i
+    self.opacity= params[:opacity].to_i
   end
 
   def update_visible(params)
@@ -31,16 +31,38 @@ class Layer < ActiveRecord::Base
   def update_if_present(attr, params)
     if params[attr]
       self.send "update_#{attr}", params
-      self.send "#{attr}_update", true
+      self.send "#{attr}_update=", true
     elsif self.send "#{attr}_update"
-      self.send "last_#{attr}_update", self.updated_at
-      self.send "#{attr}_update", false
+      self.send "last_#{attr}_update=", self.updated_at
+      self.send "#{attr}_update=", false
     end
   end
 
   def update_with_params(params)
-    [:data, :layerid, :opacity, :visible].each do |attr|
-      self.update_if_present attr params
+    [:data, :layerid, :opacity, :visible].each do |attribute|
+      self.update_if_present attribute, params
     end
   end
+
+  def add_attr_to_table_if_updated_after_time(attr, table, time)
+    if self.send("#{attr}_update") 
+      table[attr] = self.send(attr)
+    else 
+      update_time = self.send "last_#{attr}_update"
+      if update_time and update_time > time
+        table[attr] = self.send(attr)
+      end
+    end
+  end
+
+  def prepare_table(revision)
+    table = {}
+    time = Time.at(revision).utc
+    [:data, :layerid, :opacity, :visible].each do |attr|
+      self.add_attr_to_table_if_updated_after_time attr, table, time
+    end
+    return table
+  end
+
+
 end

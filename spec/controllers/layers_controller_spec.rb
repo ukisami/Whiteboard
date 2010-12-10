@@ -101,7 +101,8 @@ describe LayersController do
     def stub_layer_data
       mock_layer.stub(:data).and_return @old_data
       mock_layer.stub(:data=).and_return Proc.new {|data|
-        mock_layer.stub(:data).and_return @new_data}
+        mock_layer.stub(:data).and_return data}
+      mock_layer.stub(:update_with_params).and_return nil
     end
 
     before(:each) do
@@ -123,19 +124,11 @@ describe LayersController do
         assigns[:layer].should equal(mock_layer)
       end
 
-      it "should assign @layer.data to params[:data] if present" do
+      it "should should call @layer.update_with_params" do
         mock_board.layers.stub(:find).and_return mock_layer
-        mock_layer.should_receive(:data=).with(@new_data)
+        mock_layer.should_receive(:update_with_params)
         mock_layer.should_receive(:save).and_return(true)
-        put :update, :id => "1", :token => @valid_token, :data => @new_data
-        mock_layer.data.should equal(@new_data)
-      end
-
-      it "should not change @layer.data if params[:data] is not present" do
-        mock_board.layers.stub(:find).and_return(mock_layer)
-        mock_layer.should_receive(:data=).with(nil)
-        put :update, :id => "1", :token => @valid_token
-        mock_layer.data.should equal(@old_data)
+        put :update, :id => "1",:token => @valid_token
       end
     end
 

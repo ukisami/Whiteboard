@@ -50,9 +50,9 @@ class Board < ActiveRecord::Base
     self.chats.all :conditions => ['created_at > ?', Time.at(revision).utc]
   end
 
-  def latest_layers_table(layers)
+  def latest_layers_table(layers, revision)
     table = {}
-    layers.each {|layer| table[layer.id] = layer.data}
+    layers.each {|layer| table[layer.id] = layer.prepare_table(revision)}
     return table
   end
 
@@ -65,7 +65,7 @@ class Board < ActiveRecord::Base
     chats = self.chats_created_after_revision(revision)
     latest = (layers.map {|l| l.updated_at} + chats.map {|c| c.created_at}).max.to_i || revision
     updates = {:revision => latest,
-                :layers => latest_layers_table(layers),
+                :layers => latest_layers_table(layers, revision),
                 :chats => latest_chats_table(chats)}
   end
 
