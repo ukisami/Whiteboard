@@ -39,7 +39,7 @@ class LayersController < ApplicationController
   def update
     @layer = @board.layers.find(params[:id])
     if @layer.token == params[:token]
-      @layer.data = params[:data] || @layer.data
+      @layer.update(params)
     end
     respond_to do |format|
       if @layer.save

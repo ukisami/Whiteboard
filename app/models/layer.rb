@@ -12,4 +12,35 @@ class Layer < ActiveRecord::Base
     self.data = @@default_data
   end
 
+  def update_data(params)
+    self.data= params[:data]
+  end
+
+  def update_layerid(params)
+    self.data= params[:layerid].to_i
+  end
+
+  def update_opacity(params)
+    self.data= params[:opacity].to_i
+  end
+
+  def update_visible(params)
+    self.visible = params[:visible] == "true"
+  end
+
+  def update_if_present(attr, params)
+    if params[attr]
+      self.send "update_#{attr}", params
+      self.send "#{attr}_update", true
+    elsif self.send "#{attr}_update"
+      self.send "last_#{attr}_update", self.updated_at
+      self.send "#{attr}_update", false
+    end
+  end
+
+  def update_with_params(params)
+    [:data, :layerid, :opacity, :visible].each do |attr|
+      self.update_if_present attr params
+    end
+  end
 end
