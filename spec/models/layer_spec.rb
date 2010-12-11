@@ -19,12 +19,12 @@ describe Layer do
     layer.data_update.should == true
   end
 
-  it "should update layerid attribute when given params with layerid" do
+  it "should update order attribute when given params with order" do
     layer = Layer.new
     value = '1'
-    layer.update_with_params({:layerid => value})
-    layer.layerid.should == value.to_i
-    layer.layerid_update.should == true
+    layer.update_with_params({:order => value})
+    layer.order.should == value.to_i
+    layer.order_update.should == true
   end
 
   it "should update opacity attribute when given params with opacity" do

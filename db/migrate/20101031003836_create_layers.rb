@@ -3,8 +3,6 @@ class CreateLayers < ActiveRecord::Migration
     create_table :layers do |t|
       t.references :board
       t.string :token
-      t.integer :order
-
       t.timestamps
     end
   end

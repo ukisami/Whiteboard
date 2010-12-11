@@ -16,8 +16,8 @@ class Layer < ActiveRecord::Base
     self.data= params[:data]
   end
 
-  def update_layerid(params)
-    self.layerid= params[:layerid].to_i
+  def update_order(params)
+    self.order= params[:order].to_i
   end
 
   def update_opacity(params)
@@ -39,7 +39,7 @@ class Layer < ActiveRecord::Base
   end
 
   def update_with_params(params)
-    [:data, :layerid, :opacity, :visible].each do |attribute|
+    [:data, :order, :opacity, :visible].each do |attribute|
       self.update_if_present attribute, params
     end
   end
@@ -58,7 +58,7 @@ class Layer < ActiveRecord::Base
   def prepare_table(revision)
     table = {}
     time = Time.at(revision).utc
-    [:data, :layerid, :opacity, :visible].each do |attr|
+    [:data, :order, :opacity, :visible].each do |attr|
       self.add_attr_to_table_if_updated_after_time attr, table, time
     end
     return table
