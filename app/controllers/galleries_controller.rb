@@ -18,6 +18,8 @@ class GalleriesController < ApplicationController
   # GET /galleries/1.xml
   def show
     @gallery = Gallery.find(params[:id])
+   	@gallery.incOne
+   	@gallery.save
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,7 +38,8 @@ class GalleriesController < ApplicationController
     @gallery = @board.galleries.create(
       :composite => params[:composite],
       :thumbnail => params[:thumbnail],
-      :revision => params[:revision]
+      :revision => params[:revision],
+      :totalView => 0
     )
 
     respond_to do |format|
