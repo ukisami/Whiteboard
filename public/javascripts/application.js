@@ -192,10 +192,10 @@ function handlePoll(json) {
 			container.appendChild(img);
 		}
 		var updates = response.layers[layer];
-		if (updates.data && layer != layerid) img.src = updates.data;
-		if (updates.order) img.style.zIndex = updates.order;
-		if (updates.opacity) img.style.opacity = updates.opacity / 100;
-		if (updates.visible) img.style.visibility = updates.visible ? 'visible' : 'hidden';
+		if ('data' in updates && layer != layerid) img.src = updates.data;
+		if ('order' in updates) img.style.zIndex = updates.order;
+		if ('opacity' in updates) img.style.opacity = updates.opacity / 100;
+		if ('visible' in updates) img.style.visibility = updates.visible ? 'visible' : 'hidden';
 		// is it worth it to update the layers list?
 	}
 	for (var i in response.chats) {
