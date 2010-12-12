@@ -19,6 +19,28 @@ describe Board do
     Board.create!(@valid_attributes)
   end
 
+  it "should create a new layer with order 0" do
+    board = Board.create!(@valid_attributes)
+    board.layers.first.order.should == 0
+  end
+
+  it "should return 1 as next order number after creation" do
+    board = Board.create!(@valid_attributes)
+    board.next_order_number.should == 1
+  end
+
+  it "should return 2 as next order number after a new layer is added" do
+    board = Board.create!(@valid_attributes)
+    board.layers.create()
+    board.next_order_number.should == 2
+  end
+
+  it "should return 1 as order number of the second layer" do
+    board = Board.create!(@valid_attributes)
+    board.layers.create()
+    board.layers.last.order.should == 1
+  end
+
   it "should returns the first layer when asked for base_layer" do 
     board = Board.new
     board.layers.stub(:first).and_return(mock_layer)
@@ -54,6 +76,85 @@ describe Board do
     board.stub(:polymorphic_path).and_return(1)
     board.viewer_link.should equal(1)
   end
+
+  describe "on validating layer orders" do
+    before(:each) do
+      @board = Board.new
+    end
+
+    it "should return false on valid_layer_ords when a layer has order too small" do
+      @board.layers.build(:order => -1)
+      @board.validate_layer_orders.should == false
+    end
+
+    it "should return false on valid_layer_ords when a layer has order too big" do
+      @board.layers.build(:order => 1)
+      @board.validate_layer_orders.should == false
+    end
+
+    it "should return false on valid_layer_ords when layer orders contains duplicates" do
+      @board.layers.build(:order => 1)
+      @board.layers.build(:order => 0)
+      @board.layers.build(:order => 1)
+      @board.validate_layer_orders.should == false
+    end
+
+    it "should return true on valid_layer_ords when layer orders are valid" do
+      @board.layers.build(:order => 1)
+      @board.layers.build(:order => 0)
+      @board.validate_layer_orders.should == true
+    end
+  end
+
+  describe "on updating layer orders" do
+    before(:each) do
+      @board = Board.create(@valid_attributes)
+      @layer1 = @board.layers.first
+      @layer2 = @board.layers.create(:order => 1)
+      @layer3 = @board.layers.create(:order => 2)
+    end
+
+    it "should swap layer1 and layer2's order given certain params" do
+      oldorder1 = @layer1.order
+      oldorder2 = @layer2.order
+      params = {@layer1.id.to_s => oldorder2, @layer2.id.to_s => oldorder1}
+      @board.update_layer_orders(params).should == true
+      @layer1.order.should == oldorder2
+      @layer2.order.should == oldorder1
+    end
+
+    it "should swap layer1 and layer3's order given certain params" do
+      oldorder1 = @layer1.order
+      oldorder3 = @layer3.order
+      params = {@layer1.id.to_s => oldorder3, @layer3.id.to_s => oldorder1}
+      @board.update_layer_orders(params).should == true
+      @layer1.order.should == oldorder3
+      @layer3.order.should == oldorder1
+    end
+
+    it "should return false with invalid order params" do
+      oldorder1 = @layer1.order
+      oldorder2 = @layer2.order
+      oldorder3 = @layer3.order
+      params = {@layer1.id.to_s => 1, @layer3.id.to_s => 1}
+      @board.update_layer_orders(params).should == false
+      @layer1.reload.order.should == oldorder1
+      @layer2.reload.order.should == oldorder2
+      @layer3.reload.order.should == oldorder3
+    end
+
+    it "should return false with invalid order params" do
+      oldorder1 = @layer1.order
+      oldorder2 = @layer2.order
+      oldorder3 = @layer3.order
+      params = {@layer1.id.to_s => -1}
+      @board.update_layer_orders(params).should == false
+      @layer1.reload.order.should == oldorder1
+      @layer2.reload.order.should == oldorder2
+      @layer3.reload.order.should == oldorder3
+    end
+  end
+
 
   describe "with updated layers" do
     before(:each) do

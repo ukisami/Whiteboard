@@ -39,6 +39,11 @@ class LayersController < ApplicationController
   def update
     @layer = @board.layers.find(params[:id])
     if @layer.token == params[:token]
+      if @layer.token != @board.token
+        params[:opacity] = nil
+        params[:visibility] = nil
+        params[:order] = nil
+      end
       @layer.update_with_params(params)
     end
     respond_to do |format|

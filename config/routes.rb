@@ -31,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   #     products.resources :comments
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
-  map.resources :boards , :member => {:publish => :post, :poll => :get} do |boards|
+  map.resources :boards , :member => {:publish => :post, :poll => :get, :order => :put} do |boards|
     boards.resources :layers
     boards.resources :chats
     boards.resources :galleries

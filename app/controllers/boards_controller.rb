@@ -95,4 +95,19 @@ class BoardsController < ApplicationController
     end
   end
 
+  def order
+    @board = Board.find(params[:id])
+    respond_to do |format|
+      if @board.permission(params[:token]) == :owner
+        if @board.update_layer_orders(params)
+          format.html {render :text => "Success"}
+        else
+          format.html {render :text => "Failure"}
+        end
+      else
+        format.html {render :text => "Invalid Token"}
+      end
+    end
+  end
+
 end
