@@ -87,18 +87,11 @@ class Board < ActiveRecord::Base
   end
 
   def update_layer_orders(params)
-    attributes = []
     self.layers.each do |layer|
       if params[layer.id.to_s]
-        order = params[layer.id.to_s].to_i
-        if order < 0 or order >= self.next_order_number
-          return false
-        else
-          attributes << {:id => layer.id, :order => order}
-        end
+        layer.update_with_params({:order => params[layer.id.to_s]})
       end
     end
-    self.layers_attributes = attributes
     if self.validate_layer_orders
       self.save
     else
