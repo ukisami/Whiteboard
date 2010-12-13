@@ -75,4 +75,15 @@ class GalleriesController < ApplicationController
     end
   end
 
+  def search
+		@boards = Board.search(params[:search])
+		@galleries = []
+		@boards.each do |board|
+			@galleries.concat(board.galleries)
+		end
+		@galleres = @galleries.uniq
+		@offset = params[:offset].to_i || 0
+		render :action => "index"
+	end
+
 end

@@ -98,4 +98,13 @@ class Board < ActiveRecord::Base
       false
     end
   end
+
+	def self.search(search)
+		if search
+			find(:all, :conditions => ["title LIKE ?", "%#{search}%"], :order => 'created_at DESC')
+		else
+			find(:all, :order => 'created_at  DESC')
+		end
+	end
+
 end

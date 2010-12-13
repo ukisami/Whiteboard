@@ -3,7 +3,7 @@
 <title>Whiteboard Gallery</title>
 <link rel="stylesheet" type="text/css" href="/stylesheets/wh.css" />
 </head><body id="gallery">
-<h1 id="title"><a href=".">Whiteboard</a></h1>
+<h1 id="title"><a href="/">Whiteboard</a></h1>
 <% if @offset > 0 %>
   <a id="bigLeft" class="side" href="?offset=<%= (@offset - 6).to_i %>">
     <img src="/images/prev.png" />
@@ -17,6 +17,12 @@
   </a>
 <% end %>
 <h2>Gallery</h2>
+<% form_tag search_path do %>
+   <p>
+   <%= text_field_tag :search, params[:search] %>
+   <%= submit_tag "Search", :name => nil %>
+   </p>
+<% end %>
 
 <%= render :partial=>'showGallery', :locals=>{:sorted_galleries => @galleries, :sortBy=>@sort} %>
 
