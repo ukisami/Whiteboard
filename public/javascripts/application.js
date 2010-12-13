@@ -4,6 +4,7 @@ var THUMB_WIDTH = 160;
 var THUMB_HEIGHT = 120;
 var SAVE_INTERVAL = 1000;
 var POLL_INTERVAL = 2000;
+var UNDO_STEPS = 10;
 var container, canvas, context, toolbar, publishButton, layerList, editLayers;
 var chat, chatBody;
 var x, y;
@@ -11,6 +12,9 @@ var activeWidth = null;
 var activeColor = null;
 var saveTimer = false;
 var dragging = null;
+var undoBuffer = [];
+var undoIndex = -1;
+var changed = false;
 
 function init() {
 	findElements();
@@ -54,6 +58,7 @@ function injectCanvas() {
 	canvas.style.visibility = img.style.visibility;
 	container.insertBefore(canvas, img);
 	container.removeChild(img);
+	snapshot();
 }
 
 function registerTools() {
@@ -68,6 +73,7 @@ function registerTools() {
 	document.getElementById('eraser').addEventListener('click', toolEraser, false);
 	container.addEventListener('mousedown', mouseDown, false);
 	document.body.addEventListener('mouseup', mouseUp, false);
+	document.addEventListener('keydown', keyDown, false);
 }
 
 function registerControls() {
@@ -114,6 +120,7 @@ function toolEraser(e) {
 	context.globalCompositeOperation = 'destination-out';
 	activeColor && (activeColor.className = '');
 	(activeColor = e.currentTarget).className = 'active';
+	e.preventDefault();
 }
 
 function canvasCoords(e) {
@@ -134,7 +141,10 @@ function mouseDown(e) {
 function mouseUp(e) {
 	e.preventDefault();
 	document.body.removeEventListener('mousemove', mouseMove, false);
-	save();
+	if (changed) {
+		snapshot();
+		changed = false;
+	}
 }
 
 function mouseMove(e) {
@@ -148,6 +158,18 @@ function mouseMove(e) {
 	context.closePath();
 	context.stroke();
 	scheduleSave();
+	changed = true;
+}
+
+function keyDown(e) {
+	if (!e.ctrlKey) return;
+	if (e.keyCode == 90) {
+		undo();
+		e.preventDefault();
+	} else if (e.keyCode == 89) {
+		redo();
+		e.preventDefault();
+	}
 }
 
 function scheduleSave() {
@@ -409,4 +431,23 @@ function saveOpacity(e) {
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Content-Length', body.length);
 	xhr.send(body);
+}
+
+function snapshot() {
+	if (undoBuffer.length - 1 > undoIndex) undoBuffer.length = undoIndex + 1;
+	undoBuffer.push(context.getImageData(0, 0, WIDTH, HEIGHT));
+	if (undoBuffer.length > UNDO_STEPS) undoBuffer.shift();
+	undoIndex = undoBuffer.length - 1;
+}
+
+function undo() {
+	if (undoIndex <= 0) return;
+	context.putImageData(undoBuffer[--undoIndex], 0, 0);
+	scheduleSave();
+}
+
+function redo() {
+	if (undoIndex >= undoBuffer.length - 1) return;
+	context.putImageData(undoBuffer[++undoIndex], 0, 0);
+	scheduleSave();
 }
