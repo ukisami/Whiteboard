@@ -5,7 +5,7 @@
 <script type="text/javascript" src="/javascripts/application.js"></script>
 <script type="text/javascript">
   var boardid = '<%= @board.id %>';
-  var token = '<%= params[:token] %>'; /* TODO: escape this properly */
+  var token = '<%= escape_javascript(params[:token]) %>';
   var layerid = '<%= @current_layer.id if @current_layer %>';
   var revision = <%= Time.now.to_i %>;
 </script>
@@ -13,20 +13,23 @@
 <h1 id="title"><a href="/">Whiteboard</a></h1>
 
 <div id="layers" class="edge">
-<h3>Layers</h3>
 <% if @board.permission(params[:token]) == :owner %>
-  <ul class="owned">
-    <% @board.layers.each do |layer| %>
-      <li>
+  <h3>Layers <a id="rearrangeLayers" href="#">rearrange</a></h3>
+  <ul id="layerList" class="owned">
+    <% @board.layers.all(:order => '"order" DESC').each do |layer| %>
+      <li id="li<%= layer.id %>">
+        <input id="visible<%= layer.id %>" class="visible" type="checkbox"<%= layer.visible ? 'checked' : '' %> />
+        <input id="opacity<%= layer.id %>" class="opacity" type="text" value="<%= layer.opacity %>" />
+        <a href="?token=<%= layer.token %>" target="_blank">#</a>
         <%=h layer.name %>
-        <a href="?token=<%= layer.token %>"><%=h board_path(@board, :token => layer.token) %></a>
       </li>
     <% end %>
   </ul>
   <%= link_to '<img src="/images/plus.png" alt="+" /> New layer...</a>', new_board_layer_path(@board, :token => params[:token]), :id => :newlayer %>
 <% else %>
-  <ul>
-    <% @board.layers.each do |layer| %>
+  <h3>Layers</h3>
+  <ul id="layerList">
+    <% @board.layers.all(:order => '"order" DESC').each do |layer| %>
       <li><%=h layer.name %></li>
     <% end %>
   </ul>
@@ -50,10 +53,16 @@
 </form>
 </div>
 
-<h2><%= @board.title %> <a id="public" href="<%=h board_path(@board) %>"><%=h board_path(@board) %></a></h2>
+<!-- <h2><%= @board.title %> <a id="public" href="<%=h board_path(@board) %>"><%=h board_path(@board) %></a></h2> -->
+<h2><%= @board.title %></h2>
+<div id="showAndHideContents">
+	<img class='link_icon' src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif">
+	<!-- <%= text_field_tag 'share_link', "a lnik" %> -->
+	<input id="share_link" name="share_link" type="text" value="<%=h url_for :action=>'show', :controller=>'boards', :only_path => false %>" />
+</div>
 <div id="container">
-  <% @board.layers.reverse.each do |layer| %>
-    <img id="layer<%= layer.id %>" src="<%=h layer.data %>" />
+  <% @board.layers.each do |layer| %>
+    <img id="layer<%= layer.id %>" style="z-index:<%= layer.order %>;opacity:<%= layer.opacity / 100.0 %>;visibility:<%= layer.visible ? 'visible' : 'hidden' %>;" src="<%=h layer.data %>" />
   <% end %>
 </div>
 

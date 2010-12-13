@@ -38,8 +38,10 @@ class LayersController < ApplicationController
   # PUT /layers/1.xml
   def update
     @layer = @board.layers.find(params[:id])
-    if @layer.token == params[:token]
+    if params[:token] == @board.token
       @layer.update_with_params(params)
+    elsif params[:token] == @layer.token
+      @layer.update_with_params(:data => params[:data])
     end
     respond_to do |format|
       if @layer.save

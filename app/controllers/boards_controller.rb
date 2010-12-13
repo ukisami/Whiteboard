@@ -1,5 +1,7 @@
 class BoardsController < ApplicationController
 
+  protect_from_forgery :except => [:order]
+
   # GET /boards/1
   # GET /boards/1.xml
   def show
@@ -91,6 +93,21 @@ class BoardsController < ApplicationController
     else
       respond_to do |format|
         format.html {render :text => "Invalid Revision"}
+      end
+    end
+  end
+
+  def order
+    @board = Board.find(params[:id])
+    respond_to do |format|
+      if @board.permission(params[:token]) == :owner
+        if @board.update_layer_orders(params)
+          format.html {render :text => "Success"}
+        else
+          format.html {render :text => "Failure"}
+        end
+      else
+        format.html {render :text => "Invalid Token"}
       end
     end
   end

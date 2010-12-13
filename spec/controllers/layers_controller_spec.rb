@@ -112,7 +112,11 @@ describe LayersController do
       stub_layer_data
     end
 
-    describe "with valid token" do
+    describe "with valid owner token" do
+      before(:each) do
+        mock_board.stub(:token).and_return @valid_token
+      end
+
       it "should find the corresponding layer" do
         mock_board.layers.should_receive(:find).with("37").and_return(mock_layer)
         put :update, :id => "37", :layer => {:these => 'params'}, :token => @valid_token
@@ -129,6 +133,22 @@ describe LayersController do
         mock_layer.should_receive(:update_with_params)
         mock_layer.should_receive(:save).and_return(true)
         put :update, :id => "1",:token => @valid_token
+      end
+    end
+
+    describe "with valid collaborator token" do
+      before(:each) do
+        @params = {:id=>"1", :token => @valid_token,
+          :data => "blah", :order => 0,
+          :opacity => 100, :visibility => 100}
+      end
+
+      it "should should filter out opacity and visibility fields" do
+        mock_board.stub(:token).and_return "random"
+        mock_board.layers.stub(:find).and_return mock_layer
+        mock_layer.should_receive(:update_with_params)
+        mock_layer.should_receive(:save).and_return(true)
+        put :update, @params
       end
     end
 

@@ -1,0 +1,20 @@
+<div id="sorting">Sort by: &nbsp;
+	<% if sortBy=="byDate" %>
+		<span class="sorted">Most Recent</span>
+	<% else %>
+		<a id="sortByDate" class="sortLink" href="?sort=byDate"><span>Most Recent</span></a>
+	<% end %> <span class="smallPipe"> | </span>
+	<% if sortBy=="byViews" %>
+		<span class="sorted">Total Views</span>
+	<% else %>
+		<a id="sortByViews" class="sortLink" href="?sort=byViews"><span>Total Views</span></a>
+	<% end %><span class="smallPipe"> | </span>
+	<% if sortBy=="byRec" %>
+		<span class="sorted">Recommendation</span>
+	<% else %>
+		<a id="sortByRec" class="sortLink" href="?sort=byRec"><span>Recommendation</span></a>
+	<% end %>	
+</div>
+<div>
+<%= render :partial=>'sixPacks', :locals=>{:sorted_galleries => sorted_galleries} %>
+</div>

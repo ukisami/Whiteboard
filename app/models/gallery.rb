@@ -6,4 +6,12 @@ class Gallery < ActiveRecord::Base
 		board.title
 	end
 	
+	def incOne
+		if self.totalView
+			self.totalView += 1
+		else
+			self.totalView = 1
+		end
+	end
+	
 end

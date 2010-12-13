@@ -6,7 +6,27 @@ class GalleriesController < ApplicationController
   # GET /galleries.xml
   def index
     @offset = params[:offset].to_i || 0
-    @galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'id DESC'
+    @latest = Gallery.find(:all)
+    @mostRecentSort = @latest.last.lastSort
+    @sort = params[:sort].to_s
+    if @sort==""
+    	@sort = @mostRecentSort
+    	if @offset==0
+    		@sort= "byDate"
+    	end
+    end
+    if @sort != "byDate"
+    	@latest.last.lastSort = @sort
+			if @sort=='byViews'
+				@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'totalView DESC'
+			else
+				@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'id DESC'
+			end
+		else
+			@latest.last.lastSort = @sort
+			@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'created_at DESC'
+		end
+		@latest.last.save
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,17 +34,20 @@ class GalleriesController < ApplicationController
     end
   end
 
+	
   # GET /galleries/1
   # GET /galleries/1.xml
   def show
     @gallery = Gallery.find(params[:id])
+   	@gallery.incOne
+   	@gallery.save
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @gallery }
     end
   end
-
+	
   # POST /galleries
   # POST /galleries.xml
   def create
@@ -36,7 +59,9 @@ class GalleriesController < ApplicationController
     @gallery = @board.galleries.create(
       :composite => params[:composite],
       :thumbnail => params[:thumbnail],
-      :revision => params[:revision]
+      :revision => params[:revision],
+      :totalView => 0,
+      :lastSort => "byDate"
     )
 
     respond_to do |format|

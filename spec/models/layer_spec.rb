@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe Layer do
   before(:each) do
+    @board = mock_model(Board, {:id => 0, :next_order_number => 0}) 
     @valid_attributes = {
-
+      :board => @board
     }
   end
 
