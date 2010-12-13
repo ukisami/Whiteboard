@@ -1,7 +1,7 @@
 <ul id="sixpack">
 <% sorted_galleries.each do |gallery| %>
   <li>
-    <a href="<%=h gallery_path(gallery) %>">
+    <a href="<%=h gallery_path(gallery, :offset=>offsetIndex) %>">
       <img src="<%=h gallery.thumbnail %>" />
       <span><%=h gallery.title %></span>
     </a>

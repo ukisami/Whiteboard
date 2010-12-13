@@ -7,7 +7,7 @@
 <script type="text/javascript">stLight.options({publisher:'dd490c37-f1bf-4fa3-8a58-c9e0f51c3b30', onhover:false, popup:true});</script>
 </head><body><div id = "central">
 <h1 id="title"><a href="/">Whiteboard</a></h1>
-<h2><%=h @gallery.title %> (rev <%= @gallery.revision %>) <%= link_to 'Back', galleries_path, :id=>"public" %></h2>
+<h2><%=h @gallery.title %> (rev <%= @gallery.revision %>) <%= link_to 'Back', {:controller=>'galleries',:offset=> @offset}, :id=>"public" %></h2>
 <p id="galleryImage"><img src="<%=h @gallery.composite %>" alt="<%=h @gallery.title %>" /></p>
 <div class="share">
 <span class="st_twitter_hcount" displayText="Tweet"></span>

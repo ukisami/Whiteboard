@@ -19,6 +19,8 @@ class GalleriesController < ApplicationController
     	@latest.last.lastSort = @sort
 			if @sort=='byViews'
 				@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'totalView DESC'
+			elsif @sort == 'byRec'
+				@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'id DESC'
 			else
 				@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'id DESC'
 			end
@@ -38,6 +40,7 @@ class GalleriesController < ApplicationController
   # GET /galleries/1
   # GET /galleries/1.xml
   def show
+  	@offset = params[:offset].to_i || 0
     @gallery = Gallery.find(params[:id])
    	@gallery.incOne
    	@gallery.save
