@@ -1,0 +1,10 @@
+<ul id="sixpack">
+<% sorted_galleries.each do |gallery| %>
+  <li>
+    <a href="<%=h gallery_path(gallery) %>">
+      <img src="<%=h gallery.thumbnail %>" />
+      <span><%=h gallery.title %></span>
+    </a>
+  </li>
+<% end %>
+</ul>

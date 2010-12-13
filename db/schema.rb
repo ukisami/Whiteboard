@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101211134125) do
+ActiveRecord::Schema.define(:version => 20101212111313) do
 
   create_table "boards", :force => true do |t|
     t.string   "title"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20101211134125) do
     t.integer  "board_id"
     t.integer  "revision"
     t.integer  "totalView"
+    t.string   "lastSort"
   end
 
   create_table "layers", :force => true do |t|
