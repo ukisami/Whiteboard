@@ -1,6 +1,7 @@
 class Gallery < ActiveRecord::Base
 	belongs_to :board	
 	has_many :comments
+	has_many :likes
 	
 	def title
 		board.title

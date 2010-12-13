@@ -46,6 +46,7 @@ ActionController::Routing::Routes.draw do |map|
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
 	map.add_comment '/comments/add_comment', :controller => 'comments', :action => 'add_comment'
+	map.search '/galleries/search', :controller => 'galleries', :action => 'search'
 
   # See how all your routes lay out with "rake routes"
 
