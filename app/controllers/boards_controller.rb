@@ -1,5 +1,7 @@
 class BoardsController < ApplicationController
 
+  protect_from_forgery :except => [:order]
+
   # GET /boards/1
   # GET /boards/1.xml
   def show

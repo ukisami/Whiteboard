@@ -4,6 +4,7 @@ var THUMB_WIDTH = 160;
 var THUMB_HEIGHT = 120;
 var SAVE_INTERVAL = 1000;
 var POLL_INTERVAL = 2000;
+var UNDO_STEPS = 10;
 var container, canvas, context, toolbar, publishButton, layerList, editLayers;
 var chat, chatBody;
 var x, y;
@@ -11,6 +12,9 @@ var activeWidth = null;
 var activeColor = null;
 var saveTimer = false;
 var dragging = null;
+var undoBuffer = [];
+var undoIndex = -1;
+var changed = false;
 
 function init() {
 	findElements();
@@ -54,6 +58,7 @@ function injectCanvas() {
 	canvas.style.visibility = img.style.visibility;
 	container.insertBefore(canvas, img);
 	container.removeChild(img);
+	snapshot();
 }
 
 function registerTools() {
@@ -68,6 +73,7 @@ function registerTools() {
 	document.getElementById('eraser').addEventListener('click', toolEraser, false);
 	container.addEventListener('mousedown', mouseDown, false);
 	document.body.addEventListener('mouseup', mouseUp, false);
+	document.addEventListener('keydown', keyDown, false);
 }
 
 function registerControls() {
@@ -98,6 +104,7 @@ function toolWidth(e) {
 	container.style.cursor = 'url("/images/brush' + w + '.png") ' + o + ' ' + o + ',crosshair';
 	activeWidth && (activeWidth.className = 'width');
 	(activeWidth = active).className = 'active width';
+	e.preventDefault();
 }
 
 function toolColor(e) {
@@ -106,12 +113,14 @@ function toolColor(e) {
 	context.strokeStyle = active.style.backgroundColor;
 	activeColor && (activeColor.className = 'color');
 	(activeColor = active).className = 'active color';
+	e.preventDefault();
 }
 
 function toolEraser(e) {
 	context.globalCompositeOperation = 'destination-out';
 	activeColor && (activeColor.className = '');
 	(activeColor = e.currentTarget).className = 'active';
+	e.preventDefault();
 }
 
 function canvasCoords(e) {
@@ -132,7 +141,10 @@ function mouseDown(e) {
 function mouseUp(e) {
 	e.preventDefault();
 	document.body.removeEventListener('mousemove', mouseMove, false);
-	save();
+	if (changed) {
+		snapshot();
+		changed = false;
+	}
 }
 
 function mouseMove(e) {
@@ -146,6 +158,18 @@ function mouseMove(e) {
 	context.closePath();
 	context.stroke();
 	scheduleSave();
+	changed = true;
+}
+
+function keyDown(e) {
+	if (!e.ctrlKey) return;
+	if (e.keyCode == 90) {
+		undo();
+		e.preventDefault();
+	} else if (e.keyCode == 89) {
+		redo();
+		e.preventDefault();
+	}
 }
 
 function scheduleSave() {
@@ -181,7 +205,9 @@ function poll() {
 }
 
 function handlePoll(json) {
-	var response = eval('(' + json + ')');
+	var response = null;
+	try { response = eval('(' + json + ')'); }
+	catch (e) { return; }
 	if (response.revision <= revision) return;
 	revision = response.revision;
 	for (var layer in response.layers) {
@@ -192,10 +218,10 @@ function handlePoll(json) {
 			container.appendChild(img);
 		}
 		var updates = response.layers[layer];
-		if (updates.data && layer != layerid) img.src = updates.data;
-		if (updates.order) img.style.zIndex = updates.order;
-		if (updates.opacity) img.style.opacity = updates.opacity / 100;
-		if (updates.visible) img.style.visibility = updates.visible ? 'visible' : 'hidden';
+		if ('data' in updates && layer != layerid) img.src = updates.data;
+		if ('order' in updates) img.style.zIndex = updates.order;
+		if ('opacity' in updates) img.style.opacity = updates.opacity / 100;
+		if ('visible' in updates) img.style.visibility = updates.visible ? 'visible' : 'hidden';
 		// is it worth it to update the layers list?
 	}
 	for (var i in response.chats) {
@@ -405,4 +431,23 @@ function saveOpacity(e) {
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Content-Length', body.length);
 	xhr.send(body);
+}
+
+function snapshot() {
+	if (undoBuffer.length - 1 > undoIndex) undoBuffer.length = undoIndex + 1;
+	undoBuffer.push(context.getImageData(0, 0, WIDTH, HEIGHT));
+	if (undoBuffer.length > UNDO_STEPS) undoBuffer.shift();
+	undoIndex = undoBuffer.length - 1;
+}
+
+function undo() {
+	if (undoIndex <= 0) return;
+	context.putImageData(undoBuffer[--undoIndex], 0, 0);
+	scheduleSave();
+}
+
+function redo() {
+	if (undoIndex >= undoBuffer.length - 1) return;
+	context.putImageData(undoBuffer[++undoIndex], 0, 0);
+	scheduleSave();
 }
