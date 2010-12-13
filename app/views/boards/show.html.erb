@@ -16,7 +16,7 @@
 <% if @board.permission(params[:token]) == :owner %>
   <h3>Layers <a id="rearrangeLayers" href="#">rearrange</a></h3>
   <ul id="layerList" class="owned">
-    <% @board.layers.each do |layer| %>
+    <% @board.layers.all(:order => '"order" DESC').each do |layer| %>
       <li id="li<%= layer.id %>">
         <input id="visible<%= layer.id %>" class="visible" type="checkbox"<%= layer.visible ? 'checked' : '' %> />
         <input id="opacity<%= layer.id %>" class="opacity" type="text" value="<%= layer.opacity %>" />
@@ -29,7 +29,7 @@
 <% else %>
   <h3>Layers</h3>
   <ul id="layerList">
-    <% @board.layers.each do |layer| %>
+    <% @board.layers.all(:order => '"order" DESC').each do |layer| %>
       <li><%=h layer.name %></li>
     <% end %>
   </ul>
@@ -55,7 +55,7 @@
 
 <h2><%= @board.title %> <a id="public" href="<%=h board_path(@board) %>"><%=h board_path(@board) %></a></h2>
 <div id="container">
-  <% @board.layers.reverse.each do |layer| %>
+  <% @board.layers.each do |layer| %>
     <img id="layer<%= layer.id %>" style="z-index:<%= layer.order %>;opacity:<%= layer.opacity / 100.0 %>;visibility:<%= layer.visible ? 'visible' : 'hidden' %>;" src="<%=h layer.data %>" />
   <% end %>
 </div>

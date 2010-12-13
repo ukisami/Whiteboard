@@ -7,6 +7,8 @@ class Board < ActiveRecord::Base
   has_many :publications
   before_create :create_layer
 
+  accepts_nested_attributes_for :layers
+
   validates_presence_of :title
 
   def create_layer
@@ -14,7 +16,11 @@ class Board < ActiveRecord::Base
     l.name = "Base Layer"
     layers << l
     return l
-  end 
+  end
+
+  def next_order_number
+    self.layers.length
+  end
 
   def base_layer
     layers.first :order => "id ASC"
@@ -73,5 +79,23 @@ class Board < ActiveRecord::Base
     return layers.find_by_token(token_param)
   end
 
+  def validate_layer_orders
+    orders = self.layers.map {|layer| layer.order}
+    not (orders.min != 0 or
+         orders.max >= orders.size or
+         orders.uniq != orders)
+  end
 
+  def update_layer_orders(params)
+    self.layers.each do |layer|
+      if params[layer.id.to_s]
+        layer.update_with_params({:order => params[layer.id.to_s]})
+      end
+    end
+    if self.validate_layer_orders
+      self.save
+    else
+      false
+    end
+  end
 end

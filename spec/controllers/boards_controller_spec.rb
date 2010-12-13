@@ -160,4 +160,43 @@ describe BoardsController do
     end
   end
 
+  describe "PUT order" do
+
+    before(:each) do
+      Board.should_receive(:find).with("37").and_return mock_board
+    end
+
+    describe "with valid token" do
+      before(:each) do
+        mock_board.stub(:permission).and_return :owner
+      end
+
+      it "should assign @board" do
+        mock_board.should_receive(:update_layer_orders).and_return true
+        put :order, :id => "37"
+        assigns[:board].should == mock_board
+      end
+
+      it "should call update layer orders and return success" do
+        mock_board.should_receive(:update_layer_orders).and_return true
+        put :order, :id => "37"
+        response.should have_text("Success")
+      end
+
+      it "should call update layer orders and return failure" do
+        mock_board.should_receive(:update_layer_orders).and_return false
+        put :order, :id => "37"
+        response.should have_text("Failure")
+      end
+    end
+
+    describe "with invalid token" do
+      it "should return invalid token" do
+        mock_board.stub(:permission).and_return :collaborator
+        put :order, :id => "37"
+        response.should have_text("Invalid Token")
+      end
+    end
+  end
+
 end
