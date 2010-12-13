@@ -98,6 +98,7 @@ function toolWidth(e) {
 	container.style.cursor = 'url("/images/brush' + w + '.png") ' + o + ' ' + o + ',crosshair';
 	activeWidth && (activeWidth.className = 'width');
 	(activeWidth = active).className = 'active width';
+	e.preventDefault();
 }
 
 function toolColor(e) {
@@ -106,6 +107,7 @@ function toolColor(e) {
 	context.strokeStyle = active.style.backgroundColor;
 	activeColor && (activeColor.className = 'color');
 	(activeColor = active).className = 'active color';
+	e.preventDefault();
 }
 
 function toolEraser(e) {
@@ -181,7 +183,9 @@ function poll() {
 }
 
 function handlePoll(json) {
-	var response = eval('(' + json + ')');
+	var response = null;
+	try { response = eval('(' + json + ')'); }
+	catch (e) { return; }
 	if (response.revision <= revision) return;
 	revision = response.revision;
 	for (var layer in response.layers) {

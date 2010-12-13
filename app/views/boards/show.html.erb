@@ -16,7 +16,7 @@
 <% if @board.permission(params[:token]) == :owner %>
   <h3>Layers <a id="rearrangeLayers" href="#">rearrange</a></h3>
   <ul id="layerList" class="owned">
-    <% @board.layers.each do |layer| %>
+    <% @board.layers.all(:order => '"order" DESC').each do |layer| %>
       <li id="li<%= layer.id %>">
         <input id="visible<%= layer.id %>" class="visible" type="checkbox"<%= layer.visible ? 'checked' : '' %> />
         <input id="opacity<%= layer.id %>" class="opacity" type="text" value="<%= layer.opacity %>" />
@@ -29,7 +29,7 @@
 <% else %>
   <h3>Layers</h3>
   <ul id="layerList">
-    <% @board.layers.each do |layer| %>
+    <% @board.layers.all(:order => '"order" DESC').each do |layer| %>
       <li><%=h layer.name %></li>
     <% end %>
   </ul>
