@@ -5,28 +5,27 @@ class GalleriesController < ApplicationController
   # GET /galleries
   # GET /galleries.xml
   def index
+  	@galleries = Gallery.find(:all)
+  	@galleries.each do |gallery|
+  		gallery.updateRecValue
+  		gallery.save
+  	end
     @offset = params[:offset].to_i || 0
-    @latest = Gallery.find(:all)
-    @mostRecentSort = @latest.last.lastSort
     @sort = params[:sort].to_s
     if @sort==""
-    	@sort = @mostRecentSort
-    	if @offset==0
-    		@sort= "byDate"
-    	end
+    	@sort = "byDate"
     end
     if @sort != "byDate"
-    	@latest.last.lastSort = @sort
 			if @sort=='byViews'
 				@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'totalView DESC'
+			elsif @sort == 'byRec'
+				@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'recValue DESC'
 			else
 				@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'id DESC'
 			end
 		else
-			@latest.last.lastSort = @sort
 			@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'created_at DESC'
 		end
-		@latest.last.save
 
     respond_to do |format|
       format.html # index.html.erb
@@ -38,8 +37,11 @@ class GalleriesController < ApplicationController
   # GET /galleries/1
   # GET /galleries/1.xml
   def show
+  	@offset = params[:offset].to_i || 0
+  	@sort = params[:sort].to_s
     @gallery = Gallery.find(params[:id])
    	@gallery.incOne
+   	@gallery.updateRecValue
    	@gallery.save
 
     respond_to do |format|
@@ -61,9 +63,9 @@ class GalleriesController < ApplicationController
       :thumbnail => params[:thumbnail],
       :revision => params[:revision],
       :totalView => 0,
-      :lastSort => "byDate"
+      :recValue => 0
     )
-
+		
     respond_to do |format|
       if @gallery.save
         format.html { head :ok }

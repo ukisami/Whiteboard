@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101212111313) do
+ActiveRecord::Schema.define(:version => 20101213235538) do
 
   create_table "boards", :force => true do |t|
     t.string   "title"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20101212111313) do
     t.integer  "revision"
     t.integer  "totalView"
     t.string   "lastSort"
+    t.integer  "recValue"
   end
 
   create_table "layers", :force => true do |t|
@@ -63,6 +64,13 @@ ActiveRecord::Schema.define(:version => 20101212111313) do
     t.boolean  "visible_update",      :default => false
     t.datetime "last_data_update"
     t.boolean  "data_update",         :default => false
+  end
+
+  create_table "likes", :force => true do |t|
+    t.string   "ip"
+    t.integer  "gallery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "publications", :force => true do |t|

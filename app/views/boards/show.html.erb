@@ -53,11 +53,9 @@
 </form>
 </div>
 
-<!-- <h2><%= @board.title %> <a id="public" href="<%=h board_path(@board) %>"><%=h board_path(@board) %></a></h2> -->
 <h2><%= @board.title %></h2>
 <div id="showAndHideContents">
 	<img class='link_icon' src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif">
-	<!-- <%= text_field_tag 'share_link', "a lnik" %> -->
 	<input id="share_link" name="share_link" type="text" value="<%=h url_for :action=>'show', :controller=>'boards', :only_path => false %>" />
 </div>
 <div id="container">
