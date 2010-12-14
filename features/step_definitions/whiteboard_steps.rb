@@ -6,6 +6,7 @@ When /^I enter "([^"]*)" into "([^"]*)"$/ do |arg1, arg2|
   fill_in arg2, :with=>arg1
 end
 
+
 Given /^whiteboard (\d+) exists$/ do |arg1|
 	Board.create(:id => arg1, :title => 'whiteboard ' + arg1)
 end
@@ -15,7 +16,7 @@ Then /^whiteboard (\d+) should have (\d+) layers$/ do |arg1, arg2|
 end
 
 Given /^gallery (\d+) exists$/ do |arg1|
-	board = Board.create(:title => 'whiteboard 1')
+	board = Board.create(:id=> arg1, :title => 'whiteboard '+ arg1 )
   board.galleries.create(:id=>arg1)
 end
 

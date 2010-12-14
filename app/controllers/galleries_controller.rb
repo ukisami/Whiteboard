@@ -21,10 +21,10 @@ class GalleriesController < ApplicationController
 			elsif @sort == 'byRec'
 				@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'recValue DESC'
 			else
-				@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'id DESC'
+				@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'created_at DESC'
 			end
 		else
-			@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'created_at DESC'
+			@galleries = Gallery.all :offset => params[:offset], :limit => 6, :order => 'id DESC'
 		end
 
     respond_to do |format|

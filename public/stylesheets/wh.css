@@ -82,7 +82,7 @@ h3{margin:17px 0 12px;font-size:20px;}
 #sorting{position:relative;padding-bottom:3px;margin:auto;margin-top:19px;width:630px;color:#555555;font-weight:bold;border-bottom:1px solid #DDDDDD;}
 #sorting a:link, a:active, a:visited{color:#555555;text-decoration:none;}
 #sorting a:hover{color:#005580;}
-.sorted{font-size:18px;color:#005580;}
+.sorted{font-size:16px;color:#005580;}
 .smallPipe{color:#777777;font-weight:normal;}
 .share{margin-bottom:10px;}
 .totalView{float:right;margin-top:5px;}
@@ -97,3 +97,4 @@ h3{margin:17px 0 12px;font-size:20px;}
 .comment .timestamp{display:block;float:left;margin-left:-130px;width:120px;text-align:right;color:#808080;}
 .comment a{color:#c00040;text-decoration:inherit;}
 .comment a:hover{text-decoration:underline;}
+#like{padding-bottom:10px;}

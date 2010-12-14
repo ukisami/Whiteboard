@@ -28,6 +28,9 @@ module NavigationHelpers
 	when /view gallery page/
 		'/galleries'
 	
+	when /view next gallery page/
+		'/galleries?offset=6&sort=byDate'
+	
 	when /collaborate on whiteboard (\d+)/
 	  '/boards/'+ $1 + '?token=' + Board.find($1).layers[1].token
 	
