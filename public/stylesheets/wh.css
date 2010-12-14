@@ -43,7 +43,7 @@ h3{margin:17px 0 12px;font-size:20px;}
 #newlayer:hover{color:#c00040;}
 #newlayer img{vertical-align:bottom;}
 #chatcontainer{float:right;margin-right:-230px;padding-left:10px;width:200px;}
-#chat{margin-left:-10px;border-top:1px solid #c0c0c0;padding:5px 0 5px 10px;height:480px;overflow-y:auto;}
+#chat{margin-left:-10px;border-top:1px solid #c0c0c0;padding:5px 0 5px 10px;height:480px;overflow-x:hidden;overflow-y:auto;}
 #chat p{margin:5px 0;}
 #chat span{color:#c00040;}
 #chatbody{padding:5px;width:188px;}
