@@ -7,16 +7,44 @@ describe GalleriesController do
   end
 
   describe "GET index" do
-    it "assigns all galleries as @galleries" do
-      Gallery.stub(:all).and_return([mock_gallery])
+		before :each do
+			gallery1 = Gallery.create(:totalView => '1')
+			gallery2 = Gallery.create(:totalView => '2')
+			galleries1 = [gallery1, gallery2]
+			galleries2 = [gallery2, gallery1]
+      Gallery.stub(:find).with(:all).and_return(galleries1)
+			Gallery.stub(:all).and_return(galleries1)
+			mock_gallery.stub(:updateRecValue)
+			mock_gallery.stub(:save)
+		end 
+
+    it "assigns all galleries as @galleries and sorts by views" do
+      get :index, :sort => "byViews"
+      assigns[:galleries].should equal(galleries1)
+    end
+
+		it "assigns all galleries as @galleries and sorts by dates" do
       get :index
-      assigns[:galleries].should == [mock_gallery]
+      assigns[:galleries].should equal(galleries1)
+    end
+
+		it "assigns all galleries as @galleries and sorts by Rec" do
+      get :index, :sort => "byRec"
+      assigns[:galleries].should equal(galleries1)
+    end
+
+		it "assigns all galleries as @galleries and sorts by anything else" do
+      get :index, :sort => "anything else"
+      assigns[:galleries].should equal(galleries1)
     end
   end
 
   describe "GET show" do
     it "assigns the requested gallery as @gallery" do
       Gallery.stub(:find).with("37").and_return(mock_gallery)
+			mock_gallery.stub(:incOne)
+			mock_gallery.stub(:updateRecValue)
+			mock_gallery.stub(:save).and_return(true)
       get :show, :id => "37"
       assigns[:gallery].should equal(mock_gallery)
     end
@@ -54,5 +82,16 @@ describe GalleriesController do
     end
 
   end
+
+	describe "search" do
+
+		it "assigns the search results to @galleries" do
+			board1 = Board.create(:title => 'yo sup')
+			board2 = Board.create(:title => 'yo heelo')
+			board3 = Board.create(:title => 'ni hao')
+			post :search, :search => 'yo'
+			response.should render_template 'index'
+		end
+	end
 
 end
