@@ -19,6 +19,7 @@ var changed = false;
 function init() {
 	findElements();
 	registerChat();
+	registerShowURLs();
 	if (layerid && token) {
 		injectCanvas();
 		registerTools();
@@ -452,3 +453,31 @@ function redo() {
 	scheduleSave();
 }
 
+function registerShowURLs() {
+	var links = document.getElementsByClassName('url');
+	for (var i = 0; i < links.length; i++) {
+		links[i].addEventListener('click', showURL, false);
+	}
+}
+
+function showURL(e) {
+	e.preventDefault();
+	var a = e.currentTarget;
+	var span = a.parentNode;
+	var cont = span.parentNode;
+	var input = document.createElement('input');
+	input.className = 'url';
+	input.value = a.href;
+	input.addEventListener('blur', hideURL, false);
+	span.style.display = 'none';
+	cont.insertBefore(input, span);
+	input.select();
+}
+
+function hideURL(e) {
+	var input = e.currentTarget;
+	var span = input.nextSibling;
+	var cont = input.parentNode;
+	cont.removeChild(input);
+	span.style.display = '';
+}
