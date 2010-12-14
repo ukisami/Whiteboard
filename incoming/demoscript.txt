@@ -20,8 +20,18 @@ the demo
 "Now I'll give him his own layer where he can write the solution."
 7. meebo: send "solution" layer link
 "That link had a capability token, allowing him to draw on the board."
+7.1. meebo: receive
+   - (annoying) hey, I need to ask you about this question
+"I'll give this guy a layer too, so he can participate too."
+7.2. new layer, send link to annoying guy
 8. helper writes integral (see reference rendering)
-"Try typing that in an instant message. Hm, let me see if I understand this."
+"Try typing that in an instant message."
+8.1 chat
+   - (annoying) whoa, what is this?
+8.2. annoying guy draws a dick or something
+"oh geez, I'm going to have to take that out."
+8.3. hide annoying guy's layer
+"phew. Now, let me see if I understand this."
 9. chat
    - so this is the cross sectional area
 10. draw yellow over integrand (see reference rendering)
@@ -30,6 +40,7 @@ the demo
 12. chat
    - (helper) yes
    - ok, thanks
+   - (annoying) buncha losers
 "Great, I'm all set on my math homework."
 13. write chapter and problem number
 "I bet the other math students were wondering about this too."
