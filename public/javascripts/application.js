@@ -233,7 +233,7 @@ function handlePoll(json) {
 		p.appendChild(span);
 		p.appendChild(document.createTextNode(line.body));
 		chat.appendChild(p);
-		chat.scrollTop = 0x7fffffff; // bottom?
+		chat.scrollTop = 0x1000000; // bottom?
 	}
 }
 
