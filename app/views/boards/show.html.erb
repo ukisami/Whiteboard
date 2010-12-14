@@ -18,10 +18,12 @@
   <ul id="layerList" class="owned">
     <% @board.layers.all(:order => '"order" DESC').each do |layer| %>
       <li id="li<%= layer.id %>">
-        <input id="visible<%= layer.id %>" class="visible" type="checkbox"<%= layer.visible ? 'checked' : '' %> />
-        <input id="opacity<%= layer.id %>" class="opacity" type="text" value="<%= layer.opacity %>" />
-        <a href="?token=<%= layer.token %>" target="_blank">#</a>
-        <%=h layer.name %>
+        <span>
+          <input id="visible<%= layer.id %>" class="visible" type="checkbox"<%= layer.visible ? 'checked' : '' %> />
+          <input id="opacity<%= layer.id %>" class="opacity" type="text" value="<%= layer.opacity %>" />
+          <a class="url" href="?token=<%= layer.token %>"><img src="/images/link.png" /></a>
+          <%=h layer.name %>
+        </span>
       </li>
     <% end %>
   </ul>
@@ -53,11 +55,7 @@
 </form>
 </div>
 
-<h2><%= @board.title %></h2>
-<div id="showAndHideContents">
-	<img class='link_icon' src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif">
-	<input id="share_link" name="share_link" type="text" value="<%=h url_for :action=>'show', :controller=>'boards', :only_path => false %>" />
-</div>
+<h2><%= @board.title %> <span><a id="public" class="url" href="<%=h board_path(@board) %>"><img src="/images/link.png" /> add viewer</a></span></h2>
 <div id="container">
   <% @board.layers.each do |layer| %>
     <img id="layer<%= layer.id %>" style="z-index:<%= layer.order %>;opacity:<%= layer.opacity / 100.0 %>;visibility:<%= layer.visible ? 'visible' : 'hidden' %>;" src="<%=h layer.data %>" />

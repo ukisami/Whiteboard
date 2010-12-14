@@ -1,3 +1,4 @@
+<% if hide.nil? %>
 <div id="sorting">Sort by: &nbsp;
 	<% if sortBy=="byDate" %>
 		<span class="sorted">Most Recent</span>
@@ -15,6 +16,7 @@
 		<a id="sortByRec" class="sortLink" href="/galleries?sort=byRec"><span>Recommendation</span></a>
 	<% end %>	
 </div>
+<% end %>
 <div>
 <%= render :partial=>'sixPacks', :locals=>{:sorted_galleries => sorted_galleries, :offsetIndex=>offsetNum, :sort_by=>sortBy} %>
 </div>

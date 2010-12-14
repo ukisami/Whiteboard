@@ -5,6 +5,9 @@ describe Board do
     @valid_attributes = {
       :title => 'untitled'
     }
+		@kkk_titled = {
+			:title => 'kkk'
+		}
   end
 
   def mock_layer(stubs={})
@@ -239,5 +242,21 @@ describe Board do
       @updates[:chats][0][:author].should equal @chats[0].author
     end
   end
+
+	describe "given we want to search for boards" do
+		it "should return boards titled 'kkk' if 'kkk' is the input" do
+			@board = Board.create @kkk_titled
+			params = 'kkk'
+			Board.search(params).should include(@board)
+		end
+
+		it "should return all all if nothing is inputted" do
+			@board1 = Board.create @valid_attributes
+			@board2 = Board.create @kkk_titled
+			boards = Board.search('')
+			boards.should include(@board1)
+			boards.should include(@board2)
+		end
+	end
 
 end
