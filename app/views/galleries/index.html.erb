@@ -17,12 +17,9 @@
   </a>
 <% end %>
 <h2>Gallery</h2>
-<% form_tag search_path do %>
-   <p>
-   <%= text_field_tag :search, params[:search] %>
-   <%= submit_tag "Search", :name => nil %>
-   </p>
-<% end %>
+<div id="search_bar"><% form_tag search_path do %>
+   <p>Search here: <%= text_field_tag :search, params[:search] %><%= submit_tag "Search", :name => nil %></p>
+<% end %></div>
 
 <%= render :partial=>'showGallery', :locals=>{:sorted_galleries => @galleries, :sortBy=>@sort, :offsetNum=>@offset} %>
 

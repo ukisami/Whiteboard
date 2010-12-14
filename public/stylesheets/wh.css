@@ -89,6 +89,9 @@ h3{margin:17px 0 12px;font-size:20px;}
 #totalView_int{font-weight:bold;font-size:1.5em;}
 #totalView_text{color:#808080;}
 
+#search_bar{position:relative;padding-bottom:3px;margin:auto;margin-top:10px;width:630px;color:#555555;font-weight:bold;}
+#search{width:490px;}
+
 #galleryImage{margin:10px 0;width:640px;height:480px;}
 .comment{border-top:1px dotted #c0c0c0;padding:10px 0 10px 130px;}
 .comment .timestamp{display:block;float:left;margin-left:-130px;width:120px;text-align:right;color:#808080;}
