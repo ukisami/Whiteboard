@@ -54,9 +54,9 @@ Scenario: can see the previous six galleries
 	And gallery 6 exists
 	And gallery 7 exists
 	When I go to view next gallery page 
+	And I follow "Previous page"
 	Then I should not see "Previous page"
-	Then I should not see "Whiteboard 2"
-	And I should not see "Previous page"
+	And I should see "whiteboard 1"
 			
 Scenario: can do basic search by the names of galleries 
 	Given gallery 1 exists
@@ -113,4 +113,19 @@ Scenario: can do sort by Recommendation
 	And I follow "Back"
 	And I follow "Recommendation"
 	Then I should see "whiteboard 1"
+	
+Scenario: Total view of a gallery increment by one for every visit 
+	Given gallery 1 exists
+	When I go to view gallery page
+	And I follow "whiteboard 1"
+	And I follow "Back"
+	And I follow "whiteboard 1"
+	Then I should see "2"
+	
+Scenario: A user can only like once
+	Given I already liked Gallery 1
+	When I go to view gallery page 
+	And I follow "whiteboard 1"
+	Then "#likeP2" exists
+	And I should see "You"
 	

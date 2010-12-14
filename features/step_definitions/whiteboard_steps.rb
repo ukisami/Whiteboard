@@ -26,11 +26,21 @@ Given /^there is another collaborator for whiteboard (\d+)$/ do |arg1|
 	board.save
 end
 
-Then /^toolbar exists$/ do
-  response.should have_selector('#toolbar')
+Given /^I already liked Gallery (\d+)$/ do |arg1|
+  board = Board.create(:id=> arg1, :title => 'whiteboard '+ arg1 )
+  board.galleries.create(:id=>arg1)
+  gallery=Gallery.find(arg1)
+  like = gallery.likes.new()
+  like.ip = "127.0.0.1"
+  like.save
 end
 
-Then /^toolbar does not exist$/ do
-  response.should_not have_selector('#toolbar')
+
+Then /^"([^"]*)" exists$/ do |id|
+  response.should have_selector(id)
+end
+
+Then /^"([^"]*)" does not exist$/ do |id|
+  response.should_not have_selector(id)
 end
 

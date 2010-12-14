@@ -1,5 +1,6 @@
 <% if @gallery.likes.find_by_ip(request.remote_ip).nil? %>
-<p class="" id="likeP"><%=h like_count %> people like this. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= link_to_remote 'Like', :url => { :controller => "likes", :action => "create", :gallery => @gallery} %> this.</p>
+<p class="" id="likeP"><%=h like_count %> people
+<%= link_to_remote 'Like', :url => { :controller => "likes", :action => "create", :gallery => @gallery} %> <%=h @gallery.board.title %>.</p>
 <% else %>
 <p class="" id="likeP2">You and <%=h like_count-1 %> other people like this.</p>
 <% end %>
