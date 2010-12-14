@@ -9,7 +9,7 @@ class LikesController < ApplicationController
         	page.replace_html 'like', :partial => 'likes/like', :locals => { :like_count => @gallery.likes.count }
         	page.replace_html 'like_errors', :text => ''
         end
-     else 
+    else 
         render :update do |page|
           page.replace_html 'like_errors', :text => @like.errors.on(:content)
         end

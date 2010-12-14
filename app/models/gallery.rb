@@ -15,4 +15,8 @@ class Gallery < ActiveRecord::Base
 		end
 	end
 	
+	def updateRecValue
+		self.recValue = self.totalView + 20*self.likes.count
+	end
+	
 end
