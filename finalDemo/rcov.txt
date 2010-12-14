@@ -1,0 +1,32 @@
+(in /home/jianpchen/repo/Whiteboard)
+...............................................................................................................................................................
+
+Finished in 2.193526 seconds
+
+159 examples, 0 failures
++----------------------------------------------------+-------+-------+--------+
+|                  File                              | Lines |  LOC  |  COV   |
++----------------------------------------------------+-------+-------+--------+
+|app/controllers/application_controller.rb           |    10 |     4 | 100.0% |
+|app/controllers/boards_controller.rb                |   115 |    90 | 100.0% |
+|app/controllers/chats_controller.rb                 |    23 |    21 | 100.0% |
+|app/controllers/comments_controller.rb              |   120 |    89 | 100.0% |
+|app/controllers/galleries_controller.rb             |    93 |    77 | 100.0% |
+|app/controllers/layers_controller.rb                |    79 |    58 | 100.0% |
+|app/controllers/likes_controller.rb                 |    19 |    17 | 100.0% |
+|app/helpers/application_helper.rb                   |     3 |     2 | 100.0% |
+|app/helpers/boards_helper.rb                        |     2 |     2 | 100.0% |
+|app/helpers/comments_helper.rb                      |     2 |     2 | 100.0% |
+|app/helpers/form_helper.rb                          |    21 |    21 | 100.0% |
+|app/helpers/galleries_helper.rb                     |     2 |     2 | 100.0% |
+|app/helpers/layers_helper.rb                        |     2 |     2 | 100.0% |
+|app/models/board.rb                                 |   110 |    90 | 100.0% |
+|app/models/chat.rb                                  |     3 |     3 | 100.0% |
+|app/models/comment.rb                               |     6 |     5 | 100.0% |
+|app/models/gallery.rb                               |    22 |    18 | 100.0% |
+|app/models/layer.rb                                 |    72 |    58 | 100.0% |
+|app/models/like.rb                                  |     3 |     3 | 100.0% |
++----------------------------------------------------+-------+-------+--------+
+|Total                                               |   707 |   564 | 100.0% |
++----------------------------------------------------+-------+-------+--------+
+100.0%   19 file(s)   707 Lines   564 LOC

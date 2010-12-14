@@ -10,32 +10,32 @@ describe GalleriesController do
 		before :each do
 			gallery1 = Gallery.create(:totalView => '1')
 			gallery2 = Gallery.create(:totalView => '2')
-			galleries1 = [gallery1, gallery2]
-			galleries2 = [gallery2, gallery1]
-      Gallery.stub(:find).with(:all).and_return(galleries1)
-			Gallery.stub(:all).and_return(galleries1)
+			@galleries1 = [gallery1, gallery2]
+			@galleries2 = [gallery2, gallery1]
+      Gallery.stub(:find).with(:all).and_return(@galleries1)
+			Gallery.stub(:all).and_return(@galleries1)
 			mock_gallery.stub(:updateRecValue)
 			mock_gallery.stub(:save)
 		end 
 
     it "assigns all galleries as @galleries and sorts by views" do
       get :index, :sort => "byViews"
-      assigns[:galleries].should equal(galleries1)
+      assigns[:galleries].should equal(@galleries1)
     end
 
 		it "assigns all galleries as @galleries and sorts by dates" do
       get :index
-      assigns[:galleries].should equal(galleries1)
+      assigns[:galleries].should equal(@galleries1)
     end
 
 		it "assigns all galleries as @galleries and sorts by Rec" do
       get :index, :sort => "byRec"
-      assigns[:galleries].should equal(galleries1)
+      assigns[:galleries].should equal(@galleries1)
     end
 
 		it "assigns all galleries as @galleries and sorts by anything else" do
       get :index, :sort => "anything else"
-      assigns[:galleries].should equal(galleries1)
+      assigns[:galleries].should equal(@galleries1)
     end
   end
 
@@ -55,21 +55,22 @@ describe GalleriesController do
   	before :each do
   		board = Board.create(:title => 'sentinel')
   		@token = board.token
+  		@b_id = board.id
+  		board.save
   	end
 
     describe "with valid params" do
       it "assigns a newly created gallery as @gallery" do
-        Gallery.stub(:new).and_return(mock_gallery(:save => true))
-        post :create, :board_id => 1, :token => @token
-        assigns[:gallery].should equal(mock_gallery)
+        post :create, :board_id => @b_id, :token => @token
+        assigns[:gallery].should_not equal(nil)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved gallery as @gallery" do
+      it "redirects to the homepage" do
         Gallery.stub(:new).and_return(mock_gallery(:save => false))
         post :create, :board_id => 1, :token => @token
-        assigns[:gallery].should equal(mock_gallery)
+        response.should redirect_to '/'
       end
     end
     

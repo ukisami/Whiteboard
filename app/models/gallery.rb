@@ -16,9 +16,7 @@ class Gallery < ActiveRecord::Base
 	end
 	
 	def updateRecValue
-		if self.likes
-			self.recValue = self.totalView + 20*self.likes.count
-		end
+		self.recValue = (self.totalView || 0) + 20*(self.likes || []).count
 	end
 	
 end
