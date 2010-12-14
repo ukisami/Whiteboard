@@ -21,6 +21,6 @@
    <p>Search here: <%= text_field_tag :search, params[:search] %><%= submit_tag "Search", :name => nil %></p>
 <% end %></div>
 
-<%= render :partial=>'showGallery', :locals=>{:sorted_galleries => @galleries, :sortBy=>@sort, :offsetNum=>@offset} %>
+<%= render :partial=>'showGallery', :locals=>{:sorted_galleries => @galleries, :sortBy=>@sort, :offsetNum=>@offset, :hide=>@hide} %>
 
 </body></html>

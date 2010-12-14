@@ -86,7 +86,8 @@ class GalleriesController < ApplicationController
 		@galleres = @galleries.uniq
 		@offset = params[:offset].to_i || 0
 		@sort = params[:sort].to_s
-		render :template => 'galleries/index'
+		@hide = true
+		render :action => "index"
 	end
 
 end
