@@ -7,6 +7,7 @@
 <canvas id="plus" width="16" height="16"></canvas>
 <canvas id="larrow" width="32" height="64"></canvas>
 <canvas id="rarrow" width="32" height="64"></canvas>
+<canvas id="link" width="14" height="10"></canvas>
 <script>
 var v = document.getElementById('checkerboard');
 var c = v.getContext('2d');
@@ -108,5 +109,24 @@ c.lineTo(0, 0);
 c.lineTo(0, 64);
 c.closePath();
 c.fill();
+
+var phi = (Math.sqrt(5) + 1) / 2;
+v = document.getElementById('link');
+c = v.getContext('2d');
+c.strokeStyle = '#c00040';
+c.translate(7, 5);
+c.rotate(-Math.PI / 6);
+c.scale(1, 1 / phi);
+c.beginPath();
+c.arc(-3.5, 0, 3.5, 0.6, -0.6, false);
+c.stroke();
+c.beginPath();
+c.arc(3.5, 0, 3.5, Math.PI + 0.6, Math.PI - 0.6, false);
+c.stroke();
+c.beginPath();
+c.lineCap = 'round';
+c.moveTo(-2.5, 0);
+c.lineTo(2.5, 0);
+c.stroke();
 </script>
 </body>
