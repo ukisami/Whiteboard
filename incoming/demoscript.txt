@@ -5,9 +5,11 @@ the demo
    - what?
    - let me draw this
 "Whiteboard is for people who think visually."
+"I don't need to register. Whiteboard exists to facilitate impromptu works."
 2. open whiteboard
    - create board
    - name "volume integral"
+"My capability is stored in the URL. All I have to do to retain ownership is bookmark this page."
 "I'm giving my friend a link so he can watch as I draw."
 3. meebo: send public viewing link
 4. draw figure (see reference rendering)
@@ -17,6 +19,7 @@ the demo
 6. create new layer "solution"
 "Now I'll give him his own layer where he can write the solution."
 7. meebo: send "solution" layer link
+"That link had a capability token, allowing him to draw on the board."
 8. helper writes integral (see reference rendering)
 "Try typing that in an instant message. Hm, let me see if I understand this."
 9. chat
