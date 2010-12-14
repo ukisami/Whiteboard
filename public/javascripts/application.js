@@ -451,3 +451,4 @@ function redo() {
 	context.putImageData(undoBuffer[++undoIndex], 0, 0);
 	scheduleSave();
 }
+
